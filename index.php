@@ -12,38 +12,43 @@
 				if ($_GET['action'] == "pageAccueil") {
 					pageAccueil();
 				
-				} else if ($_GET['action'] == "pageAcualites") {
+				} else if ($_GET['action'] == "pageActualites") {
+					pageActualites();
 					
 				} else if ($_GET['action'] == "pageContact") {
+					pageContact();
 					
 				} else if ($_GET['action'] == "pageInscription") {
+					pageInscription();
 					
 				} else if ($_GET['action'] == "pageConnexion") {
+					pageConnexion();
 					
 				} else if ($_GET['action'] == "pageDeconnexion") {
+					pageDeconnexion();
 					
 				} else if ($_GET['action'] == "pageMentionLegales") {
+					pageMentionLegales();
 					
 				} else if ($_GET['action'] == "pageVoitureAllemande") {
+					pageVoitureAllemande();
 					
 				} else if ($_GET['action'] == "pageVoitureFrancaise") {
+					pageVoitureFrancaise();
 
 				} else if ($_GET['action'] == "pageVoitureItalienne") {
+					pageVoitureItalienne();
 
-				} else if ($_GET['action'] == "pageVoitureSpartive") {
+				} else if ($_GET['action'] == "pageVoitureSportive") {
+					pageVoitureSportive();
 
-				} else if ($_GET['action'] == "pageVoitureGestionProfil") {
+				} else if ($_GET['action'] == "pageGestionProfil") {
+					pageGestionProfil();
 
-				} else if ($_GET['action'] == "pageVoitureGestionAdmin") {
+				} else if ($_GET['action'] == "pageGestionAdmin") {
+					pageGestionAdmin();
 			
-
-
-
-
-
-
-
-
+				}
 
 			} else{
 		 		pageAccueil();
