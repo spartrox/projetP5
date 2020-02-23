@@ -4,3 +4,15 @@
 	font-family: Avenir, sans-serif;
 
 }
+nav{
+	width: 100%;
+}
+#menu{
+	position: fixed;
+	width: 100%;
+}
+
+
+h1{
+	padding-top: 50px;
+}

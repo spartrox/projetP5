@@ -19,7 +19,7 @@
 	      <script src="public/javascrit/javascrit.js"></script>	
 
 
-	      <!-- Récupération du script pour l'ajout de chapitre -->
+	      <!-- Récupération du script pour l'ajout d'articles -->
 		  <?= $script ?>
 	</head>
 	
