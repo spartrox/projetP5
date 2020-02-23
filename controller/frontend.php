@@ -45,6 +45,11 @@
 
 		require('view/frontend/affichageVoitureAllemande.php');
 	}
+	
+	function pageVoitureSportive(){
+
+		require('view/frontend/affichageVoitureAmericaine.php');
+	}
 
 	function pageVoitureFrancaise(){
 
@@ -53,10 +58,6 @@
 	function pageVoitureItalienne(){
 
 		require('view/frontend/affichageVoitureItalienne.php');
-	}
-	function pageVoitureSportive(){
-
-		require('view/frontend/affichageVoitureSportive.php');
 	}
 
 	function pageGestionProfil(){

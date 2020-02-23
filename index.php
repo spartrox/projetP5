@@ -32,15 +32,15 @@
 					
 				} else if ($_GET['action'] == "pageVoitureAllemande") {
 					pageVoitureAllemande();
+
+				} else if ($_GET['action'] == "pageVoitureAmericaine") {
+					pageVoitureAmericaine();
 					
 				} else if ($_GET['action'] == "pageVoitureFrancaise") {
 					pageVoitureFrancaise();
 
 				} else if ($_GET['action'] == "pageVoitureItalienne") {
 					pageVoitureItalienne();
-
-				} else if ($_GET['action'] == "pageVoitureSportive") {
-					pageVoitureSportive();
 
 				} else if ($_GET['action'] == "pageGestionProfil") {
 					pageGestionProfil();
