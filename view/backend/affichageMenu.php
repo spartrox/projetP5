@@ -8,7 +8,7 @@
       </button>
 
       <div class="titreMenu">
-          <a class="navbar-brand col-md-3 " href="index.php"><em>Billet simple pour l'Alaska </em></a>
+          <a class="navbar-brand col-md-3 " href="index.php"><em>LeagueOfAuto</em></a>
       </div> 
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
