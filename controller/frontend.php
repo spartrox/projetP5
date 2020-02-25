@@ -3,8 +3,6 @@
 	//chargement des différents classes
 
 
-
-
 	//Création des différentes fonction
 	function pageAccueil(){
 
@@ -39,6 +37,11 @@
 	function pageMentionLegales(){
 
 		require('view/frontend/affichageMentionLegales.php');
+	}
+
+	function pageApropos(){
+
+		require('view/frontend/affichageApropos.php');
 	}
 
 	function pageVoitureAllemande(){

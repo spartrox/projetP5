@@ -29,7 +29,10 @@
 					
 				} else if ($_GET['action'] == "pageMentionLegales") {
 					pageMentionLegales();
-					
+
+				} else if ($_GET['action'] == "pageApropos") {
+					pageApropos();	
+
 				} else if ($_GET['action'] == "pageVoitureAllemande") {
 					pageVoitureAllemande();
 
