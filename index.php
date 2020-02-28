@@ -1,4 +1,5 @@
  <?php
+ ob_start();
  session_start();
 
  	//Récupértion des fichiers nécessaire
@@ -51,7 +52,28 @@
 				} else if ($_GET['action'] == "pageGestionAdmin") {
 					pageGestionAdmin();
 			
-				}
+				} elseif ($_GET['action'] == 'addMember'){
+						if (!empty($_POST['pseudo']) && !empty($_POST['mdp']) && !empty($_POST['mdp2']) && !empty($_POST['mail'])){
+							if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)){
+								if ($_POST['mdp'] == $_POST['mdp2']){
+									addMember($_POST['pseudo'], $_POST['mdp'], $_POST['mail']);
+								}
+								else {
+									  throw new Exception('Les deux mots de passe ne correspondent pas.');
+								}
+							} else {
+									throw new Exception('Pas d\'adresse mail valide.');
+								}
+						} else {
+								throw new Exception('Tous les champs ne sont pas remplis !');
+						}
+
+				} elseif ($_GET['action'] == 'pageConnexionSubmit'){
+					pageConnexionSubmit($_POST['pseudoconnect'], $_POST['mdpConnect']);
+				
+				}				
+
+	 			
 
 			} else{
 		 		pageAccueil();
