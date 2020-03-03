@@ -122,6 +122,19 @@
                 }
     }
 
+    	//Bouton modification d'un membre
+    function modifMember($memberId){
+    	$memberManager = new MemberManager();
+
+    	$modifMember = $memberManager->modifMember($memberId);
+
+		if ($modifMember === false){
+				throw new Exception('Impossible de modifier votre profil, veuillez recommencer !');
+		} else{
+				Header('Location: index.php');
+		}    	
+    }
+
 
 
 

@@ -71,7 +71,23 @@
 				} elseif ($_GET['action'] == 'pageConnexionSubmit'){
 					pageConnexionSubmit($_POST['pseudoconnect'], $_POST['mdpConnect']);
 				
-				}				
+				} elseif ($_GET['action'] == 'modifMember'){	
+						if (!empty($_POST['newMdp']) && !empty($_POST['newMdp2']) && !empty($_POST['newMail'])){
+							if (filter_var($_POST['newMail'], FILTER_VALIDATE_EMAIL)){
+								if ($_POST['newMdp'] == $_POST['newMdp2']){
+									modifMember($_POST['newMdp'], $_POST['newMail']);
+								}
+								else {
+									  throw new Exception('Les deux mots de passe ne correspondent pas.');
+								}
+							} else {
+									throw new Exception('Pas d\'adresse mail valide.');
+								}
+						} else {
+								throw new Exception('Tous les champs ne sont pas remplis !');
+						}
+					} 
+
 
 	 			
 
