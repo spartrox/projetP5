@@ -9,17 +9,17 @@
 		<section class="container">
 
 		    <!--Section heading-->
-		    <h3 class="h1-responsive font-weight-bold text-center my-4">Formulaire de contact</h3>
+		    <h3>Formulaire de contact</h3>
 		    <!--Section description-->
-		    <p class="text-center w-responsive mx-auto mb-5">
-		    	N'hésitez pas à nous contacter pour toute information. Vous pouvez utiliser le formulaire ci-dessous ou m'envoyer directement un email à cette adresse : <a href="mailto:allan.leagueofauto@gmail.com" target="_blank">allan.leagueofauto@gmail.com</a>.
-		    </p>
+		    <p>
+		    	N'hésitez pas à nous contacter pour toute information, vous pouvez utiliser le formulaire ci-dessous :
+		    </p><br>
 
-		    <div class="row">
-		        <div class="col-md-9 mb-md-0 mb-5">
+		    <div class="container col-md-8">
+		        <div>
 		            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
 
-		                <div class="row"> 
+		                <div> 
 		                    <div class="col-md-6">
 		                        <div class="md-form mb-0">
 		                            <input type="text" id="name" name="name" class="form-control">
@@ -27,32 +27,32 @@
 		                        </div>
 		                    </div>		         
 		                    <div class="col-md-6">
-		                        <div class="md-form mb-0">
+		                        <div class="md-form">
 		                            <input type="text" id="email" name="email" class="form-control">
 		                            <label for="email" class="">Votre Email</label>
 		                        </div>
 		                    </div>
 		                </div>
-		                <div class="row">
-		                    <div class="col-md-12">
+		                <div>
+		                    <div class="col-md-6">
 		                        <div class="md-form mb-0">
 		                            <input type="text" id="subject" name="subject" class="form-control">
-		                            <label for="subject" class="">Sujet</label>
+		                            <label for="subject">Sujet</label>
 		                        </div>
 		                    </div>
 		                </div>
-		                <div class="row">		   
+		                <div>		   
 		                    <div class="col-md-12">
 		                        <div class="md-form">
-		                            <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
+		                            <textarea type="text" id="message" name="message" rows="5" class="form-control md-textarea"></textarea>
 		                            <label for="message">Votre Message</label>
-		                        </div>
+		                        </div><br>
 		                    </div>
 		                </div>
 		            </form>
 
-		            <div class="text-center text-md-left">
-		                <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Envoyer</a>
+		            <div class="boutonEnvoyer">
+		                <a class="btn" onclick="document.getElementById('contact-form').submit();">Envoyer</a>
 		            </div>
 		        </div>
 		    </div>

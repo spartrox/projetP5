@@ -5,7 +5,7 @@
         <h2>À propos</h2>
          <br /><br />
       
-				<div class="container">
+				<div class="aPropos">
 					
 					<h3>Bienvenue sur le site de LeagueOfAuto</h3>
 						<p>

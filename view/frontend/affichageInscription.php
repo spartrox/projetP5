@@ -4,8 +4,8 @@
     
         <h2>Inscription</h2>
         <br /><br />
-            <div class="container formulaire">
-                <form  action="index.php?action=addMember" method="post">
+            <div class="container">
+                <form class="col-md-5 container"  action="index.php?action=addMember" method="post">
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-user"></i> </span>
