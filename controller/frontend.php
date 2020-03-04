@@ -127,6 +127,16 @@
     	$memberManager = new MemberManager();
 
     	$modifMember = $memberManager->modifMember($memberId);
+		
+		$tailleMax = 2097152;
+   		$extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
+
+   		if () {
+   			# code...
+   		}	else {
+				throw new Exception("Erreur durant l'importation de votre photo de profil");
+		}
+
 
 		if ($modifMember === false){
 				throw new Exception('Impossible de modifier votre profil, veuillez recommencer !');

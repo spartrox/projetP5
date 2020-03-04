@@ -6,7 +6,7 @@
  	require_once('controller/frontend.php');
  	require_once('controller/backend.php');
 
-	// Début  des tests	
+	// Début  des tests
 	try
 	{
 			if (isset($_GET['action'])){
@@ -72,19 +72,20 @@
 					pageConnexionSubmit($_POST['pseudoconnect'], $_POST['mdpConnect']);
 				
 				} elseif ($_GET['action'] == 'modifMember'){	
-						if (!empty($_POST['newMdp']) && !empty($_POST['newMdp2']) && !empty($_POST['newMail'])){
-							if (filter_var($_POST['newMail'], FILTER_VALIDATE_EMAIL)){
+						if (!empty($_POST['newMdp']) && !empty($_POST['newMdp2']) || !empty($_POST['newMail']) || !empty($_POST['avatar'])){
+							//if (filter_var($_POST['newMail'], FILTER_VALIDATE_EMAIL)){
+
 								if ($_POST['newMdp'] == $_POST['newMdp2']){
-									modifMember($_POST['newMdp'], $_POST['newMail']);
+										modifMember($_POST['newMdp'], $_POST['newMail'], $_POST['avatar']);		
 								}
 								else {
 									  throw new Exception('Les deux mots de passe ne correspondent pas.');
 								}
-							} else {
-									throw new Exception('Pas d\'adresse mail valide.');
-								}
+							//} else {
+							//		throw new Exception('Pas d\'adresse mail valide.');
+							//	}
 						} else {
-								throw new Exception('Tous les champs ne sont pas remplis !');
+								throw new Exception('Veuillez modifier au moins un champ !');
 						}
 					} 
 
@@ -94,7 +95,6 @@
 			} else{
 		 		pageAccueil();
 			}
-
 	} 
 	// Fin des tests
    	

@@ -8,7 +8,7 @@
 			<div class="container"><br>
 				<p>Vous pouvez gérer les éléments de votre profil en dessous :</p>
 			
-			<form class="container col-md-6" action="index.php?action=modifMember" method="post" >
+			<form class="container col-md-6" action="index.php?action=modifMember" method="post" enctype="multipart/form-data" >
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-envelope" ></i> </span>
@@ -24,13 +24,16 @@
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                      </div>
+                      	</div>
                             <input class="form-control" placeholder="Confirmer votre nouveau mdp" id="mdp2" name="newMdp2" type="password">
-                      </div>
-                          <div class="form-group">
-                             <br/>
-                             <input type="submit" class="btn btn-primary" name="forminscription" value="Mettre à jour mon profil" id="inscription" />
-                          </div>
+                      	</div><br>
+                      	<div class="form-group input-group">
+                      		AVATAR :<input type="file" name="avatar">	
+                      	</div>	
+                        <div class="form-group">
+                            <br/>
+                            <input type="submit" class="btn btn-primary" name="forminscription" value="Mettre à jour mon profil" id="inscription" />
+                        </div>
             </form>
 
 
