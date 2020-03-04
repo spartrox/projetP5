@@ -39,15 +39,9 @@
               <!-- Si une session est ouverte alors on affiche le menu d'un utilisateur -->
               <?php if(isset($_SESSION['id'])) { ?>
             
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil</a>
-
-              <!-- bloc menu déroulant -->
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="index.php?action=pageGestionProfil">Gestion profil</a>
-                      <a class="dropdown-item" href="index.php?action=pageDeconnexion">Deconnexion</a>
-                  </div>
-                </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="index.php?action=pageProfil">Mon profil</a>
+              </li>
             
               <!-- Si une session est ouverte et si c'est un admin on affiche le menu admin -->   
               <?php if (isset($_SESSION['id']) && ($_SESSION['admin'])){ ?>

@@ -46,8 +46,14 @@
 				} else if ($_GET['action'] == "pageVoitureItalienne") {
 					pageVoitureItalienne();
 
+				} else if ($_GET['action'] == "pageProfil") {
+					pageProfil();
+
 				} else if ($_GET['action'] == "pageGestionProfil") {
 					pageGestionProfil();
+
+				} else if ($_GET['action'] == "pageAvatar") {
+					pageAvatar();
 
 				} else if ($_GET['action'] == "pageGestionAdmin") {
 					pageGestionAdmin();

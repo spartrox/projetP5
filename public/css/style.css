@@ -5,8 +5,8 @@
 	padding: 0px;
 	font-family: Avenir, sans-serif;
 }
-.form-control{
-
+.btn{
+	font-weight: bold;
 }
 		/*////////////////////////  MENU    ///////////////////////////////  */
 nav{
@@ -33,6 +33,7 @@ h2{
 }
 h3{
 	text-align: center;
+	font-size: 2.5em;
 }
 
 		/*////////////////////////  A PROPOS   ///////////////////////////////  */
@@ -113,6 +114,34 @@ h3{
   transform: rotate(45deg);
 }
 
+		/*////////////////////////  PROFIL    ///////////////////////////////  */
+#infoProfil{
+	background-color: #f8f8f8;
+	border-radius: 10px;
+	padding: 20px;
+}
+#infoProfil p{
+	font-size: 2em;
+}
+#infoProfil li{
+	font-size: 1.2em;
+}
+#infoProfil ul{
+	list-style-type: none;
+}
+#modifierProfil{
+	margin-right: 30px;
+}
+#deconnexion{
+	margin: 30px;
+}
+
+		/*////////////////////////  GESTION PROFIL    ///////////////////////////////  */
+#inscription{
+	margin-right: 50px;
+}
+
+
 		/*////////////////////////  FOOTER    ///////////////////////////////  */
 #pied_de_page{
 	color: black; 
@@ -131,4 +160,22 @@ footer{
 	margin-top: 30px;
 	font-size: 1.2em;
 	text-align: center;
+}
+
+@media screen and (max-width: 1200px){
+
+#modifierProfil{
+	margin: 20px;
+	margin-left: 0px;
+}
+
+@media screen and (max-width: 400px){
+
+#modifierProfil{
+	margin: 20px;
+	margin-left: 0px;
+}
+
+
+
 }
