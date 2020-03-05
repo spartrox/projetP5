@@ -12,7 +12,7 @@
 		    <h3>Formulaire de contact</h3>
 		    <!--Section description-->
 		    <p>
-		    	N'hésitez pas à nous contacter pour toute information, vous pouvez utiliser le formulaire ci-dessous :
+		    	N'hésitez pas à nous contacter pour toute question ou renseignement, vous pouvez utiliser le formulaire ci-dessous :
 		    </p><br>
 
 		    <div class="container col-md-8">
@@ -20,13 +20,13 @@
 		            <form id="contact-form" name="contact-form" action="mail.php" method="POST">
 
 		                <div> 
-		                    <div class="col-md-6">
+		                    <div class="container  col-md-9">
 		                        <div class="md-form mb-0">
 		                            <input type="text" id="name" name="name" class="form-control">
 		                            <label for="name" class="">Votre Nom</label>
 		                        </div>
 		                    </div>		         
-		                    <div class="col-md-6">
+		                    <div class="container  col-md-9">
 		                        <div class="md-form">
 		                            <input type="text" id="email" name="email" class="form-control">
 		                            <label for="email" class="">Votre Email</label>
@@ -34,7 +34,7 @@
 		                    </div>
 		                </div>
 		                <div>
-		                    <div class="col-md-6">
+		                    <div class="container  col-md-9">
 		                        <div class="md-form mb-0">
 		                            <input type="text" id="subject" name="subject" class="form-control">
 		                            <label for="subject">Sujet</label>

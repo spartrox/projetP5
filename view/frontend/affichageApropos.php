@@ -38,7 +38,7 @@
 					<h3>Contact</h3>
 
 						<p>
-							Pour toute question relative à ce blog ou demande d’informations, vous pouvez utiliser le formulaire de contact en cliquant ici, ou nous écrire directement à l’adresse suivante : <a href="mailto:allan.leagueofauto@gmail.com" target="_blank">allan.leagueofauto@gmail.com</a>.
+							Pour toute question relative à ce blog ou demande d’informations, vous pouvez utiliser le formulaire de contact en <a href="index.php?action=pageContact"> cliquant ici </a>, ou nous écrire directement à l’adresse suivante : <a href="mailto:allan.leagueofauto@gmail.com" target="_blank">allan.leagueofauto@gmail.com</a>.
 						</p>
 						<p>
 							Ces événements sont l'occasion d'effectuer de belles rencontres et surtout, de pouvoir partager et mettre en avant un intérêt commun autour d'un véhicule ou d'une gamme automobile.

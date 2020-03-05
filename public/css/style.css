@@ -8,13 +8,25 @@
 .btn{
 	font-weight: bold;
 }
+
 		/*////////////////////////  MENU    ///////////////////////////////  */
 nav{
 	width: 100%;
 }
 #menu{
-	/*position: fixed;*/
 	width: 100%;
+}
+#titre{
+	color: blue;
+	font-weight: bold;
+	font-size: 2em;
+}
+.nav-link{
+	margin-left: 25px;
+	border-bottom: 2px solid #f8f8f8;
+}
+.nav-link:hover{
+	border-bottom: 2px solid #386473;
 }
 
 		/*////////////////////////  TITRES    ///////////////////////////////  */
@@ -125,23 +137,24 @@ h3{
 }
 #infoProfil li{
 	font-size: 1.2em;
+	margin-bottom: 15px;
 }
 #infoProfil ul{
 	list-style-type: none;
 }
 #modifierProfil{
-	margin-right: 30px;
-}
-#deconnexion{
 	margin: 30px;
 }
-
+#deconnexion{
+	margin-top: 10px;
+}
 		/*////////////////////////  GESTION PROFIL    ///////////////////////////////  */
 #inscription{
 	margin-right: 50px;
 }
-
-
+#publierAvatar{
+	margin: 20px;
+}
 		/*////////////////////////  FOOTER    ///////////////////////////////  */
 #pied_de_page{
 	color: black; 
@@ -171,11 +184,25 @@ footer{
 
 @media screen and (max-width: 400px){
 
+h3{
+	font-size: 2em;
+}
+#titre{
+	font-size: 1.5em;
+}
 #modifierProfil{
 	margin: 20px;
-	margin-left: 0px;
 }
-
+#infoProfil li{
+	font-size: 1em;
+	margin-bottom: 0px;
+}
+#infoProfil p{
+	font-size: 1.5em;
+}
+.btn{
+	font-size: 0.8em;
+}
 
 
 }
