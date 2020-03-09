@@ -49,6 +49,13 @@
 				} else if ($_GET['action'] == "pageProfil") {
 					pageProfil();
 
+				} else if ($_GET['action'] == "infoProfil") {
+					if (isset($_SESSION['id']) || ($_SESSION['admin'])){
+						infoProfil();
+				} else {
+					pageAccueil();
+				}
+
 				} else if ($_GET['action'] == "pageGestionProfil") {
 					pageGestionProfil();
 
@@ -57,6 +64,18 @@
 
 				} else if ($_GET['action'] == "pageGestionAdmin") {
 					pageGestionAdmin();
+
+				} else if ($_GET['action'] == "listeArticles"){
+					listeArticles();
+
+				} else if ($_GET['action'] == "Article"){
+					 	
+					if(isset($_GET['id']) && $_GET['id'] > 0){
+	 					article();
+	 				
+	 				} else {
+	                		throw new Exception('Aucun identifiant de billet envoyé');
+	            	} 
 			
 				} elseif ($_GET['action'] == 'addMember'){
 						if (!empty($_POST['pseudo']) && !empty($_POST['mdp']) && !empty($_POST['mdp2']) && !empty($_POST['mail'])){
@@ -79,7 +98,7 @@
 				
 				} elseif ($_GET['action'] == 'modifMember'){	
 						if (!empty($_POST['newMdp']) && !empty($_POST['newMdp2']) || !empty($_POST['newMail']) || !empty($_POST['avatar'])){
-							//if (filter_var($_POST['newMail'], FILTER_VALIDATE_EMAIL)){
+							if (filter_var($_POST['newMail'], FILTER_VALIDATE_EMAIL)){
 
 								if ($_POST['newMdp'] == $_POST['newMdp2']){
 										modifMember($_POST['newMdp'], $_POST['newMail'], $_POST['avatar']);		
@@ -87,9 +106,9 @@
 								else {
 									  throw new Exception('Les deux mots de passe ne correspondent pas.');
 								}
-							//} else {
-							//		throw new Exception('Pas d\'adresse mail valide.');
-							//	}
+							} else {
+									throw new Exception('Pas d\'adresse mail valide.');
+								}
 						} else {
 								throw new Exception('Veuillez modifier au moins un champ !');
 						}

@@ -18,6 +18,8 @@
 						</div>
 							<input class="form-control" type="password" name="mdpConnect" placeholder="Mot de passe">
 					</div>
+					<!--<div class="g-recaptcha" data-sitekey="6Lcv7d4UAAAAAFEvQxHzGycnQ8wwSlZfi3N8esvx"></div>
+					<button class="g-recaptcha" data-sitekey="6Lcv7d4UAAAAAFEvQxHzGycnQ8wwSlZfi3N8esvx" data-callback='onReCaptchaValid'>Valider</button> -->
 					<div class="form-group">
 						<input type="submit" value="Se connecter" class="btn btn-primary">
 					</div><br>

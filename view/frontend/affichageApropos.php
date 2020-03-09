@@ -33,7 +33,7 @@
 					<h3>Réseaux sociaux et abonnements</h3>
 
 						<p>
-							Retrouvez LeagueOfAuto sur <a href="https://twitter.com" target="_blank">Twitter</a>, <a href="https://plus.google.com" target="_blank">Google+</a> et <a href="https://www.facebook.com" target="_blank">Facebook</a>.
+							Retrouvez LeagueOfAuto sur <a href="https://twitter.com" target="_blank">Twitter</a> et <a href="https://www.facebook.com" target="_blank">Facebook</a>.
 						</p>
 					<h3>Contact</h3>
 

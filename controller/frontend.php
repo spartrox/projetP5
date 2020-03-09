@@ -1,7 +1,7 @@
 <?php
 
 	//chargement des différents classes
-   	require_once('model/postManager.php');
+   	require_once('model/articleManager.php');
   	require_once('model/commentManager.php');
     require_once('model/memberManager.php');
 
@@ -102,7 +102,7 @@
             if (!($pseudoExist) && !($mailExist)){
 
                 $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
-                $newMember = $memberManager->createMember($pseudo, $mail, $mdp);
+                $newMember = $memberManager->createMember($pseudo, $mail, $mdp,);
             	header('Location: index.php?action=pageConnexion');
             } else {
                     throw new Exception('Erreurs lors de l\'inscription veuillez recommencer !');
@@ -131,6 +131,48 @@
                   }
                 }
     }
+    	//Afficher la page Actualités
+    function listeArticles(){
+    	$articleManager = new ArticleManager();
+
+    	$articles = $articleManager->getArticles();
+
+        if ($articles === false){
+                throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
+        } else{
+  			        require('view/frontend/affichageActualites.php');
+        }
+    }
+
+    	//Affichage de la page Article et Commentaire
+    function article(){
+    	$articleManager = new ArticleManager();
+
+    	$article = $articleManager->getArticle($_GET['id']);
+
+        if ($article === false){
+                throw new Exception('Impossible d\'afficher la page de l\'article, veuillez recommencer !');
+        } else{
+     		        require('view/frontend/affichageArticle.php');
+     	  }
+    }
+
+      //Récupération d'éléments pour la pageProfil
+    function infoProfil(){
+        $memberManager = new MemberManager();
+
+        $infoMember = $memberManager->getMember($_GET['id']); 
+            
+
+        if ($infoMember === false){
+                throw new Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
+        } else{
+                require('view/frontend/affichageProfil.php');
+        }
+    }
+
+
+
 
     	//Bouton modification d'un membre
     function modifMember($memberId){
@@ -178,6 +220,9 @@
 				Header('Location: index.php');
 		}    	
     }
+
+
+
 
 
 
