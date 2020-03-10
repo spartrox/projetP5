@@ -2,14 +2,13 @@
 <?php $script=""; ?>
 		<?php ob_start(); ?>	
 
-		<section>
 			<h2>Votre profil</h2>
             
             <?php 
                 //   while($p = $infoMember->fetch()){
             ?> 
-            
-			<div class="container"><br>
+        <section class="container affichageProfil">            
+			<div><br>
                 <h3>Profil de <?= htmlspecialchars($p['pseudo']) ?> </h3><br>
 			</div>
 

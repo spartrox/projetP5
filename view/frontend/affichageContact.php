@@ -6,7 +6,7 @@
 		  	<div id="contact">
 
 				<!--Section: Contact v.2-->
-		<section class="container">
+		<section class="container contact">
 
 		    <!--Section heading-->
 		    <h3>Formulaire de contact</h3>
