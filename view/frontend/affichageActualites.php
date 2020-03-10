@@ -75,7 +75,39 @@
 				
 				<h3> Météo du jour</h3>
 				<div class="trait"></div>
-				<p></p>
+				<div class="container mt-4">
+					<form id="weather" class="mb-5" >
+						<div class="row">
+							<div>
+								<div class="form-group">
+									<label for="city" class="sr-only">Renseigner une ville</label>
+									<input type="text" class="form-control" id="city" placeholder="Renseigner une ville">
+									<div class="invalid-feedback">Merci de renseigner une ville valide.</div>
+								</div>
+							</div>
+							<div>
+								<button type="submit" class="btn btn-primary">Rechercher</button>
+							</div>
+						</div>
+					</form>
+
+					<div class="card d-none">
+						<div class="text-center">
+							<img class="image-weather" src="" alt="">
+						</div>
+						<div class="card-body">
+							<h5 class="card-title"></h5>
+							<div class="card-text">
+								<p class="description-weather"></p>
+								<p>
+									<strong>Température</strong> <span class="temp-weather"></span><br>
+									<strong>Max :</strong> <span class="temp-max-weather"></span>
+									<strong>Min :</strong> <span class="temp-min-weather"></span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>  
