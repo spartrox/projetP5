@@ -12,6 +12,9 @@
 	      <!-- CSS/JQUERY/JAVASCRIPT -->
 	      <link rel="stylesheet" href="public/css/bootstrap.min.css">
 	      <link rel="stylesheet" type="text/css" href="public/css/style.css">
+	      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+   		  <link href='https://fonts.googleapis.com/css?family=Raleway:100,400' rel='stylesheet' type='text/css'>
+    	  <link rel="stylesheet" href="css/font-awesome.css">
 	      <script src="public/jquery/jquery-3.4.1.js"></script>
 	      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -20,9 +23,9 @@
 	      <script src="https://www.google.com/recaptcha/api.js" async defer></script>	
 	      <script src="public/javascript/slider.js"></script>
 	      <script src="public/javascript/main.js"></script>
-
-
-	      <!-- Récupération du script pour l'ajout de chapitre -->
+	      <script src="public/javascript/apiMeteo.js"></script>
+	      
+	      <!-- Récupération du script pour l'ajout de l'article -->
 		  <?= $script ?>
 	</head>
 	
@@ -35,6 +38,7 @@
 
             <!-- Pied de page -->
         <?php include("affichageFooter.php"); ?>
+
 
     </body>
 </html>

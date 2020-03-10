@@ -51,7 +51,7 @@
 		require('view/frontend/affichageVoitureAllemande.php');
 	}
 	
-	function pageVoitureSportive(){
+	function pageVoitureAmericaine(){
 
 		require('view/frontend/affichageVoitureAmericaine.php');
 	}

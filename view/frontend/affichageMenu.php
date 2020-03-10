@@ -22,7 +22,7 @@
                   <!-- bloc menu déroulant -->
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                       <a class="dropdown-item" href="index.php?action=pageVoitureAllemande">Voiture Allemande</a>
-                      <a class="dropdown-item" href="index.php?action=pageVoitureSportive">Voiture Americaine</a>
+                      <a class="dropdown-item" href="index.php?action=pageVoitureAmericaine">Voiture Americaine</a>
                       <a class="dropdown-item" href="index.php?action=pageVoitureFrancaise">Voiture francaise</a>
                       <a class="dropdown-item" href="index.php?action=pageVoitureItalienne">Voiture Italienne</a>
                   </div>
