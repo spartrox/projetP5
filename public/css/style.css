@@ -59,13 +59,23 @@ h3{
 	color: blue;
 	font-weight: bold;
 }
+h5{
+	font-size: 1.2em;
+	text-align: center;
+}
 
 		/*////////////////////////  ACCUEIL   ///////////////////////////////  */
 .trait{
 	position: relative;
-	border-top: 6px solid #0069ff;
+	border-top: 4px solid #0069ff;
 	color: #0069ff;
 	z-index: 1;
+}
+.trait2{
+	position: relative;
+	border-top: 1px solid grey;
+	color: black;
+	z-index: 1;	
 }
 .icone{
 	margin-left: 50px;
@@ -109,6 +119,17 @@ h3{
 .categorieSlide a:hover{
 	border-bottom: 2px solid #1da1f2;
 	color: #1da1f2;
+}
+
+.block_image{
+	width: 100%;
+	position: relative;
+	height: 130px;
+}
+.block_image img{
+	width: 100%;
+	height: 130px;
+	display: block;
 }
 
 		/*////////////////////////  SLIDER   ///////////////////////////////  */
@@ -157,9 +178,19 @@ h3{
 }
 
 		/*////////////////////////  API MÉTÉO   ///////////////////////////////  */
+.card{
+	background-color: #007bff;
+}
+.card p,h5{
+	color: white;
+	font-weight: bold;
+}
 .image-weather{
-	width: 50px;
-	height: 50px;
+	width: 100px;
+	height: 100px;
+}
+.description-weather{
+	font-size: 1.1em;
 }
 
 		/*////////////////////////  ACTUALITES   ///////////////////////////////  */
@@ -297,10 +328,15 @@ footer{
 }
 
 		/*////////////////////////  MESSAGE ERREUR    ///////////////////////////////  */
-#message_erreur{
+.message_erreur{
 	margin-top: 30px;
 	font-size: 1.2em;
 	text-align: center;
+}
+.messageErreur{
+	color: red;
+	font-weight: bold;
+	margin-top: 15px;
 }
 
 @media screen and (max-width: 1200px){

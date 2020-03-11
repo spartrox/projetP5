@@ -37,7 +37,6 @@
 				} else if ($_GET['action'] == "pageCategorie") {
 					if (isset($_GET['idCategorie'])) {
 						pageCategorie();
-					
 					}  else{
 		 				pageAccueil();
 					}
@@ -48,9 +47,9 @@
 				} else if ($_GET['action'] == "infoProfil") {
 					if (isset($_SESSION['id']) || ($_SESSION['admin'])){
 						infoProfil();
-				} else {
+					} else {
 					pageAccueil();
-				}
+					}
 
 				} else if ($_GET['action'] == "pageGestionProfil") {
 					pageGestionProfil();

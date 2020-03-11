@@ -36,9 +36,6 @@
 
             <!-- Pied de page -->
         <?php include("affichageFooter.php"); ?>
-	      <script src="public/javascript/slider.js"></script>
-	      <script src="public/javascript/main.js"></script>
-	      <script src="public/javascript/apiMeteo.js"></script>
 
     </body>
 </html>

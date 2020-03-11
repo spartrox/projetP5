@@ -7,8 +7,17 @@
 
 	//Création des différentes fonction
 	function pageAccueil(){
+      $articleManager = new ArticleManager();
 
-		require('view/frontend/affichageAccueil.php');
+      $articles = $articleManager->getArticlesAccueil();
+
+        if ($articles === false){
+                throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
+        } else{
+                require('view/frontend/affichageAccueil.php');
+        }
+
+		
 	}
 	
 	function pageActualites(){
@@ -136,18 +145,6 @@
                     throw new Exception("Mauvais mot de passe !");
                   }
                 }
-    }
-    	//Afficher la page Actualités
-    function listeArticles(){
-    	$articleManager = new ArticleManager();
-
-    	$articles = $articleManager->getArticles();
-      die(var_dump($articles));
-        if ($articles === false){
-                throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
-        } else{
-  			        require('view/frontend/affichageActualites.php');
-        }
     }
 
     	//Affichage de la page Article et Commentaire

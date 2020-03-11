@@ -5,7 +5,7 @@
 
     	<h2>Liste de tout les articles publiés </h2>
       	
-	<section class="container">
+	<section class="container"> 
 		<div class="row">
 			<div class="col-md-8">
 				<h3>Tout les articles publiés</h3>
@@ -19,19 +19,22 @@
 						} else {
 							while ($article = $articles->fetch()){
 				?>
-						<div class=" ">
-						    <a href="index.php?action=article&amp;id=<?= $article['id']; ?>">
+						<div class="row">
+							<div class="col-md-4 mt-3 block_image">
+								<a href="index.php?action=article&amp;id=<?= $article['id']; ?>"><img src="public/image_article/<?php echo ($article['image_article']); ?>"><a>
+							</div>
+						    <div class="col-md-8 mt-3">
+						    	<a href="index.php?action=article&amp;id=<?= $article['id']; ?>">
 						    	<h4>
 						        	<?php echo ($article['titre']); ?>
 						    	</h4>
 						    </a>
-						       <em> Ajouté le <?php echo $article['date_creation_fr']; ?></em>
-						       
 						    <!-- // On affiche le contenu des articles -->
 						    	
 						    <?php echo nl2br(($article['contenu'])); ?><br/><br/> </span>
-						   	
+							</div>   	
 						</div> 	
+						<div class="trait2"></div>
 						
 				<?php						
 							}	
@@ -75,7 +78,7 @@
 				
 				<h3> Météo du jour</h3>
 				<div class="trait"></div>
-				<div class="container mt-4">
+				<div class="container mt-2">
 					<form id="weather" class="mb-5" >
 						<div class="row">
 							<div>
@@ -100,6 +103,7 @@
 							<div class="card-text">
 								<p class="description-weather"></p>
 								<p>
+									<strong>Humidité :</strong> <span class="humidity"></span><br>
 									<strong>Température</strong> <span class="temp-weather"></span><br>
 									<strong>Max :</strong> <span class="temp-max-weather"></span>
 									<strong>Min :</strong> <span class="temp-min-weather"></span>
@@ -109,7 +113,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>			  <!-- Fichier javascript pour l'API -->
+			      		  <script src="public/javascript/apiMeteo.js"></script>
 	</section>  
       
 <?php $content = ob_get_clean(); ?>
