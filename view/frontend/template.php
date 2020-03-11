@@ -21,9 +21,7 @@
 	      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	      <script src="https://kit.fontawesome.com/ce7aa8f479.js" crossorigin="anonymous"></script>
 	      <script src="https://www.google.com/recaptcha/api.js" async defer></script>	
-	      <script src="public/javascript/slider.js"></script>
-	      <script src="public/javascript/main.js"></script>
-	      <script src="public/javascript/apiMeteo.js"></script>
+
 	      
 	      <!-- Récupération du script pour l'ajout de l'article -->
 		  <?= $script ?>
@@ -38,7 +36,9 @@
 
             <!-- Pied de page -->
         <?php include("affichageFooter.php"); ?>
-
+	      <script src="public/javascript/slider.js"></script>
+	      <script src="public/javascript/main.js"></script>
+	      <script src="public/javascript/apiMeteo.js"></script>
 
     </body>
 </html>

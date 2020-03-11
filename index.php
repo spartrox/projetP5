@@ -34,18 +34,14 @@
 				} else if ($_GET['action'] == "pageApropos") {
 					pageApropos();	
 
-				} else if ($_GET['action'] == "pageVoitureAllemande") {
-					pageVoitureAllemande();
-
-				} else if ($_GET['action'] == "pageVoitureAmericaine") {
-					pageVoitureAmericaine();
+				} else if ($_GET['action'] == "pageCategorie") {
+					if (isset($_GET['idCategorie'])) {
+						pageCategorie();
 					
-				} else if ($_GET['action'] == "pageVoitureFrancaise") {
-					pageVoitureFrancaise();
-
-				} else if ($_GET['action'] == "pageVoitureItalienne") {
-					pageVoitureItalienne();
-
+					}  else{
+		 				pageAccueil();
+					}
+				
 				} else if ($_GET['action'] == "pageProfil") {
 					pageProfil();
 
@@ -64,9 +60,6 @@
 
 				} else if ($_GET['action'] == "pageGestionAdmin") {
 					pageGestionAdmin();
-
-				} else if ($_GET['action'] == "listeArticles"){
-					listeArticles();
 
 				} else if ($_GET['action'] == "Article"){
 					 	

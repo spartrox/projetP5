@@ -12,8 +12,14 @@
 	}
 	
 	function pageActualites(){
+      $articleManager = new ArticleManager();
 
-		require('view/frontend/affichageActualites.php');
+      $articles = $articleManager->getArticles();
+        if ($articles === false){
+                throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
+        } else{
+                require('view/frontend/affichageActualites.php');
+        }
 	}
 	
 	function pageContact(){
@@ -136,7 +142,7 @@
     	$articleManager = new ArticleManager();
 
     	$articles = $articleManager->getArticles();
-
+      die(var_dump($articles));
         if ($articles === false){
                 throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
         } else{

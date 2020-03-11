@@ -11,7 +11,7 @@
 				<h3>Tout les articles publiés</h3>
 				<div class="trait"></div>
 				
-<!--			<?php /*
+			<?php 
 					$result = $articles->rowCount();					
 						if ($result === 0){
 							echo "<p class='messageErreur'>Il n'y a actuellement pas d'articles publié</p>";
@@ -27,9 +27,9 @@
 						    </a>
 						       <em> Ajouté le <?php echo $article['date_creation_fr']; ?></em>
 						       
--->						    <!-- // On affiche le contenu des articles -->
+						    <!-- // On affiche le contenu des articles -->
 						    	
-<!--						    <?php echo nl2br(($article['contenu'])); ?><br/><br/> </span>
+						    <?php echo nl2br(($article['contenu'])); ?><br/><br/> </span>
 						   	
 						</div> 	
 						
@@ -38,8 +38,8 @@
 
 						} // Fin de la boucle des articles 
 						$articles->closeCursor();
-*/				?>
--->	
+				?>
+	
 			<nav aria-label="Page navigation example"><br>
 			  	<ul class="pagination justify-content-center">
 				    <li class="page-item disabled">
