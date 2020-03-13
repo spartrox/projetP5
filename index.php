@@ -60,6 +60,9 @@
 				} else if ($_GET['action'] == "pageGestionAdmin") {
 					pageGestionAdmin();
 
+				} elseif ($_GET['action'] == "pageMdpOublie") {
+					pageMdpOublie();
+
 				} else if ($_GET['action'] == "Article"){
 					 	
 					if(isset($_GET['id']) && $_GET['id'] > 0){
@@ -86,7 +89,7 @@
 						}
 
 				} elseif ($_GET['action'] == 'pageConnexionSubmit'){
-					pageConnexionSubmit($_POST['pseudoconnect'], $_POST['mdpConnect']);
+					pageConnexionSubmit($_POST['pseudoConnect'], $_POST['mdpConnect']);
 				
 				} elseif ($_GET['action'] == 'modifMember'){	
 						if (!empty($_POST['newMdp']) && !empty($_POST['newMdp2']) || !empty($_POST['newMail']) || !empty($_POST['avatar'])){

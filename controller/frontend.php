@@ -6,31 +6,6 @@
     require_once('model/memberManager.php');
 
 	//Création des différentes fonction
-	function pageAccueil(){
-      $articleManager = new ArticleManager();
-
-      $articles = $articleManager->getArticlesAccueil();
-
-        if ($articles === false){
-                throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
-        } else{
-                require('view/frontend/affichageAccueil.php');
-        }
-
-		
-	}
-	
-	function pageActualites(){
-      $articleManager = new ArticleManager();
-
-      $articles = $articleManager->getArticles();
-        if ($articles === false){
-                throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
-        } else{
-                require('view/frontend/affichageActualites.php');
-        }
-	}
-	
 	function pageContact(){
 
 		require('view/frontend/affichageContact.php');
@@ -100,6 +75,35 @@
 		require('view/frontend/affichageAdmin.php');
 	}
 
+  function pageMdpOublie(){
+
+    require('view/frontend/affichageMdpOublie.php');
+  }
+  
+  function pageAccueil(){
+      $articleManager = new ArticleManager();
+
+      $articles = $articleManager->getArticlesAccueil();
+
+        if ($articles === false){
+                throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
+        } else{
+                require('view/frontend/affichageAccueil.php');
+        }
+
+    
+  }
+  
+  function pageActualites(){
+      $articleManager = new ArticleManager();
+
+      $articles = $articleManager->getArticles();
+        if ($articles === false){
+                throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
+        } else{
+                require('view/frontend/affichageActualites.php');
+        }
+  }
 		//Ajout d'un membre
    	function addMember($pseudo, $mdp, $mail){
      	$memberManager = new MemberManager();
@@ -136,6 +140,9 @@
           }
             else {
                 if ($mdpCorrect){
+                  if (isset($_POST['rememberme'])){
+                      setcookie('pseudo&mdp',$pseudo,time()+365*24*3600,null,null,false,true);
+                  }
                   $_SESSION['id'] = $member['id'];
                   $_SESSION['pseudo'] = $member['pseudo'];
                   $_SESSION['admin'] = $member['admin'];
