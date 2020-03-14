@@ -24,8 +24,10 @@ nav{
 	font-weight: bold;
 	font-size: 2em;
 }
-.nav-link{
+.nav-item{
 	margin-left: 25px;
+}
+.nav-link{
 	border-bottom: 2px solid #f8f8f8;
 }
 .nav-link:hover{
@@ -326,11 +328,13 @@ h5{
 	font-size: 1.5em;
 }
 .categorie a{
+	font-size: 1.2em;
 	color: blue;
 }
 .categorie a:hover{
 	color: blue;
 	font-weight: bold;
+	text-decoration: underline;
 }
 
 		/*////////////////////////  AJOUT ARTICLE   ///////////////////////////////  */
@@ -345,6 +349,17 @@ h5{
 }
 .phraseRetourAdmin{
 	text-align: center;
+}
+#navbarDropdownMenuLinkk{
+	border-radius: 5px;
+	border: 1px solid #ced4da;
+	background-color: white;
+}
+li{
+	list-style-type: none;
+}
+#categoriesArticle{
+	margin-left: 0px;
 }
 
 		/*////////////////////////  FOOTER    ///////////////////////////////  */
