@@ -303,6 +303,7 @@ h5{
 #deconnexion{
 	margin-top: 10px;
 }
+
 		/*////////////////////////  GESTION PROFIL    ///////////////////////////////  */
 .gestionProfil{
 	padding: 30px;
@@ -314,6 +315,38 @@ h5{
 #publierAvatar{
 	margin: 20px;
 }
+
+		/*////////////////////////  GESTION ADMINISTRATEUR    ///////////////////////////////  */
+.gestionAdmin{
+	margin-top: 30px; 
+	text-align: center;
+}
+.gestionAdmin p{
+	margin-top: 10px;
+	font-size: 1.5em;
+}
+.categorie a{
+	color: blue;
+}
+.categorie a:hover{
+	color: blue;
+	font-weight: bold;
+}
+
+		/*////////////////////////  AJOUT ARTICLE   ///////////////////////////////  */
+#ajoutChapitre{
+	width: 60%;
+}
+#myTextarea{
+	height: 200px;
+}
+.chapitreSubmit{
+	margin-top: 5px;
+}
+.phraseRetourAdmin{
+	text-align: center;
+}
+
 		/*////////////////////////  FOOTER    ///////////////////////////////  */
 #pied_de_page{
 	color: black; 

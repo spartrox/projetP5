@@ -57,8 +57,8 @@
 				} else if ($_GET['action'] == "pageAvatar") {
 					pageAvatar();
 
-				} else if ($_GET['action'] == "pageGestionAdmin") {
-					pageGestionAdmin();
+				} else if ($_GET['action'] == "pageAdmin") {
+					pageAdmin();
 
 				} elseif ($_GET['action'] == "pageMdpOublie") {
 					pageMdpOublie();
@@ -107,14 +107,22 @@
 						} else {
 								throw new Exception('Veuillez modifier au moins un champ !');
 						}
-					} 
+					
+				} elseif ($_GET['action'] == 'pageCommentaireSignale'){
+				 	pageCommentaireSignale();
+			
+				} elseif ($_GET['action'] == 'pageAjoutArticle'){
+					pageAjoutArticle();
 
+				} elseif ($_GET['action'] == 'newArticle'){
+					newArticle();
 
-	 			
-
+				}			
+				
 			} else{
 		 		pageAccueil();
 			}
+			
 	} 
 	// Fin des tests
    	

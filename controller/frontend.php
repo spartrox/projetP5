@@ -36,23 +36,9 @@
 		require('view/frontend/affichageApropos.php');
 	}
 
-	function pageVoitureAllemande(){
+	function pageVoitureCategorie(){
 
 		require('view/frontend/affichageVoitureAllemande.php');
-	}
-	
-	function pageVoitureAmericaine(){
-
-		require('view/frontend/affichageVoitureAmericaine.php');
-	}
-
-	function pageVoitureFrancaise(){
-
-		require('view/frontend/affichageVoitureFrancaise.php');
-	}
-	function pageVoitureItalienne(){
-
-		require('view/frontend/affichageVoitureItalienne.php');
 	}
 
 	function pageProfil(){
@@ -70,14 +56,14 @@
 		require('view/frontend/affichageAvatar.php');
 	}
 
-	function pageGestionAdmin(){
-
-		require('view/frontend/affichageAdmin.php');
-	}
-
   function pageMdpOublie(){
 
     require('view/frontend/affichageMdpOublie.php');
+  }
+
+  function pageAjoutArticle(){
+
+    require('view/backend/affichageAjoutArticle.php');
   }
   
   function pageAccueil(){
@@ -90,8 +76,6 @@
         } else{
                 require('view/frontend/affichageAccueil.php');
         }
-
-    
   }
   
   function pageActualites(){
