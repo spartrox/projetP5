@@ -98,11 +98,11 @@
 						<div class="text-center">
 							<img class="image-weather" src="" alt="">
 						</div>
-						<div class="card-body">
-							<h5 class="card-title"></h5>
-							<div class="card-text">
-								<p class="description-weather"></p>
-								<p>
+						<div class="card-body" id="card">
+							<strong>Ville : </strong><span class="card-title"></span>
+							<div class="card-text mt-2">
+								<strong>Temps : </strong><span class="description-weather"></span>
+								<p class="mt-2">
 									<strong>Humidité :</strong> <span class="humidity"></span><br>
 									<strong>Température</strong> <span class="temp-weather"></span><br>
 									<strong>Max :</strong> <span class="temp-max-weather"></span>

@@ -88,6 +88,7 @@
                 require('view/frontend/affichageActualites.php');
         }
   }
+
 		//Ajout d'un membre
    	function addMember($pseudo, $mdp, $mail){
      	$memberManager = new MemberManager();
@@ -141,9 +142,12 @@
     	//Affichage de la page Article et Commentaire
     function article(){
     	$articleManager = new ArticleManager();
-
-    	$article = $articleManager->getArticle($_GET['id']);
-
+      $commentManager = new CommentManager();
+    	
+      $article = $articleManager->getArticle($_GET['id']);
+      $comments = $commentManager->articleComments($_GET['id']);
+      $reportComments = $commentManager->reportComment($_GET['id']);
+        
         if ($article === false){
                 throw new Exception('Impossible d\'afficher la page de l\'article, veuillez recommencer !');
         } else{
@@ -151,6 +155,19 @@
      	  }
     }
 
+    //Ajout commentaire
+    function addComment($article, $commentaire, $pseudo){
+          $commentManager = new CommentManager();
+          
+          $addComment = $commentManager->addComment($article, $commentaire, $pseudo);
+
+          if ($addComment === false) {
+              throw new Exception('Impossible d\'ajouter le commentaire !');
+          
+          } else {
+            header('Location: index.php?action=article&id=' . $article);
+        }
+    }
       //Récupération d'éléments pour la pageProfil
     function infoProfil(){
         $memberManager = new MemberManager();
@@ -164,9 +181,6 @@
                 require('view/frontend/affichageProfil.php');
         }
     }
-
-
-
 
     	//Bouton modification d'un membre
     function modifMember($memberId){

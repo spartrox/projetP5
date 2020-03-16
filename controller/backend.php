@@ -36,3 +36,14 @@
 		$articles =  $articleManager-> newArticle();
 
 	}
+
+	function pageAllArticles(){
+      $articleManager = new ArticleManager();
+
+      $articles = $articleManager->getArticles();
+        if ($articles === false){
+                throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
+        } else{
+                require('view/backend/affichageAllArticles.php');
+        }		
+	}

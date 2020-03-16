@@ -63,15 +63,20 @@
 				} elseif ($_GET['action'] == "pageMdpOublie") {
 					pageMdpOublie();
 
-				} else if ($_GET['action'] == "Article"){
-					 	
+				} else if ($_GET['action'] == "article"){		 	
 					if(isset($_GET['id']) && $_GET['id'] > 0){
-	 					article();
-	 				
+	 					article();	
 	 				} else {
 	                		throw new Exception('Aucun identifiant de billet envoyé');
 	            	} 
 			
+				} elseif ($_GET['action'] == 'pageAllArticles'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						pageAllArticles();
+					} else {
+						pageAccueil();
+					}
+
 				} elseif ($_GET['action'] == 'addMember'){
 						if (!empty($_POST['pseudo']) && !empty($_POST['mdp']) && !empty($_POST['mdp2']) && !empty($_POST['mail'])){
 							if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)){
@@ -88,6 +93,28 @@
 								throw new Exception('Tous les champs ne sont pas remplis !');
 						}
 
+	 			} elseif ($_GET['action'] == 'addComment'){
+	 					if (isset($_GET['id']) && $_GET['id'] > 0){
+	 						if (!empty($_SESSION['pseudo']) && !empty($_POST['commentaire'])){
+	 							addComment($_GET['id'], $_POST['commentaire'], $_SESSION['id']);
+
+	 						} else{
+	 							   throw new Exception(" Veuillez entrer un commentaire !");
+	 						}
+
+	 					} else{
+	 						   throw new Exception("Aucun identifiant de billet envoyé");		
+	 					}
+	 									
+				} elseif ($_GET['action'] == 'addChapitre'){
+						if (!empty($_POST['titreChapitre']) && !empty($_POST['contenu'])){
+							newChapitre($_POST['titreChapitre'], $_POST['contenu']);
+							Header('Location: index.php?action=pageAdmin');
+						} 
+						else {
+							  throw new Exception('Titre ou contenu vide !');
+						}
+				
 				} elseif ($_GET['action'] == 'pageConnexionSubmit'){
 					pageConnexionSubmit($_POST['pseudoConnect'], $_POST['mdpConnect']);
 				
