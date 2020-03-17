@@ -34,6 +34,9 @@
 				} else if ($_GET['action'] == "pageApropos") {
 					pageApropos();	
 
+				} elseif ($_GET['action'] == 'pageAjoutArticle'){
+					pageAjoutArticle();
+
 				} else if ($_GET['action'] == "pageCategorie") {
 					if (isset($_GET['idCategorie'])) {
 						pageCategorie();
@@ -106,15 +109,36 @@
 	 						   throw new Exception("Aucun identifiant de billet envoyé");		
 	 					}
 	 									
-				} elseif ($_GET['action'] == 'addChapitre'){
-						if (!empty($_POST['titreChapitre']) && !empty($_POST['contenu'])){
-							newChapitre($_POST['titreChapitre'], $_POST['contenu']);
+				} elseif ($_GET['action'] == 'addArticle'){
+						if (!empty($_POST['titreArticle']) && !empty($_POST['contenu']) && !empty($_POST['image_article'])){
+							newArticle($_POST['titreArticle'], $_POST['contenu'], $_POST['image_article']);
 							Header('Location: index.php?action=pageAdmin');
 						} 
 						else {
-							  throw new Exception('Titre ou contenu vide !');
+							  throw new Exception('Veuillez remplir tout les champs !');
 						}
-				
+
+				} elseif ($_GET['action'] == 'deleteArticle'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						deleteArticle($_GET['id']);
+					} else {
+						pageAccueil();
+					}
+
+				} elseif ($_GET['action'] == 'pageModifArticle'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						pageModifArticle($_GET['id']);
+					} else {
+						pageAccueil();
+					}
+
+				} elseif ($_GET['action'] == 'articleModif'){
+					if (isset($_GET['id']) && $_GET['id'] > 0){
+						articleModif($_GET['id']);
+					} else {
+						pageAccueil();
+					}
+
 				} elseif ($_GET['action'] == 'pageConnexionSubmit'){
 					pageConnexionSubmit($_POST['pseudoConnect'], $_POST['mdpConnect']);
 				
@@ -134,18 +158,46 @@
 						} else {
 								throw new Exception('Veuillez modifier au moins un champ !');
 						}
+
+				} elseif ($_GET['action'] == 'pageCommentArticle'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						pageCommentArticle($_GET['id']);
+					} else {
+						pageAccueil();
+					}						
+
+				} elseif ($_GET['action'] == 'deleteComment'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						deleteComment($_GET['id']);
+					} else {
+						pageAccueil();
+					}
+
+				} elseif ($_GET['action'] == 'deleteCommentSignale'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						deleteCommentSignale($_GET['id']);
+					} else {
+						pageAccueil();
+					}					
+	
+				} elseif ($_GET['action'] == 'reportComment'){
+					if (isset($_SESSION['id']) && isset($_GET['idArticle']) && isset($_GET['idComment'])){
+						reportComment($_GET['idArticle'], $_GET['idComment']);
+					} else {
+						pageAccueil();
+					}
 					
+				} elseif ($_GET['action'] == 'notReportComment'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						notReportComment($_GET['id']);
+					} else {
+						pageAccueil();
+					}
+
 				} elseif ($_GET['action'] == 'pageCommentaireSignale'){
-				 	pageCommentaireSignale();
-			
-				} elseif ($_GET['action'] == 'pageAjoutArticle'){
-					pageAjoutArticle();
-
-				} elseif ($_GET['action'] == 'newArticle'){
-					newArticle();
-
-				}			
+				 	pageCommentaireSignale();	
 				
+				}
 			} else{
 		 		pageAccueil();
 			}

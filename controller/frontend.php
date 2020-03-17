@@ -148,7 +148,7 @@
       $comments = $commentManager->articleComments($_GET['id']);
       $reportComments = $commentManager->reportComment($_GET['id']);
         
-        if ($article === false){
+        if ($article && $comments === false){
                 throw new Exception('Impossible d\'afficher la page de l\'article, veuillez recommencer !');
         } else{
      		        require('view/frontend/affichageArticle.php');
@@ -228,6 +228,34 @@
 				Header('Location: index.php');
 		}    	
     }
+
+    //Report d'un commentaire
+    function reportComment($idArticle, $idComment){
+        $commentManager = new CommentManager();
+
+        $repComments = $commentManager->reportComment($idComment);
+
+          if ($repComments === false) {
+              throw new Exception('Impossible de signaler ce commentaire !');
+          
+          } else {
+            header('Location: index.php?action=article&id=' . $idArticle);
+        }
+    }
+
+    //Retirer le signalement d'un commentaire
+    function notReportComment($reportId){
+      $commentManager = new CommentManager();
+
+      $reportComments = $commentManager-> notReportComment($reportId);
+
+      if ($reportComments === false){
+          throw new Exception('Impossible de retirer le signalement, veuillez recommencer !');
+      } else{
+          Header('Location: index.php?action=pageCommentaireSignale');
+      }
+
+  }
 
 
 

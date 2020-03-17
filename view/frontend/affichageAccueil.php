@@ -35,17 +35,17 @@
 							while ($article = $articles->fetch()){
 				?>
 						<div class="row">
-							<div class="col-md-4 mt-3 block_image">
+							<div class="col-md-4 mt-3 mb-2 block_image">
 								<a href="index.php?action=article&amp;id=<?= $article['id']; ?>"><img src="public/image_article/<?php echo ($article['image_article']); ?>"><a>
 							</div>
-						    <div class="col-md-8 mt-3">
+						    <div class="col-md-8 mt-3 contenu">
 						    	<a href="index.php?action=article&amp;id=<?= $article['id']; ?>">
 						    	<h4>
 						        	<?php echo ($article['titre']); ?>
 						    	</h4>
 						    </a>
-						    <!-- // On affiche le contenu des articles -->
-						    	
+
+						    <!-- // On affiche le contenu des articles -->						    	
 						    <?php echo nl2br(($article['contenu'])); ?><br/><br/> </span>
 							</div>   	
 						</div> 
@@ -59,7 +59,7 @@
 				?>
 			
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-12">
 				<h3>Catégories</h3>
 				<div class="trait"></div>
 					<div class="categorieSlide">
