@@ -17,7 +17,7 @@
 							echo "<p class='messageErreur'>Il n'y a actuellement pas d'articles publié</p>";
 
 						} else {
-							while ($article = $articles->fetch()){
+							while ($article = $articles->fetch()){ //:
 				?>
 						<div class="row">
 							<div class="col-md-4 mt-3 mb-2 block_image">
@@ -37,7 +37,7 @@
 						<div class="trait2"></div>
 						
 				<?php						
-							}	
+							}//endwhile;	
 
 						} // Fin de la boucle des articles 
 						$articles->closeCursor();
