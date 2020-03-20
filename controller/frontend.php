@@ -67,11 +67,18 @@ class Frontend {
 
         require('view/backend/affichageAjoutArticle.php');
       }
-      
+
+      function pageAjoutCategorie(){
+
+        require('view/backend/affichageAjoutCategorie.php');
+      }
+
+      //Affichage  page Accueil
       function pageAccueil(){
           $articleManager = new ArticleManager();
 
           $articles = $articleManager->getArticlesAccueil();
+          $categories =  $articleManager-> getCategories();
 
             if ($articles === false){
                     throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
@@ -80,11 +87,14 @@ class Frontend {
             }
             return $pageAccueil;
       }
-      
+
+      //Affichage page Actualités
       function pageActualites(){
           $articleManager = new ArticleManager();
 
           $articles = $articleManager->getArticles();
+          $categories =  $articleManager-> getCategories();
+                    
             if ($articles === false){
                     throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
             } else{
@@ -118,7 +128,7 @@ class Frontend {
                 return $addMember;
         }
 
-            //Bouton page connexion
+        //Bouton page connexion
         function pageConnexionSubmit($pseudo, $mdp){
             $memberManager = new MemberManager();
 
@@ -145,7 +155,7 @@ class Frontend {
                     return $pageConnexionSubmit;
         }
 
-        	//Affichage de la page Article et Commentaire
+        //Affichage de la page Article et Commentaire
         function article(){
         	$articleManager = new ArticleManager();
           $commentManager = new CommentManager();
@@ -176,12 +186,14 @@ class Frontend {
             }
             return $addComment;
         }
-          //Récupération d'éléments pour la pageProfil
+
+        //Affichage de la page profil
         function infoProfil(){
             $memberManager = new MemberManager();
-
+            $articleManager = new ArticleManager();
+            
             $infoMember = $memberManager->getMember($_GET['id']); 
-                
+          $article = $articleManager->getArticle($_GET['id']);                
 
             if ($infoMember === false){
                     throw new Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
@@ -191,7 +203,7 @@ class Frontend {
             return $infoProfil;
         }
 
-        	//Bouton modification d'un membre
+        //Bouton modification d'un membre
         function modifMember($memberId){
         	$memberManager = new MemberManager();
 

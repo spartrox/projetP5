@@ -4,13 +4,16 @@
 	require_once('model/commentManager.php');
 	require_once('model/articleManager.php');
 
+class Backend {
+
 	//Affichage de la page Admin
 	function pageAdmin(){
-		$articleManager = new ArticleManager();
+		$articleManager = new ArticleManager();		
 
-		$articles =  $articleManager-> getArticles();
+		$categories =  $articleManager-> getCategories();
 
-		if ($articles === false){
+
+		if ($categories === false){
 			throw new Exception('Impossible d\'accéder à cette page');
 		} else{
       			require('view/backend/affichageAdministrateur.php');
@@ -43,6 +46,31 @@
 		}
 	}
 
+	//Ajout d'une nouvelle categorie
+	function newCategorie($titre){
+		$articleManager = new ArticleManager();
+
+		$newCategorie = $articleManager-> createCategorie($titre);
+		
+		if ($newCategorie === false){
+				throw new Exception('Impossible d\'ajouter une nouvelle categorie, veuillez recommencer');
+		} else{
+				Header('Location: index.php?action=pageAdmin');
+		}
+	}
+
+	//Affichage de toute les catégories
+	function pageAllCategories(){
+      $articleManager = new ArticleManager();
+
+      $categories = $articleManager->getCategories();
+        if ($categories === false){
+                throw new Exception('Impossible d\'afficher les catégories, veuillez recommencer !');
+        } else{
+                require('view/backend/affichageAdministrateur.php');
+        }		
+	}
+
 	//Affichage de tout les articles
 	function pageAllArticles(){
       $articleManager = new ArticleManager();
@@ -60,7 +88,7 @@
       $articleManager = new ArticleManager();
 
       $deleteArticle = $articleManager->deleteArticle($articleId);
-
+      //die(var_dump($articleId));
         if ($deleteArticle === false){
                 throw new Exception('Impossible de supprimer cet article, veuillez recommencer !');
         } else{
@@ -107,7 +135,6 @@
 		} else{
 				require('view/backend/affichageCommentaireArticle.php');
 		}
-
 	}
 
 	//Supression d'un commentaire
@@ -135,3 +162,4 @@
 				Header('Location: index.php?action=pageCommentaireSignale');
 		}
 	}
+}

@@ -62,11 +62,20 @@
 			<div class="col-md-12">
 				<h3>Catégories</h3>
 				<div class="trait"></div>
-					<div class="categorieSlide">
-						<a class="dropdown-item" href="index.php?action=pageVoitureAllemande">Voiture Allemande</a>
-		                <a class="dropdown-item" href="index.php?action=pageVoitureAmericaine">Voiture Americaine</a>
-		                <a class="dropdown-item" href="index.php?action=pageVoitureFrancaise">Voiture francaise</a>
-		                <a class="dropdown-item" href="index.php?action=pageVoitureItalienne">Voiture Italienne</a>
+					<div class="categorieSlide mt-2">
+                <?php 
+                            while ($c = $categories->fetch()){
+                ?>
+                        <div>
+                            <div class="categories">
+                                <a href="index.php?action=article&amp;id=<?= $c['id']; ?>">
+                                	<p><?php echo ($c['titre_categorie']); ?></p>     
+                            	</a>
+                            </div>      
+                        </div> 
+                <?php                       
+                            } $categories->closeCursor();
+                ?>
 					</div>
 				<h3>Réseaux sociaux</h3>
 				<div class="trait"></div>

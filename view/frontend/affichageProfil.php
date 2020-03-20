@@ -5,10 +5,11 @@
 			<h2>Votre profil</h2>
             
             <?php 
-                //   while($p = $infoMember->fetch()){
+                   //while($p = $infoMember->fetch()){
             ?> 
         <section class="container affichageProfil">            
 			<div><br>
+                <?= htmlspecialchars($article['titre']); ?>
                 <h3>Profil de <?= htmlspecialchars($p['pseudo']) ?> </h3><br>
 			</div>
 
@@ -25,8 +26,8 @@
             </div>
             
             <?php
-                   // }
-                    // $infoMember->closeCursor();       
+                    //}
+                     //$infoMember->closeCursor();       
             ?>
 
             <div class="container-fluid col-md-1 col-sm-5">
