@@ -43,11 +43,6 @@ class Frontend {
     		require('view/frontend/affichageVoitureAllemande.php');
     	}
 
-    	function pageProfil(){
-
-    		require('view/frontend/affichageProfil.php');
-    	}
-
     	function pageGestionProfil(){
 
     		require('view/frontend/affichageGestionProfil.php');
@@ -69,8 +64,23 @@ class Frontend {
       }
 
       function pageAjoutCategorie(){
+          $articleManager = new ArticleManager();   
+
+          $categories =  $articleManager-> getCategories();        
 
         require('view/backend/affichageAjoutCategorie.php');
+      }
+
+      function pageProfil(){
+            $memberManager = new MemberManager();
+            
+            $infoMember = $memberManager->getMember($pseudo);                
+
+            if ($infoMember === false){
+                    throw new Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
+            } else{
+                    require('view/frontend/affichageProfil.php');
+            }       
       }
 
       //Affichage  page Accueil
@@ -189,18 +199,7 @@ class Frontend {
 
         //Affichage de la page profil
         function infoProfil(){
-            $memberManager = new MemberManager();
-            $articleManager = new ArticleManager();
-            
-            $infoMember = $memberManager->getMember($_GET['id']); 
-          $article = $articleManager->getArticle($_GET['id']);                
 
-            if ($infoMember === false){
-                    throw new Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
-            } else{
-                    require('view/frontend/affichageProfil.php');
-            }
-            return $infoProfil;
         }
 
         //Bouton modification d'un membre

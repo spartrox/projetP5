@@ -113,6 +113,11 @@
 						$pageAccueil->pageAccueil();						
 					}
 
+				} else if ($_GET['action'] == "categorieMenu") {				
+					$categorieMenu = new Backend();
+
+					$categorieMenu->categorieMenu();
+
 				} elseif ($_GET['action'] == "pageMdpOublie") {
 					$pageMdpOublie = new Frontend();
 
@@ -204,11 +209,33 @@
 						$pageAccueil->pageAccueil();
 					}
 
+				} elseif ($_GET['action'] == 'deleteCategorie'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						$deleteCategorie = new Backend();
+
+						$deleteCategorie->deleteCategorie($_GET['id']);
+					} else {
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}
+
 				} elseif ($_GET['action'] == 'pageModifArticle'){
 					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
 						$pageModifArticle = new Backend();
 
 						$pageModifArticle->pageModifArticle($_GET['id']);
+					} else {
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}
+
+				} elseif ($_GET['action'] == 'pageModifCategorie'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						$pageModifCategorie = new Backend();
+
+						$pageModifCategorie->pageModifCategorie($_GET['id']);
 					} else {
 						$pageAccueil = new Frontend();
 

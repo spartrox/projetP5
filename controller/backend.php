@@ -12,7 +12,6 @@ class Backend {
 
 		$categories =  $articleManager-> getCategories();
 
-
 		if ($categories === false){
 			throw new Exception('Impossible d\'accéder à cette page');
 		} else{
@@ -55,20 +54,8 @@ class Backend {
 		if ($newCategorie === false){
 				throw new Exception('Impossible d\'ajouter une nouvelle categorie, veuillez recommencer');
 		} else{
-				Header('Location: index.php?action=pageAdmin');
+				Header('Location: index.php?action=pageAjoutCategorie');
 		}
-	}
-
-	//Affichage de toute les catégories
-	function pageAllCategories(){
-      $articleManager = new ArticleManager();
-
-      $categories = $articleManager->getCategories();
-        if ($categories === false){
-                throw new Exception('Impossible d\'afficher les catégories, veuillez recommencer !');
-        } else{
-                require('view/backend/affichageAdministrateur.php');
-        }		
 	}
 
 	//Affichage de tout les articles
@@ -83,19 +70,6 @@ class Backend {
         }		
 	}
 
-	//Supression d'un article		
-	function deleteArticle($articleId){
-      $articleManager = new ArticleManager();
-
-      $deleteArticle = $articleManager->deleteArticle($articleId);
-      //die(var_dump($articleId));
-        if ($deleteArticle === false){
-                throw new Exception('Impossible de supprimer cet article, veuillez recommencer !');
-        } else{
-                Header('Location: index.php?action=pageAdmin');
-        }      		
-	}
-
 	//Page gestion article
 	function pageModifArticle($articleId){
 		$articleManager = new ArticleManager();
@@ -106,6 +80,19 @@ class Backend {
 				throw new Exception('Impossible d\'accéder à la page de modification de l\'article, veuillez recommencer !');
 		} else{
 				require('view/backend/affichageModifArticle.php');
+		}
+	}
+
+	//Page gestion categorie
+	function pageModifCategorie($categorieId){
+		$articleManager = new ArticleManager();
+
+		$categorie =  $articleManager-> getCategorie($categorieId);
+
+		if ($categorie  === false){
+				throw new Exception('Impossible d\'accéder à la page de modification de categorie, veuillez recommencer !');
+		} else{
+				require('view/backend/affichageModifCategorie.php');
 		}
 	}
 
@@ -129,7 +116,7 @@ class Backend {
 		
 		$article =  $articleManager-> getArticle($articleId);
 		$comments = $commentManager->articleComments($articleId);
-
+		
 		if ($article  === false){
 				throw new Exception('Impossible d\'accéder à la page des commentaires, veuillez recommencer !');
 		} else{
@@ -162,4 +149,43 @@ class Backend {
 				Header('Location: index.php?action=pageCommentaireSignale');
 		}
 	}
+
+	//Supression d'un article		
+	function deleteArticle($articleId){
+      $articleManager = new ArticleManager();
+
+      $deleteArticle = $articleManager->deleteArticle($articleId);
+      //die(var_dump($articleId));
+        if ($deleteArticle === false){
+                throw new Exception('Impossible de supprimer cet article, veuillez recommencer !');
+        } else{
+                Header('Location: index.php?action=pageAllArticles');
+        }      		
+	}
+
+	//Supression d'une catégorie		
+	function deleteCategorie($categorieId){
+      $articleManager = new ArticleManager();
+
+      $deleteCategorie = $articleManager->deleteCategorie($categorieId);
+      //die(var_dump($articleId));
+        if ($deleteCategorie === false){
+                throw new Exception('Impossible de supprimer la catégorie, veuillez recommencer !');
+        } else{
+                Header('Location: index.php?action=pageAdmin');
+        }      		
+	}
+
+	//Affichage de la page Admin
+	function categorieMenu(){
+		$articleManager = new ArticleManager();		
+
+		$categories =  $articleManager-> getCategories();
+
+		if ($categories === false){
+			throw new Exception('Aucune catégories disponible');
+		} else{
+      			require('view/frontend/affichageMenu.php');
+      	}
+    }
 }
