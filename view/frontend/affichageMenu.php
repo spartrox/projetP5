@@ -47,9 +47,12 @@
               <?php if (isset($_SESSION['id']) && ($_SESSION['admin'])){ ?>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="index.php?action=pageAdmin"><b>Gestion Administrateur</b></a>
+                    <a class="nav-link" href="index.php?action=pageAdmin"><b>Gestion Administrateur</b></a>
                 </li> 
-     
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php?action=pageMessage"><b>Gestion message reçus</b></a>
+                </li>     
             <!-- Sinon on affiche le menu de base -->    
             <?php } }else { ?>
 

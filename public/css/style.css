@@ -244,21 +244,17 @@ textarea{
 .aPropos p{
 	text-align: left;
 }
-
+.aPropos h4{
+	text-align: left;
+}
 		/*////////////////////////  CONTACT   ///////////////////////////////  */
 .contact{
 	padding: 30px;
 	border-radius: 15px;
 }
-.boutonEnvoyer{
-	cursor: pointer;
+#boutonEnvoyer{
 	text-align: center;
-	color: white;
-	background-color: #007bff;
-}
-.boutonEnvoyez p{
-	font-size: 2em;
-	font-weight: bold;
+	width: 100%;
 }
 
 		/*////////////////////////  INSCRIPTION   ///////////////////////////////  */
@@ -330,16 +326,15 @@ textarea{
 	font-size: 1.2em;
 	margin-bottom: 15px;
 }
-#infoProfil ul{
-	list-style-type: none;
-}
 #modifierProfil{
 	margin: 30px;
 }
 #deconnexion{
 	margin-top: 10px;
 }
-
+#texte_droite{
+	padding-left: 5px;
+}
 		/*////////////////////////  GESTION PROFIL    ///////////////////////////////  */
 .gestionProfil{
 	padding: 30px;
@@ -426,7 +421,13 @@ li{
 .ajoutCommentaire p{
 	text-align: left;
 }
-
+		/*////////////////////////  FOOTER    ///////////////////////////////  */
+.messageRecus{
+	background-color: white;
+	padding: 25px;
+	border-radius: 10px;
+	text-align: center;
+}
 		/*////////////////////////  FOOTER    ///////////////////////////////  */
 #pied_de_page{
 	color: black; 

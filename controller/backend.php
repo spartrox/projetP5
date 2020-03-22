@@ -3,6 +3,7 @@
 	//chargement des différentes classes
 	require_once('model/commentManager.php');
 	require_once('model/articleManager.php');
+	require_once('model/messageManager.php');	
 
 class Backend {
 
@@ -57,6 +58,19 @@ class Backend {
 				Header('Location: index.php?action=pageAjoutCategorie');
 		}
 	}
+
+  	//Ajout d'un message
+    function newMessage($nom, $email, $sujet, $contenu){
+    	$messageManager = new MessageManager();
+
+    	$newMessage = $messageManager-> createMessage($nom, $email, $sujet, $contenu);
+
+    	if ($newMessage === false){
+    			throw new Exception("Impossible d'envoyer le message, veuillez réessayer");
+    	} else{
+    			header('Location index.php?action=pageContact');
+    	}
+    }
 
 	//Affichage de tout les articles
 	function pageAllArticles(){
@@ -186,6 +200,32 @@ class Backend {
 			throw new Exception('Aucune catégories disponible');
 		} else{
       			require('view/frontend/affichageMenu.php');
+      	}
+    }
+
+	//Affichage de tout les messages
+	function pageMessage(){
+		$messageManager = new MessageManager();
+
+		$messages = $messageManager-> getMessages();
+		
+        if ($messages === false){
+                throw new Exception('Impossible d\'afficher la page des messages !');
+        } else{
+      			require('view/backend/affichageMessageRecus.php');
+      	}
+    }
+
+	//Affichage de la page Message
+	function pageMessageEntier(){
+		$messageManager = new MessageManager();
+
+		$messages = $messageManager-> getMessages();
+		
+        if ($messages === false){
+                throw new Exception('Impossible d\'afficher la page des messages !');
+        } else{
+      			require('view/backend/affichageMessageEntier.php');
       	}
     }
 }

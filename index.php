@@ -75,9 +75,16 @@
 					}
 				
 				} else if ($_GET['action'] == "pageProfil") {
-					$pageProfil = new Frontend();
+					if (isset($_SESSION['id']) || ($_SESSION['admin'])){
+						$pageProfil = new Frontend();
 
-					$pageProfil->pageProfil();					
+						$pageProfil->pageProfil();
+					} else{
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();						
+					}
+					
 
 				} else if ($_GET['action'] == "infoProfil") {
 					if (isset($_SESSION['id']) || ($_SESSION['admin'])){
@@ -192,10 +199,21 @@
 							$newCategorie = new Backend();
 
 							$newCategorie->newCategorie($_POST['titreCategorie']);
-							Header('Location: index.php?action=pageAdmin');
+							Header('Location: index.php?action=pageAjoutCategorie');
 						} 
 						else {
 							  throw new Exception('Veuillez entrer le nom d\'une nouvelle categorie !');
+						}
+
+				} else if ($_GET['action'] == "newMessage") {
+						if (!empty($_POST['nom_message']) && !empty($_POST['email_message']) && !empty($_POST['sujet_message']) && !empty($_POST['contenu_message'])){
+							$newMessage = new Backend();
+
+							$newMessage->newMessage($_POST['nom_message'], $_POST['email_message'], $_POST['sujet_message'], $_POST['contenu_message']);
+							Header('Location: index.php?action=pageContact');
+						}
+						else {
+							  throw new Exception('Veuillez remplir tout les champs !');
 						}
 
 				} elseif ($_GET['action'] == 'deleteArticle'){
@@ -337,7 +355,29 @@
 
 					$pageCommentaireSignale->pageCommentaireSignale();
 				
+				} elseif ($_GET['action'] == 'pageMessage'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						$pageMessage = new Backend();
+
+						$pageMessage->pageMessage();
+					} else {
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}				
+
+				} elseif ($_GET['action'] == 'pageMessageEntier'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						$pageMessageEntier = new Backend();
+
+						$pageMessageEntier->pageMessageEntier();
+					} else {
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}				
 				}
+
 			} else{
 					$pageAccueil = new Frontend();
 

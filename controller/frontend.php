@@ -74,7 +74,7 @@ class Frontend {
       function pageProfil(){
             $memberManager = new MemberManager();
             
-            $infoMember = $memberManager->getMember($pseudo);                
+            $infoMember = $memberManager->getMember();                
 
             if ($infoMember === false){
                     throw new Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
