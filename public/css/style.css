@@ -332,8 +332,14 @@ textarea{
 #deconnexion{
 	margin-top: 10px;
 }
-#texte_droite{
+#modif_mail, #modif_mdp{
+	font-size: 0.9em;
 	padding-left: 5px;
+	color: #007bff;
+}
+#modif_mail:hover, #modif_mdp:hover{
+	text-decoration: underline;
+	cursor: pointer;
 }
 		/*////////////////////////  GESTION PROFIL    ///////////////////////////////  */
 .gestionProfil{
@@ -346,7 +352,9 @@ textarea{
 #publierAvatar{
 	margin: 20px;
 }
-
+.mdp,.mail{
+	display: ;
+}
 		/*////////////////////////  GESTION ADMINISTRATEUR    ///////////////////////////////  */
 .gestionAdmin{
 	margin-top: 30px; 

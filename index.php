@@ -85,7 +85,6 @@
 						$pageAccueil->pageAccueil();						
 					}
 					
-
 				} else if ($_GET['action'] == "infoProfil") {
 					if (isset($_SESSION['id']) || ($_SESSION['admin'])){
 						$infoProfil = new Frontend();
@@ -97,11 +96,6 @@
 
 						$pageAccueil->pageAccueil();
 					}
-
-				} else if ($_GET['action'] == "pageGestionProfil") {
-						$pageGestionProfil = new Frontend();
-
-						$pageGestionProfil->pageGestionProfil();
 
 				} else if ($_GET['action'] == "pageAvatar") {
 					$pageAvatar = new Frontend();
@@ -238,6 +232,43 @@
 						$pageAccueil->pageAccueil();
 					}
 
+				} else if ($_GET['action'] == "modifMail") {
+					if (isset($_SESSION['id']) || ($_SESSION['admin'])){
+						if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)){						
+							if (!empty($_POST['titreArticle'])){
+								$modifMail = new Frontend();
+
+								$modifMail->modifMail($_GET['id']);
+							} else {
+								throw new Exception('Veuillez entrer une nouvelle adresse mail !');
+							}
+								
+						} else {
+							throw new Exception('Pas d\'adresse mail valide.');
+							}
+					
+					} else {
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}
+
+				} else if ($_GET['action'] == "modifMdp") {
+					if (isset($_SESSION['id']) || ($_SESSION['admin'])){
+						if (!empty($_POST['newMdp'])){
+							$modifMdp = new Frontend();
+
+							$modifMdp->modifMdp($_GET['id']);
+						} else {
+							throw new Exception('Veuillez entrer un nouveau mot de passe !');
+						}
+
+					} else {
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}
+
 				} elseif ($_GET['action'] == 'pageModifArticle'){
 					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
 						$pageModifArticle = new Backend();
@@ -275,25 +306,6 @@
 					$pageConnexionSubmit = new Frontend();
 
 					$pageConnexionSubmit->pageConnexionSubmit($_POST['pseudoConnect'], $_POST['mdpConnect']);					
-				
-				} elseif ($_GET['action'] == 'modifMember'){	
-						if (!empty($_POST['newMdp']) && !empty($_POST['newMdp2']) || !empty($_POST['newMail']) || !empty($_POST['avatar'])){
-							if (filter_var($_POST['newMail'], FILTER_VALIDATE_EMAIL)){
-
-								if ($_POST['newMdp'] == $_POST['newMdp2']){
-										$modifMember = new Frontend();
-
-										$modifMember->modifMember($_POST['newMdp'], $_POST['newMail'], $_POST['avatar']);
-								}
-								else {
-									  throw new Exception('Les deux mots de passe ne correspondent pas.');
-								}
-							} else {
-									throw new Exception('Pas d\'adresse mail valide.');
-								}
-						} else {
-								throw new Exception('Veuillez modifier au moins un champ !');
-						}
 
 				} elseif ($_GET['action'] == 'pageCommentArticle'){
 					if (isset($_SESSION['id']) && ($_SESSION['admin'])){

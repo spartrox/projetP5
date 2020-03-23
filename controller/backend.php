@@ -64,7 +64,7 @@ class Backend {
     	$messageManager = new MessageManager();
 
     	$newMessage = $messageManager-> createMessage($nom, $email, $sujet, $contenu);
-
+			//die(var_dump($newMessage));
     	if ($newMessage === false){
     			throw new Exception("Impossible d'envoyer le message, veuillez réessayer");
     	} else{

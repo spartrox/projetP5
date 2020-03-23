@@ -43,11 +43,6 @@ class Frontend {
     		require('view/frontend/affichageVoitureAllemande.php');
     	}
 
-    	function pageGestionProfil(){
-
-    		require('view/frontend/affichageGestionProfil.php');
-    	}
-
     	function pageAvatar(){
 
     		require('view/frontend/affichageAvatar.php');
@@ -199,55 +194,46 @@ class Frontend {
 
         //Affichage de la page profil
         function infoProfil(){
+            $memberManager = new MemberManager();
+            
+            $infoMember = $memberManager->getMember();                
 
+            if ($infoMember === false){
+                    throw new Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
+            } else{
+                    require('view/frontend/affichageProfil.php');
+            }     
         }
 
-        //Bouton modification d'un membre
-        function modifMember($memberId){
-        	$memberManager = new MemberManager();
+        //Modif mail
+        function modifMail($mail){
+          $memberManager = new MemberManager();
+          
+          $modifMail = $memberManager->modifMail($mailId);               
+          $mailExist = $memberManager->checkMail($mail); 
 
-        	$modifMember = $memberManager->modifMember($memberId);
+            if ($mailExist){
+                  throw new Exception('Adresse mail déja utilisé, veuillez en trouver une autre !');
+            }
 
-       		if (isset($_FILES['avatar']) AND !empty($_FILES['avatar']['name'])) {
-       			$tailleMax = 2097152;
-       			$extensionsValides = array('jpg', 'jpeg', 'gif', 'png');
-       		
-       			if($_FILES['avatar']['size'] <= $tailleMax) {
-       				$extensionUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
-       				
-       				if (in_array($extensionUpload, $extensionsValides)) {
-    					$chemin = "publics/members/".$_SESSION['id'] . "." . $extensionUpload;
-             			$resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);   					
-       					
-       					if($resultat) {
+            if ($modifMail === false){
+                    throw new Exception('Erreurs lors de la modification de votre mail, veuillez recommencer !');
+            } else{
+                    Header('Location: index.php?action=pageProfil');
+            }  
+        }
 
-                			$updateavatar = $memberManager->updateavatar();
-                			$updateavatar->execute(array(
-                   				'avatar' => $_SESSION['id'] . "." . $extensionUpload,
-                   				'id' => $_SESSION['id']
-                   			));
-                			header('Location: index.php');
-    			        
-    			        } else {
-    			            throw new Exception("Erreur durant l'importation de votre photo de profil");
-    			        }
-       				
-       				} else{
-       					throw new Exception("Votre photo de profil doit être au format jpg, jpeg, gif ou png");	
-       				}
-       			
-       			} else {
-    				throw new Exception("Votre photo de profil ne doit pas dépasser 2Mo");
-    			}
-    		}
+        //Modif mdp
+        function modifMdp($mdpId){
+          $memberManager = new MemberManager();
+          
+          $modifMdp = $memberManager->modifMdp($mdpId);               
 
-
-    		if ($modifMember === false){
-    				throw new Exception('Impossible de modifier votre profil, veuillez recommencer !');
-    		} else{
-    				Header('Location: index.php');
-    		}    	
-          return  $modifMember;
+            if ($modifMdp === false){
+                    throw new Exception('Erreurs lors de la modification de votre mot de passe, veuillez recommencer !');
+            } else{
+                    Header('Location: index.php?action=pageProfil');
+            }  
         }
 
         //Report d'un commentaire
