@@ -7,7 +7,7 @@
     	<h1 class="container">Bienvenue sur LeagueOfAuto</h1><br>
 								
 		<!-- SLIDER -->					
-			<div id="block-slider" class="container">
+			<div id="block-slider" class="container col-md-12 col-sm-12">
 				<div id="slider">
 					<img id="imagediapo" src="public/image/image4.jpg" alt="article numéros 1">
 					<p id="texte"></p>
@@ -59,7 +59,7 @@
 				?>
 			
 			</div>
-			<div class="col-md-12">
+			<div class="col-md-4">
 				<h3>Catégories</h3>
 				<div class="trait"></div>
 					<div class="categorieSlide mt-2">

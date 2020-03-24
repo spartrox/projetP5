@@ -88,7 +88,7 @@ h5{
 	margin-left: 50px;
 }
 .icone i{
-	font-size: 2em;
+	font-size: 1.8em;
 	padding: 10px;
 	font-weight: bold;
 }
@@ -127,15 +127,14 @@ h5{
 	border-bottom: 2px solid #1da1f2;
 	color: #1da1f2;
 }
-
 .block_image{
 	width: 100%;
 	position: relative;
-	height: 150px;
+	height: 140px;
 }
 .block_image img{
-	width: 100%;
-	height: 150px;
+	width: auto;
+	height: 140px;
 	display: block;
 }
 .fond{
@@ -151,7 +150,7 @@ h5{
 }
 #slider{
 	position: relative;
-	width: 900px;
+	width: 800px;
 	height: 500px;
 	border: 3px solid blue;
 	border-radius: 5px;
@@ -468,15 +467,78 @@ footer{
 
 @media screen and (max-width: 1200px){
 
+h2{
+	font-size: 1.5em;
+}
+h3{
+	font-size: 1.1em;
+}
+h4{
+
+}
+.categorieSlide p{
+	font-size: 0.8em;
+}
+
 #modifierProfil{
 	margin: 20px;
 	margin-left: 0px;
 }
-
+.aPropos{
+	padding: 30px;
+	margin-left: 0%;
+	margin-right: 0%;
+	border-radius: 15px;
+}
+.icone i{
+	font-size: 1.2em;
+	padding: 10px;
+}
+.btn{
+	font-size: 0.9em;
+}
+#slider{
+	width: auto;
+	height: 255px;
+}
+#slider img{
+	max-width: 100%;
+	height: 250px;
+}
+#block-slider{
+	height: 250px;
+}
+#flechegauche, #flechedroite{
+	font-size: 0.7em;
+}
 @media screen and (max-width: 400px){
 
+#slider{
+	position: relative;
+	width: auto;
+	height: 255px;
+	border: 3px solid blue;
+	border-radius: 5px;
+	margin-bottom: 100px;
+}
+#slider img{
+	max-width: 100%;
+	height: 250px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#block-slider{
+	height: 300px;
+}
+#flechegauche, #flechedroite{
+	font-size: 0.5em;
+}
+h1{
+	font-size: 1.7em;
+}
 h3{
-	font-size: 2em;
+	font-size: 1.5em;
 }
 #titre{
 	font-size: 1.5em;

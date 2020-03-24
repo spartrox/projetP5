@@ -32,7 +32,7 @@
 				</form><br>
 			</div>
 
-				<div class="d-flex justify-content-center links">
+				<div class="container" >
 					<p>Vous n'avez pas de compte ?<a href="index.php?action=pageInscription"> Cliquez ici pour vous inscrire !</a></p>
 				</div>
 				<div class="d-flex justify-content-center">
