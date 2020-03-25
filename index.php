@@ -2,9 +2,11 @@
  ob_start();
  session_start();
 
- 	//Récupértion des fichiers nécessaire
- 	require_once('controller/frontend.php');
- 	require_once('controller/backend.php');
+ 	//Récupértion des fichiers nécessaire 	
+ 	require "vendor/autoload.php";
+
+ use controller\Backend;
+ use controller\Frontend;
 
 	// Début  des tests
 	try

@@ -57,7 +57,7 @@
 			  </ul>
 			</nav>		
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-12">
 				<h3>Catégories</h3>
 				<div class="trait"></div>
 					<div class="categorieSlide mt-2">

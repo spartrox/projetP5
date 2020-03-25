@@ -1,60 +1,75 @@
 <?php
 
-	//chargement des différents classes
-   	require_once('model/articleManager.php');
-  	require_once('model/commentManager.php');
-    require_once('model/memberManager.php');
+  //chargement des différents classes
+  namespace controller;
+  require "vendor/autoload.php";
+
+
+use model\CommentManager;
+use model\ArticleManager;
+use model\MessageManager;  
+use model\MemberManager;
 
 class Frontend {
 
     	//Création des différentes fonction
     	function pageContact(){
-
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();
     		require('view/frontend/affichageContact.php');
     	}
     	
     	function pageInscription(){
-
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();
     		require('view/frontend/affichageInscription.php');
     	}
     	
     	function pageConnexion(){
-
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();
     		require('view/frontend/affichageConnexion.php');
     	}
     	
     	function pageDeconnexion(){
-
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();
     		require('view/frontend/affichageDeconnexion.php');
     	}
     	
     	function pageMentionLegales(){
-
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();
     		require('view/frontend/affichageMentionLegales.php');
     	}
 
     	function pageApropos(){
-
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();
     		require('view/frontend/affichageApropos.php');
     	}
 
     	function pageVoitureCategorie(){
-
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();
     		require('view/frontend/affichageVoitureAllemande.php');
     	}
 
     	function pageAvatar(){
-
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();
     		require('view/frontend/affichageAvatar.php');
     	}
 
       function pageMdpOublie(){
-
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();
         require('view/frontend/affichageMdpOublie.php');
       }
 
       function pageAjoutArticle(){
-
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();
         require('view/backend/affichageAjoutArticle.php');
       }
 
@@ -67,12 +82,14 @@ class Frontend {
       }
 
       function pageProfil(){
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();        
             $memberManager = new MemberManager();
             
             $infoMember = $memberManager->getMember();                
 
             if ($infoMember === false){
-                    throw new Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
+                    throw new \Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
             } else{
                     require('view/frontend/affichageProfil.php');
             }       
@@ -80,32 +97,33 @@ class Frontend {
 
       //Affichage  page Accueil
       function pageAccueil(){
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();
           $articleManager = new ArticleManager();
 
           $articles = $articleManager->getArticlesAccueil();
           $categories =  $articleManager-> getCategories();
 
             if ($articles === false){
-                    throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
+                    throw new \Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
             } else{
                     require('view/frontend/affichageAccueil.php');
             }
-            return $pageAccueil;
       }
 
       //Affichage page Actualités
       function pageActualites(){
+
           $articleManager = new ArticleManager();
 
           $articles = $articleManager->getArticles();
           $categories =  $articleManager-> getCategories();
                     
             if ($articles === false){
-                    throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
+                    throw new \Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
             } else{
                     require('view/frontend/affichageActualites.php');
             }
-            return $pageActualites;
       }
 
     		//Ajout d'un membre
@@ -115,11 +133,11 @@ class Frontend {
             $pseudoExist = $memberManager->checkPseudo($pseudo);
             $mailExist = $memberManager->checkMail($mail);  
               if ($pseudoExist){
-                  throw new Exception('Pseudo déja utilisé, veuillez en trouver un autre !');
+                  throw new \Exception('Pseudo déja utilisé, veuillez en trouver un autre !');
               }
 
               if ($mailExist){
-                  throw new Exception('Adresse mail déja utilisé, veuillez en trouver une autre !');
+                  throw new \Exception('Adresse mail déja utilisé, veuillez en trouver une autre !');
               }
 
                 if (!($pseudoExist) && !($mailExist)){
@@ -128,7 +146,7 @@ class Frontend {
                     $newMember = $memberManager->createMember($pseudo, $mail, $mdp,);
                 	header('Location: index.php?action=pageConnexion');
                 } else {
-                        throw new Exception('Erreurs lors de l\'inscription veuillez recommencer !');
+                        throw new \Exception('Erreurs lors de l\'inscription veuillez recommencer !');
        	        }
                 return $addMember;
         }
@@ -141,7 +159,7 @@ class Frontend {
             $mdpCorrect = password_verify($_POST['mdpConnect'], $member['motdepasse']);
 
             if (!isset($member['id'])){
-                  throw new Exception("Mauvais identifiant !");
+                  throw new \Exception("Mauvais identifiant !");
               }
                 else {
                     if ($mdpCorrect){
@@ -154,7 +172,7 @@ class Frontend {
                       header('Location: index.php');
                     }
                       else {
-                        throw new Exception("Mauvais mot de passe !");
+                        throw new \Exception("Mauvais mot de passe !");
                       }
                     }
                     return $pageConnexionSubmit;
@@ -162,6 +180,8 @@ class Frontend {
 
         //Affichage de la page Article et Commentaire
         function article(){
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();          
         	$articleManager = new ArticleManager();
           $commentManager = new CommentManager();
         	
@@ -170,7 +190,7 @@ class Frontend {
           $reportComments = $commentManager->reportComment($_GET['id']);
             
             if ($article && $comments === false){
-                    throw new Exception('Impossible d\'afficher la page de l\'article, veuillez recommencer !');
+                    throw new \Exception('Impossible d\'afficher la page de l\'article, veuillez recommencer !');
             } else{
          		        require('view/frontend/affichageArticle.php');
          	  }
@@ -184,7 +204,7 @@ class Frontend {
               $addComment = $commentManager->addComment($article, $commentaire, $pseudo);
 
               if ($addComment === false) {
-                  throw new Exception('Impossible d\'ajouter le commentaire !');
+                  throw new \Exception('Impossible d\'ajouter le commentaire !');
               
               } else {
                 header('Location: index.php?action=article&id=' . $article);
@@ -194,12 +214,13 @@ class Frontend {
 
         //Affichage de la page profil
         function infoProfil(){
+          
             $memberManager = new MemberManager();
             
             $infoMember = $memberManager->getMember();                
 
             if ($infoMember === false){
-                    throw new Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
+                    throw new \Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
             } else{
                     require('view/frontend/affichageProfil.php');
             }     
@@ -213,11 +234,11 @@ class Frontend {
           $mailExist = $memberManager->checkMail($mail); 
 
             if ($mailExist){
-                  throw new Exception('Adresse mail déja utilisé, veuillez en trouver une autre !');
+                  throw new \Exception('Adresse mail déja utilisé, veuillez en trouver une autre !');
             }
 
             if ($modifMail === false){
-                    throw new Exception('Erreurs lors de la modification de votre mail, veuillez recommencer !');
+                    throw new \Exception('Erreurs lors de la modification de votre mail, veuillez recommencer !');
             } else{
                     Header('Location: index.php?action=pageProfil');
             }  
@@ -230,7 +251,7 @@ class Frontend {
           $modifMdp = $memberManager->modifMdp($mdpId);               
 
             if ($modifMdp === false){
-                    throw new Exception('Erreurs lors de la modification de votre mot de passe, veuillez recommencer !');
+                    throw new \Exception('Erreurs lors de la modification de votre mot de passe, veuillez recommencer !');
             } else{
                     Header('Location: index.php?action=pageProfil');
             }  
@@ -243,7 +264,7 @@ class Frontend {
             $repComments = $commentManager->reportComment($idComment);
 
               if ($repComments === false) {
-                  throw new Exception('Impossible de signaler ce commentaire !');
+                  throw new \Exception('Impossible de signaler ce commentaire !');
               
               } else {
                 header('Location: index.php?action=article&id=' . $idArticle);
@@ -258,7 +279,7 @@ class Frontend {
           $reportComments = $commentManager-> notReportComment($reportId);
 
           if ($reportComments === false){
-              throw new Exception('Impossible de retirer le signalement, veuillez recommencer !');
+              throw new \Exception('Impossible de retirer le signalement, veuillez recommencer !');
           } else{
               Header('Location: index.php?action=pageCommentaireSignale');
           }
@@ -267,34 +288,9 @@ class Frontend {
       }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	//Affichage des erreurs
    	function error($e){
-
+        $articleManager = new ArticleManager();
+        $categorie = $articleManager-> getCategories();
      	require('view/frontend/affichageMessageErreur.php');
   	}

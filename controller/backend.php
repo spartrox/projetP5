@@ -1,9 +1,12 @@
 <?php
 
 	//chargement des différentes classes
-	require_once('model/commentManager.php');
-	require_once('model/articleManager.php');
-	require_once('model/messageManager.php');	
+ 	namespace controller;
+ 	require "vendor/autoload.php";
+
+use model\CommentManager;
+use model\ArticleManager;
+use model\MessageManager;	
 
 class Backend {
 
@@ -14,7 +17,7 @@ class Backend {
 		$categories =  $articleManager-> getCategories();
 
 		if ($categories === false){
-			throw new Exception('Impossible d\'accéder à cette page');
+			throw new \Exception('Impossible d\'accéder à cette page');
 		} else{
       			require('view/backend/affichageAdministrateur.php');
       	}
@@ -27,7 +30,7 @@ class Backend {
 		$reportComments = $commentManager-> addReportComments();
 
 		if ($reportComments === false){
-				throw new Exception('Impossible d\'accéder à la page des commentaires signalé, veuillez recommencer !');
+				throw new \Exception('Impossible d\'accéder à la page des commentaires signalé, veuillez recommencer !');
 		} else{
 				require('view/backend/affichageCommentaireSignale.php');
 		}
@@ -40,7 +43,7 @@ class Backend {
 		$newArticle = $articleManager-> createArticle($titre, $contenu, $image_article);
 		
 		if ($newArticle === false){
-				throw new Exception('Impossible d\'ajouter un article, veuillez recommencer');
+				throw new \Exception('Impossible d\'ajouter un article, veuillez recommencer');
 		} else{
 				Header('Location: index.php?action=addArticle');
 		}
@@ -53,7 +56,7 @@ class Backend {
 		$newCategorie = $articleManager-> createCategorie($titre);
 		
 		if ($newCategorie === false){
-				throw new Exception('Impossible d\'ajouter une nouvelle categorie, veuillez recommencer');
+				throw new \Exception('Impossible d\'ajouter une nouvelle categorie, veuillez recommencer');
 		} else{
 				Header('Location: index.php?action=pageAjoutCategorie');
 		}
@@ -66,7 +69,7 @@ class Backend {
     	$newMessage = $messageManager-> createMessage($nom, $email, $sujet, $contenu);
 			//die(var_dump($newMessage));
     	if ($newMessage === false){
-    			throw new Exception("Impossible d'envoyer le message, veuillez réessayer");
+    			throw new \Exception("Impossible d'envoyer le message, veuillez réessayer");
     	} else{
     			header('Location index.php?action=pageContact');
     	}
@@ -78,7 +81,7 @@ class Backend {
 
       $articles = $articleManager->getArticles();
         if ($articles === false){
-                throw new Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
+                throw new \Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
         } else{
                 require('view/backend/affichageAllArticles.php');
         }		
@@ -91,7 +94,7 @@ class Backend {
 		$article =  $articleManager-> getArticle($articleId);
 
 		if ($article  === false){
-				throw new Exception('Impossible d\'accéder à la page de modification de l\'article, veuillez recommencer !');
+				throw new \Exception('Impossible d\'accéder à la page de modification de l\'article, veuillez recommencer !');
 		} else{
 				require('view/backend/affichageModifArticle.php');
 		}
@@ -104,7 +107,7 @@ class Backend {
 		$categorie =  $articleManager-> getCategorie($categorieId);
 
 		if ($categorie  === false){
-				throw new Exception('Impossible d\'accéder à la page de modification de categorie, veuillez recommencer !');
+				throw new \Exception('Impossible d\'accéder à la page de modification de categorie, veuillez recommencer !');
 		} else{
 				require('view/backend/affichageModifCategorie.php');
 		}
@@ -117,7 +120,7 @@ class Backend {
 		$articleModif = $articleManager-> articleModif($articleId);
 
 		if ($articleModif === false){
-				throw new Exception('Impossible de modifier cet article, veuillez recommencer !');
+				throw new \Exception('Impossible de modifier cet article, veuillez recommencer !');
 		} else{
 				Header('Location: index.php?action=pageAdmin');
 		}
@@ -132,7 +135,7 @@ class Backend {
 		$comments = $commentManager->articleComments($articleId);
 		
 		if ($article  === false){
-				throw new Exception('Impossible d\'accéder à la page des commentaires, veuillez recommencer !');
+				throw new \Exception('Impossible d\'accéder à la page des commentaires, veuillez recommencer !');
 		} else{
 				require('view/backend/affichageCommentaireArticle.php');
 		}
@@ -145,7 +148,7 @@ class Backend {
 		$deleteComment = $commentManager-> deleteComment($commentId);
 
 		if ($deleteComment === false){
-				throw new Exception('Impossible de supprimer ce commentaire, veuillez recommencer !');
+				throw new \Exception('Impossible de supprimer ce commentaire, veuillez recommencer !');
 		} else{
 				Header('Location: index.php?action=pageAllArticles');
 		}
@@ -158,7 +161,7 @@ class Backend {
 		$deleteComment = $commentManager-> deleteComment($commentId);
 
 		if ($deleteComment === false){
-				throw new Exception('Impossible de supprimer ce commentaire, veuillez recommencer !');
+				throw new \Exception('Impossible de supprimer ce commentaire, veuillez recommencer !');
 		} else{
 				Header('Location: index.php?action=pageCommentaireSignale');
 		}
@@ -171,7 +174,7 @@ class Backend {
       $deleteArticle = $articleManager->deleteArticle($articleId);
       //die(var_dump($articleId));
         if ($deleteArticle === false){
-                throw new Exception('Impossible de supprimer cet article, veuillez recommencer !');
+                throw new \Exception('Impossible de supprimer cet article, veuillez recommencer !');
         } else{
                 Header('Location: index.php?action=pageAllArticles');
         }      		
@@ -184,7 +187,7 @@ class Backend {
       $deleteCategorie = $articleManager->deleteCategorie($categorieId);
       //die(var_dump($articleId));
         if ($deleteCategorie === false){
-                throw new Exception('Impossible de supprimer la catégorie, veuillez recommencer !');
+                throw new \Exception('Impossible de supprimer la catégorie, veuillez recommencer !');
         } else{
                 Header('Location: index.php?action=pageAdmin');
         }      		
@@ -197,7 +200,7 @@ class Backend {
 		$categories =  $articleManager-> getCategories();
 
 		if ($categories === false){
-			throw new Exception('Aucune catégories disponible');
+			throw new \Exception('Aucune catégories disponible');
 		} else{
       			require('view/frontend/affichageMenu.php');
       	}
@@ -210,7 +213,7 @@ class Backend {
 		$messages = $messageManager-> getMessages();
 		
         if ($messages === false){
-                throw new Exception('Impossible d\'afficher la page des messages !');
+                throw new \Exception('Impossible d\'afficher la page des messages !');
         } else{
       			require('view/backend/affichageMessageRecus.php');
       	}
@@ -223,7 +226,7 @@ class Backend {
 		$messages = $messageManager-> getMessages();
 		
         if ($messages === false){
-                throw new Exception('Impossible d\'afficher la page des messages !');
+                throw new \Exception('Impossible d\'afficher la page des messages !');
         } else{
       			require('view/backend/affichageMessageEntier.php');
       	}
