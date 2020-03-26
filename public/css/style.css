@@ -464,8 +464,12 @@ footer{
 	text-align: center;
 	color: red;
 }
-
-@media screen and (max-width: 1200px){
+@media screen (min-width: 950px) and (max-width: 1200px){
+#categories{
+	margin-left: 40%;
+}
+}
+@media screen  and (max-width: 1200px){
 
 h2{
 	font-size: 1.5em;
@@ -473,13 +477,10 @@ h2{
 h3{
 	font-size: 1.1em;
 }
-h4{
 
-}
 .categorieSlide p{
 	font-size: 0.8em;
 }
-
 #modifierProfil{
 	margin: 20px;
 	margin-left: 0px;
@@ -511,8 +512,55 @@ h4{
 #flechegauche, #flechedroite{
 	font-size: 0.7em;
 }
+@media screen and (max-width: 1000px){
+
+#categories{
+	margin-left: 15%;
+}
+
+.block_image{
+	margin-left: 10%;
+}
+.block_imageArticle img{
+	width: 100%;
+}
+
+.icone{
+	margin-left: 100px;
+}
+}
+@media screen and (max-width: 650px){
+
+#contenu{
+	margin-left: 25%;
+}
+
+}
+
+@media screen and (max-width: 500px){
+
+#navActualite{
+	font-size: 0.6em;
+}
+#contenu{
+	margin-left: 10%;
+}
+}
+
 @media screen and (max-width: 400px){
 
+#contenu{
+	margin-left: 0%;
+}
+#pageActualite{
+	margin-left: 0px;
+}
+#article{
+	margin-left: 10px;
+}
+#cate, #article{
+	margin-left: 10px;
+}
 #slider{
 	position: relative;
 	width: auto;

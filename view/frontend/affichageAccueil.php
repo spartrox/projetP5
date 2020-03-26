@@ -22,7 +22,7 @@
 	</section>
 	<section class="container">
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-8 col-sm-12" id="article">
 				<h3>Derniers articles publiés</h3>
 				<div class="trait"></div>
 				
@@ -35,10 +35,10 @@
 							while ($article = $articles->fetch()){
 				?>
 						<div class="row">
-							<div class="col-md-4 mt-3 mb-2 block_image">
-								<a href="index.php?action=article&amp;id=<?= $article['id']; ?>"><img src="public/image_article/<?php echo ($article['image_article']); ?>"><a>
+							<div class="col-md-4 col-sm-12 mt-3 mb-2 block_image">
+								<a href="index.php?action=article&amp;id=<?= $article['id']; ?>"><img id='imageBlock' src="public/image_article/<?php echo ($article['image_article']); ?>"><a>
 							</div>
-						    <div class="col-md-8 mt-3 contenu">
+						    <div class="col-md-8 col-sm-12 mt-3 contenu">
 						    	<a href="index.php?action=article&amp;id=<?= $article['id']; ?>">
 						    	<h4>
 						        	<?php echo ($article['titre']); ?>
@@ -59,7 +59,7 @@
 				?>
 			
 			</div>
-			<div class="col-md-12">
+			<div class="col-md-12" id="cate">
 				<h3>Catégories</h3>
 				<div class="trait"></div>
 					<div class="categorieSlide mt-2">

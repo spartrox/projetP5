@@ -6,7 +6,7 @@
     	<h2>Liste de tout les articles publiés </h2>
       	
 	<section class="container"> 
-		<div class="row">
+		<div class="row" id="pageActualite">
 			<div class="col-md-8">
 				<h3>Tout les articles publiés</h3>
 				<div class="trait"></div>
@@ -19,11 +19,11 @@
 						} else {
 							while ($article = $articles->fetch()){ //:
 				?>
-						<div class="row">
+						<div class="row" id="contenu">
 							<div class="col-md-4 mt-3 mb-2 block_image">
 								<a href="index.php?action=article&amp;id=<?= $article['id']; ?>"><img src="public/image_article/<?php echo ($article['image_article']); ?>"><a>
 							</div>
-						    <div class="col-md-8 mt-3 contenu">
+						    <div class="col-md-8 col-sm-12 col-xs-12 mt-3 contenu">
 						    	<a href="index.php?action=article&amp;id=<?= $article['id']; ?>">
 						    	<h4>
 						        	<?php echo ($article['titre']); ?>
@@ -43,7 +43,7 @@
 						$articles->closeCursor();
 				?>
 	
-			<nav aria-label="Page navigation example"><br>
+			<nav aria-label="Page navigation example" id="navActualite"><br>
 			  	<ul class="pagination justify-content-center">
 				    <li class="page-item disabled">
 				      	<a class="page-link" href="#" tabindex="-1">Articles précédents</a>
@@ -51,13 +51,12 @@
 				    <li class="page-item"><a class="page-link" href="#">1</a></li>
 				    <li class="page-item"><a class="page-link" href="#">2</a></li>
 				    <li class="page-item"><a class="page-link" href="#">3</a></li>
-				    <li class="page-item">
 			      		<a class="page-link" href="#">Articles suivants</a>
 			    	</li>
 			  </ul>
 			</nav>		
 			</div>
-			<div class="col-md-12">
+			<div class="col-md-12 col-sm-12 col-xs-12" id="categories">
 				<h3>Catégories</h3>
 				<div class="trait"></div>
 					<div class="categorieSlide mt-2">
