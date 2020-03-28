@@ -28,11 +28,11 @@
 				
 			<?php 
 					$result = $articles->rowCount();					
-						if ($result === 0){
+						if ($result === 0):
 							echo "<p class='messageErreur'>Il n'y a actuellement pas d'articles publié</p>";
 
-						} else {
-							while ($article = $articles->fetch()){
+						else:
+							while ($article = $articles->fetch()):
 				?>
 						<div class="row">
 							<div class="col-md-4 col-sm-12 mt-3 mb-2 block_image">
@@ -52,9 +52,9 @@
 						<div class="trait2"></div>
 						
 				<?php						
-							}	
+						endwhile;	
 
-						} // Fin de la boucle des articles 
+						endif; // Fin de la boucle des articles 
 						$articles->closeCursor();
 				?>
 			
@@ -64,7 +64,7 @@
 				<div class="trait"></div>
 					<div class="categorieSlide mt-2">
                 <?php 
-                            while ($c = $categories->fetch()){
+                            while ($c = $categories->fetch()):
                 ?>
                         <div>
                             <div class="categories">
@@ -74,7 +74,8 @@
                             </div>      
                         </div> 
                 <?php                       
-                            } $categories->closeCursor();
+                            endwhile;
+                            $categories->closeCursor();
                 ?>
 					</div>
 				<h3>Réseaux sociaux</h3>

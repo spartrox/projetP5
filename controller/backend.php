@@ -172,7 +172,7 @@ class Backend {
       $articleManager = new ArticleManager();
 
       $deleteArticle = $articleManager->deleteArticle($articleId);
-      //die(var_dump($articleId));
+
         if ($deleteArticle === false){
                 throw new \Exception('Impossible de supprimer cet article, veuillez recommencer !');
         } else{
@@ -192,19 +192,6 @@ class Backend {
                 Header('Location: index.php?action=pageAdmin');
         }      		
 	}
-
-	//Affichage de la page Admin
-	function categorieMenu(){
-		$articleManager = new ArticleManager();		
-
-		$categories =  $articleManager-> getCategories();
-
-		if ($categories === false){
-			throw new \Exception('Aucune catégories disponible');
-		} else{
-      			require('view/frontend/affichageMenu.php');
-      	}
-    }
 
 	//Affichage de tout les messages
 	function pageMessage(){

@@ -13,11 +13,11 @@
 				
 			<?php 
 					$result = $articles->rowCount();					
-						if ($result === 0){
+						if ($result === 0):
 							echo "<p class='messageErreur'>Il n'y a actuellement pas d'articles publié</p>";
 
-						} else {
-							while ($article = $articles->fetch()){ //:
+						else:
+							while ($article = $articles->fetch()):
 				?>
 						<div class="row" id="contenu">
 							<div class="col-md-4 mt-3 mb-2 block_image">
@@ -37,9 +37,9 @@
 						<div class="trait2"></div>
 						
 				<?php						
-							}//endwhile;	
+						endwhile;	
 
-						} // Fin de la boucle des articles 
+						endif; // Fin de la boucle des articles 
 						$articles->closeCursor();
 				?>
 	

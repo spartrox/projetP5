@@ -95,6 +95,17 @@ class Frontend {
             }       
       }
 
+      function categorieMenu(){
+          $articleManager = new ArticleManager();
+          $categories = $articleManager-> getCategories(); 
+
+          if($categories === false){
+                  throw new \Exception('erreurs avec les categories pour le menu, veuillez recommencer !');
+          } else{
+                  require('view/frontend/affichageMenu.php');
+          }
+      }
+
       //Affichage  page Accueil
       function pageAccueil(){
         $articleManager = new ArticleManager();

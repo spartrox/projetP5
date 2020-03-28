@@ -22,6 +22,11 @@
 
 					$pageActualites->pageActualites();					
 					
+				} else if ($_GET['action'] == "categorieMenu") {
+					$categorieMenu = new Frontend();
+
+					$categorieMenu->categorieMenu();									
+
 				} else if ($_GET['action'] == "pageContact") {
 					$pageContact = new Frontend();
 
@@ -115,11 +120,6 @@
 
 						$pageAccueil->pageAccueil();						
 					}
-
-				} else if ($_GET['action'] == "categorieMenu") {				
-					$categorieMenu = new Backend();
-
-					$categorieMenu->categorieMenu();
 
 				} elseif ($_GET['action'] == "pageMdpOublie") {
 					$pageMdpOublie = new Frontend();

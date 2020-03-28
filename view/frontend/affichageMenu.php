@@ -17,7 +17,7 @@
               </li>
 
               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catégories</a>
+                  <a class="nav-link dropdown-toggle" href="index.php?action=categorieMenu" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catégories</a>
 
                   <!-- bloc menu déroulant -->
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
