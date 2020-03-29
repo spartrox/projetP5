@@ -19,7 +19,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-envelope" ></i> </span>
                                     </div>
-                                    <input class="form-control" name="newMail" placeholder="Nouvelle adresse email" id="newMail" type="email"><a class="valider mt-2 ml-2" href="index.php?action=modifMail"> Valider</a>
+                                    <input class="form-control" name="newMail" placeholder="Nouvelle adresse email" id="newMail" type="email"><a class="valider mt-2 ml-2" href="index.php?action=mailModif"> Valider</a>
                                 </div></b>
 
                         <li>Votre compte a été créé le :<b> <?= $p['date_creation'] ?> </b></li>

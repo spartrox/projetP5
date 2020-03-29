@@ -12,6 +12,9 @@
 	try
 	{
 			if (isset($_GET['action'])){
+
+												////////////////// AFFICHAGE DES DIFFÉRENTES PAGES DU SITE /////////////////////////
+
 				if ($_GET['action'] == "pageAccueil") {
 					$pageAccueil = new Frontend();
 
@@ -57,30 +60,6 @@
 
 					$pageApropos->pageApropos();					
 
-				} elseif ($_GET['action'] == 'pageAjoutArticle') {
-					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
-					$pageAjoutArticle = new Frontend();
-
-					$pageAjoutArticle->pageAjoutArticle();
-
-					}  else{
-						$pageAccueil = new Frontend();
-
-						$pageAccueil->pageAccueil();
-					}
-
-				} else if ($_GET['action'] == "pageAjoutCategorie") {
-					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
-						$pageAjoutCategorie = new Frontend();
-
-						$pageAjoutCategorie->pageAjoutCategorie();
-
-					}  else{
-						$pageAccueil = new Frontend();
-
-						$pageAccueil->pageAccueil();
-					}
-				
 				} else if ($_GET['action'] == "pageProfil") {
 					if (isset($_SESSION['id']) || ($_SESSION['admin'])){
 						$pageProfil = new Frontend();
@@ -91,7 +70,7 @@
 
 						$pageAccueil->pageAccueil();						
 					}
-					
+
 				} else if ($_GET['action'] == "infoProfil") {
 					if (isset($_SESSION['id']) || ($_SESSION['admin'])){
 						$infoProfil = new Frontend();
@@ -141,6 +120,76 @@
 
 						$pageAllArticles->pageAllArticles();
 					} else {
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}
+
+				} elseif ($_GET['action'] == 'pageConnexionSubmit'){
+					$pageConnexionSubmit = new Frontend();
+
+					$pageConnexionSubmit->pageConnexionSubmit($_POST['pseudoConnect'], $_POST['mdpConnect']);					
+
+				} elseif ($_GET['action'] == 'pageCommentArticle'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						$pageCommentArticle = new Backend();
+
+						$pageCommentArticle->pageCommentArticle($_GET['id']);
+					} else {
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}
+					
+				} elseif ($_GET['action'] == 'pageCommentaireSignale'){
+					$pageCommentaireSignale = new Backend();
+
+					$pageCommentaireSignale->pageCommentaireSignale();
+				
+				} elseif ($_GET['action'] == 'pageMessage'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						$pageMessage = new Backend();
+
+						$pageMessage->pageMessage();
+					} else {
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}				
+
+				} elseif ($_GET['action'] == 'pageMessageEntier'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						$pageMessageEntier = new Backend();
+
+						$pageMessageEntier->pageMessageEntier();
+					} else {
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}				
+				}
+
+												////////////////// AFFICHAGE DES ACTIONS D'AJOUT /////////////////////////
+
+				} elseif ($_GET['action'] == 'pageAjoutArticle') {
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+					$pageAjoutArticle = new Frontend();
+
+					$pageAjoutArticle->pageAjoutArticle();
+
+					}  else{
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}
+
+				} else if ($_GET['action'] == "pageAjoutCategorie") {
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						$pageAjoutCategorie = new Frontend();
+
+						$pageAjoutCategorie->pageAjoutCategorie();
+
+					}  else{
 						$pageAccueil = new Frontend();
 
 						$pageAccueil->pageAccueil();
@@ -212,6 +261,8 @@
 							  throw new Exception('Veuillez remplir tout les champs !');
 						}
 
+												////////////////// AFFICHAGE DES ACTIONS DE SUPPRESSION /////////////////////////
+
 				} elseif ($_GET['action'] == 'deleteArticle'){
 					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
 						$deleteArticle = new Backend();
@@ -234,26 +285,29 @@
 						$pageAccueil->pageAccueil();
 					}
 
-				} else if ($_GET['action'] == "modifMail") {
-					if (isset($_SESSION['id']) || ($_SESSION['admin'])){
-						if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)){						
-							if (!empty($_POST['titreArticle'])){
-								$modifMail = new Frontend();
+				} elseif ($_GET['action'] == 'deleteComment'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						$deleteComment = new Backend();
 
-								$modifMail->modifMail($_GET['id']);
-							} else {
-								throw new Exception('Veuillez entrer une nouvelle adresse mail !');
-							}
-								
-						} else {
-							throw new Exception('Pas d\'adresse mail valide.');
-							}
-					
+						$deleteComment->deleteComment($_GET['id']);
 					} else {
 						$pageAccueil = new Frontend();
 
 						$pageAccueil->pageAccueil();
 					}
+
+				} elseif ($_GET['action'] == 'deleteCommentSignale'){
+					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
+						$deleteCommentSignale = new Backend();
+
+						$deleteCommentSignale->deleteCommentSignale($_GET['id']);
+					} else {
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}	
+
+												////////////////// AFFICHAGE DES ACTIONS DE MODIFICATION /////////////////////////
 
 				} else if ($_GET['action'] == "modifMdp") {
 					if (isset($_SESSION['id']) || ($_SESSION['admin'])){
@@ -293,6 +347,28 @@
 						$pageAccueil->pageAccueil();
 					}
 
+				} else if ($_GET['action'] == "mailModif"){
+					if (isset($_SESSION['id']) || ($_SESSION['admin'])){						
+						$mailModif = new Frontend();
+
+						$mailModif->mailModif($_GET['id']);							
+					} else {
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}
+
+				} elseif ($_GET['action'] == 'categorieModif'){
+					if (isset($_GET['id']) && $_GET['id'] > 0){
+						$categorieModif = new Backend();
+
+						$categorieModif->categorieModif($_GET['id']);
+					} else {
+						$pageAccueil = new Frontend();
+
+						$pageAccueil->pageAccueil();
+					}
+
 				} elseif ($_GET['action'] == 'articleModif'){
 					if (isset($_GET['id']) && $_GET['id'] > 0){
 						$articleModif = new Backend();
@@ -302,45 +378,7 @@
 						$pageAccueil = new Frontend();
 
 						$pageAccueil->pageAccueil();
-					}
-
-				} elseif ($_GET['action'] == 'pageConnexionSubmit'){
-					$pageConnexionSubmit = new Frontend();
-
-					$pageConnexionSubmit->pageConnexionSubmit($_POST['pseudoConnect'], $_POST['mdpConnect']);					
-
-				} elseif ($_GET['action'] == 'pageCommentArticle'){
-					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
-						$pageCommentArticle = new Backend();
-
-						$pageCommentArticle->pageCommentArticle($_GET['id']);
-					} else {
-						$pageAccueil = new Frontend();
-
-						$pageAccueil->pageAccueil();
-					}						
-
-				} elseif ($_GET['action'] == 'deleteComment'){
-					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
-						$deleteComment = new Backend();
-
-						$deleteComment->deleteComment($_GET['id']);
-					} else {
-						$pageAccueil = new Frontend();
-
-						$pageAccueil->pageAccueil();
-					}
-
-				} elseif ($_GET['action'] == 'deleteCommentSignale'){
-					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
-						$deleteCommentSignale = new Backend();
-
-						$deleteCommentSignale->deleteCommentSignale($_GET['id']);
-					} else {
-						$pageAccueil = new Frontend();
-
-						$pageAccueil->pageAccueil();
-					}					
+					}										
 	
 				} elseif ($_GET['action'] == 'reportComment'){
 					if (isset($_SESSION['id']) && isset($_GET['idArticle']) && isset($_GET['idComment'])){
@@ -363,34 +401,6 @@
 
 						$pageAccueil->pageAccueil();
 					}
-
-				} elseif ($_GET['action'] == 'pageCommentaireSignale'){
-					$pageCommentaireSignale = new Backend();
-
-					$pageCommentaireSignale->pageCommentaireSignale();
-				
-				} elseif ($_GET['action'] == 'pageMessage'){
-					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
-						$pageMessage = new Backend();
-
-						$pageMessage->pageMessage();
-					} else {
-						$pageAccueil = new Frontend();
-
-						$pageAccueil->pageAccueil();
-					}				
-
-				} elseif ($_GET['action'] == 'pageMessageEntier'){
-					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
-						$pageMessageEntier = new Backend();
-
-						$pageMessageEntier->pageMessageEntier();
-					} else {
-						$pageAccueil = new Frontend();
-
-						$pageAccueil->pageAccueil();
-					}				
-				}
 
 			} else{
 					$pageAccueil = new Frontend();

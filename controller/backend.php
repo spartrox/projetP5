@@ -9,6 +9,7 @@ use model\ArticleManager;
 use model\MessageManager;	
 
 class Backend {
+                        ////////////////// FONCTION AFFICHAGE /////////////////////////
 
 	//Affichage de la page Admin
 	function pageAdmin(){
@@ -35,6 +36,87 @@ class Backend {
 				require('view/backend/affichageCommentaireSignale.php');
 		}
 	}
+
+	//Page gestion article
+	function pageModifArticle($articleId){
+		$articleManager = new ArticleManager();
+
+		$article =  $articleManager-> getArticle($articleId);
+
+		if ($article  === false){
+				throw new \Exception('Impossible d\'accéder à la page de modification de l\'article, veuillez recommencer !');
+		} else{
+				require('view/backend/affichageModifArticle.php');
+		}
+	}
+
+	//Page gestion categorie
+	function pageModifCategorie($categorieId){
+		$articleManager = new ArticleManager();
+
+		$categorie =  $articleManager-> getCategorie($categorieId);
+
+		if ($categorie  === false){
+				throw new \Exception('Impossible d\'accéder à la page de modification de categorie, veuillez recommencer !');
+		} else{
+				require('view/backend/affichageModifCategorie.php');
+		}
+	}
+
+	//Affichage de tout les articles
+	function pageAllArticles(){
+      $articleManager = new ArticleManager();
+
+      $articles = $articleManager->getArticles();
+        if ($articles === false){
+                throw new \Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
+        } else{
+                require('view/backend/affichageAllArticles.php');
+        }		
+	}
+
+	//page gestion des commentaires pour chaque chapitre
+	function pageCommentArticle($articleId){
+		$articleManager = new ArticleManager();
+		$commentManager = new CommentManager();
+		
+		$article =  $articleManager-> getArticle($articleId);
+		$comments = $commentManager->articleComments($articleId);
+		
+		if ($article  === false){
+				throw new \Exception('Impossible d\'accéder à la page des commentaires, veuillez recommencer !');
+		} else{
+				require('view/backend/affichageCommentaireArticle.php');
+		}
+	}
+
+	//Affichage de tout les messages
+	function pageMessage(){
+		$messageManager = new MessageManager();
+
+		$messages = $messageManager-> getMessages();
+		
+        if ($messages === false){
+                throw new \Exception('Impossible d\'afficher la page des messages !');
+        } else{
+      			require('view/backend/affichageMessageRecus.php');
+      	}
+    }
+
+	//Affichage de la page Message
+	function pageMessageEntier(){
+		$messageManager = new MessageManager();
+
+		$messages = $messageManager-> getMessages();
+		
+        if ($messages === false){
+                throw new \Exception('Impossible d\'afficher la page des messages !');
+        } else{
+      			require('view/backend/affichageMessageEntier.php');
+      	}
+    }
+
+                        ////////////////// FONCTION AJOUT /////////////////////////
 
 	//Ajout d'un article
 	function newArticle($titre, $contenu, $image_article){
@@ -75,41 +157,18 @@ class Backend {
     	}
     }
 
-	//Affichage de tout les articles
-	function pageAllArticles(){
-      $articleManager = new ArticleManager();
+                        ////////////////// FONCTION MODIFICATION /////////////////////////
 
-      $articles = $articleManager->getArticles();
-        if ($articles === false){
-                throw new \Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
-        } else{
-                require('view/backend/affichageAllArticles.php');
-        }		
-	}
+	//categorie modifié
+	function categorieModif($categorieId){
+		$categorieManager = new ArticleManager();
 
-	//Page gestion article
-	function pageModifArticle($articleId){
-		$articleManager = new ArticleManager();
+		$categorieModif = $categorieManager-> categorieModif($categorieId);
 
-		$article =  $articleManager-> getArticle($articleId);
-
-		if ($article  === false){
-				throw new \Exception('Impossible d\'accéder à la page de modification de l\'article, veuillez recommencer !');
+		if ($categorieModif === false){
+				throw new \Exception('Impossible de modifier cet categorie, veuillez recommencer !');
 		} else{
-				require('view/backend/affichageModifArticle.php');
-		}
-	}
-
-	//Page gestion categorie
-	function pageModifCategorie($categorieId){
-		$articleManager = new ArticleManager();
-
-		$categorie =  $articleManager-> getCategorie($categorieId);
-
-		if ($categorie  === false){
-				throw new \Exception('Impossible d\'accéder à la page de modification de categorie, veuillez recommencer !');
-		} else{
-				require('view/backend/affichageModifCategorie.php');
+				Header('Location: index.php?action=pageAdmin');
 		}
 	}
 
@@ -122,24 +181,11 @@ class Backend {
 		if ($articleModif === false){
 				throw new \Exception('Impossible de modifier cet article, veuillez recommencer !');
 		} else{
-				Header('Location: index.php?action=pageAdmin');
+				Header('Location: index.php?action=pageAllArticles');
 		}
 	}
 
-	//page gestion des commentaires pour chaque chapitre
-	function pageCommentArticle($articleId){
-		$articleManager = new ArticleManager();
-		$commentManager = new CommentManager();
-		
-		$article =  $articleManager-> getArticle($articleId);
-		$comments = $commentManager->articleComments($articleId);
-		
-		if ($article  === false){
-				throw new \Exception('Impossible d\'accéder à la page des commentaires, veuillez recommencer !');
-		} else{
-				require('view/backend/affichageCommentaireArticle.php');
-		}
-	}
+                        ////////////////// FONCTION SUPPRESSION /////////////////////////
 
 	//Supression d'un commentaire
 	function deleteComment($commentId){
@@ -192,30 +238,4 @@ class Backend {
                 Header('Location: index.php?action=pageAdmin');
         }      		
 	}
-
-	//Affichage de tout les messages
-	function pageMessage(){
-		$messageManager = new MessageManager();
-
-		$messages = $messageManager-> getMessages();
-		
-        if ($messages === false){
-                throw new \Exception('Impossible d\'afficher la page des messages !');
-        } else{
-      			require('view/backend/affichageMessageRecus.php');
-      	}
-    }
-
-	//Affichage de la page Message
-	function pageMessageEntier(){
-		$messageManager = new MessageManager();
-
-		$messages = $messageManager-> getMessages();
-		
-        if ($messages === false){
-                throw new \Exception('Impossible d\'afficher la page des messages !');
-        } else{
-      			require('view/backend/affichageMessageEntier.php');
-      	}
-    }
 }

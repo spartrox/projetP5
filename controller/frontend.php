@@ -11,8 +11,8 @@ use model\MessageManager;
 use model\MemberManager;
 
 class Frontend {
+                        ////////////////// FONCTION AFFICHAGE /////////////////////////
 
-    	//Création des différentes fonction
     	function pageContact(){
         $articleManager = new ArticleManager();
         $categorie = $articleManager-> getCategories();
@@ -95,17 +95,6 @@ class Frontend {
             }       
       }
 
-      function categorieMenu(){
-          $articleManager = new ArticleManager();
-          $categories = $articleManager-> getCategories(); 
-
-          if($categories === false){
-                  throw new \Exception('erreurs avec les categories pour le menu, veuillez recommencer !');
-          } else{
-                  require('view/frontend/affichageMenu.php');
-          }
-      }
-
       //Affichage  page Accueil
       function pageAccueil(){
         $articleManager = new ArticleManager();
@@ -137,31 +126,6 @@ class Frontend {
             }
       }
 
-    		//Ajout d'un membre
-       	function addMember($pseudo, $mdp, $mail){
-         	$memberManager = new MemberManager();
-            
-            $pseudoExist = $memberManager->checkPseudo($pseudo);
-            $mailExist = $memberManager->checkMail($mail);  
-              if ($pseudoExist){
-                  throw new \Exception('Pseudo déja utilisé, veuillez en trouver un autre !');
-              }
-
-              if ($mailExist){
-                  throw new \Exception('Adresse mail déja utilisé, veuillez en trouver une autre !');
-              }
-
-                if (!($pseudoExist) && !($mailExist)){
-
-                    $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
-                    $newMember = $memberManager->createMember($pseudo, $mail, $mdp,);
-                	header('Location: index.php?action=pageConnexion');
-                } else {
-                        throw new \Exception('Erreurs lors de l\'inscription veuillez recommencer !');
-       	        }
-                return $addMember;
-        }
-
         //Bouton page connexion
         function pageConnexionSubmit($pseudo, $mdp){
             $memberManager = new MemberManager();
@@ -191,11 +155,10 @@ class Frontend {
 
         //Affichage de la page Article et Commentaire
         function article(){
-        $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();          
-        	$articleManager = new ArticleManager();
+          $articleManager = new ArticleManager();         
           $commentManager = new CommentManager();
-        	
+
+          $categorie = $articleManager-> getCategories();           
           $article = $articleManager->getArticle($_GET['id']);
           $comments = $commentManager->articleComments($_GET['id']);
           $reportComments = $commentManager->reportComment($_GET['id']);
@@ -203,16 +166,68 @@ class Frontend {
             if ($article && $comments === false){
                     throw new \Exception('Impossible d\'afficher la page de l\'article, veuillez recommencer !');
             } else{
-         		        require('view/frontend/affichageArticle.php');
-         	  }
+                    require('view/frontend/affichageArticle.php');
+            }
             return $article;
+        }
+
+        //Affichage de la page profil
+        function infoProfil(){
+          
+        $memberManager = new MemberManager();
+            
+          $infoMember = $memberManager->getMember();                
+
+            if ($infoMember === false){
+                    throw new \Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
+            } else{
+                    require('view/frontend/affichageProfil.php');
+            }     
+        }
+
+      function categorieMenu(){
+          $articleManager = new ArticleManager();
+          $categories = $articleManager-> getCategories(); 
+
+          if($categories === false){
+                  throw new \Exception('erreurs avec les categories pour le menu, veuillez recommencer !');
+          } else{
+                  require('view/frontend/affichageMenu.php');
+          }
+      }
+
+                        ////////////////// FONCTION AJOUT /////////////////////////
+
+    		//Ajout d'un membre
+       	function addMember($pseudo, $mdp, $mail){
+         	$memberManager = new MemberManager();
+            
+            $pseudoExist = $memberManager->checkPseudo($pseudo);
+            $mailExist = $memberManager->checkMail($mail);  
+              if ($pseudoExist){
+                  throw new \Exception('Pseudo déja utilisé, veuillez en trouver un autre !');
+              }
+
+              if ($mailExist){
+                  throw new \Exception('Adresse mail déja utilisé, veuillez en trouver une autre !');
+              }
+
+                if (!($pseudoExist) && !($mailExist)){
+
+                    $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
+                    $newMember = $memberManager->createMember($pseudo, $mail, $mdp,);
+                	header('Location: index.php?action=pageConnexion');
+                } else {
+                        throw new \Exception('Erreurs lors de l\'inscription veuillez recommencer !');
+       	        }
+                return $addMember;
         }
 
         //Ajout commentaire
         function addComment($article, $commentaire, $pseudo){
-              $commentManager = new CommentManager();
+          $commentManager = new CommentManager();
               
-              $addComment = $commentManager->addComment($article, $commentaire, $pseudo);
+          $addComment = $commentManager->addComment($article, $commentaire, $pseudo);
 
               if ($addComment === false) {
                   throw new \Exception('Impossible d\'ajouter le commentaire !');
@@ -223,32 +238,20 @@ class Frontend {
             return $addComment;
         }
 
-        //Affichage de la page profil
-        function infoProfil(){
-          
-            $memberManager = new MemberManager();
-            
-            $infoMember = $memberManager->getMember();                
-
-            if ($infoMember === false){
-                    throw new \Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
-            } else{
-                    require('view/frontend/affichageProfil.php');
-            }     
-        }
+                        ////////////////// FONCTION MODIFICATION /////////////////////////
 
         //Modif mail
-        function modifMail($mail){
+        function mailModif($mailId){
           $memberManager = new MemberManager();
           
-          $modifMail = $memberManager->modifMail($mailId);               
-          $mailExist = $memberManager->checkMail($mail); 
+          $mailModif = $memberManager->mailModif($mailId);               
+         /* $mailExist = $memberManager->checkMail($mail); 
 
             if ($mailExist){
                   throw new \Exception('Adresse mail déja utilisé, veuillez en trouver une autre !');
-            }
+            }*/
 
-            if ($modifMail === false){
+            if ($mailModif === false){
                     throw new \Exception('Erreurs lors de la modification de votre mail, veuillez recommencer !');
             } else{
                     Header('Location: index.php?action=pageProfil');
@@ -256,12 +259,12 @@ class Frontend {
         }
 
         //Modif mdp
-        function modifMdp($mdpId){
+        function mdpModif($mdpId){
           $memberManager = new MemberManager();
           
-          $modifMdp = $memberManager->modifMdp($mdpId);               
+          $mdpModif = $memberManager->mdpModif($mdpId);               
 
-            if ($modifMdp === false){
+            if ($mdpModif === false){
                     throw new \Exception('Erreurs lors de la modification de votre mot de passe, veuillez recommencer !');
             } else{
                     Header('Location: index.php?action=pageProfil');

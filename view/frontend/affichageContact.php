@@ -15,7 +15,7 @@
 
 		    <div class="container col-md-8">
 		        <div>
-		            <form id="contact-form" name="contact-form" action="index.php?action=newMessage" method="POST">
+		            <form id="contact-form" name="contact-form" action="index.php?action=newMessage" method="post">
 
 		                <div> 
 		                    <div class="container  col-md-9">
