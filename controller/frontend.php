@@ -16,90 +16,73 @@ class Frontend {
     	function pageContact(){
         $articleManager = new ArticleManager();
         $categorie = $articleManager-> getCategories();
-    		require('view/frontend/affichageContact.php');
+    		  require('view/frontend/affichageContact.php');
     	}
     	
     	function pageInscription(){
         $articleManager = new ArticleManager();
         $categorie = $articleManager-> getCategories();
-    		require('view/frontend/affichageInscription.php');
+    		  require('view/frontend/affichageInscription.php');
     	}
     	
     	function pageConnexion(){
         $articleManager = new ArticleManager();
         $categorie = $articleManager-> getCategories();
-    		require('view/frontend/affichageConnexion.php');
+    		  require('view/frontend/affichageConnexion.php');
     	}
     	
     	function pageDeconnexion(){
         $articleManager = new ArticleManager();
         $categorie = $articleManager-> getCategories();
-    		require('view/frontend/affichageDeconnexion.php');
+    		  require('view/frontend/affichageDeconnexion.php');
     	}
     	
     	function pageMentionLegales(){
         $articleManager = new ArticleManager();
         $categorie = $articleManager-> getCategories();
-    		require('view/frontend/affichageMentionLegales.php');
+    		  require('view/frontend/affichageMentionLegales.php');
     	}
 
     	function pageApropos(){
         $articleManager = new ArticleManager();
         $categorie = $articleManager-> getCategories();
-    		require('view/frontend/affichageApropos.php');
+    		  require('view/frontend/affichageApropos.php');
     	}
 
     	function pageVoitureCategorie(){
         $articleManager = new ArticleManager();
         $categorie = $articleManager-> getCategories();
-    		require('view/frontend/affichageVoitureAllemande.php');
+    		  require('view/frontend/affichageVoitureAllemande.php');
     	}
 
     	function pageAvatar(){
         $articleManager = new ArticleManager();
         $categorie = $articleManager-> getCategories();
-    		require('view/frontend/affichageAvatar.php');
+    		  require('view/frontend/affichageAvatar.php');
     	}
 
       function pageMdpOublie(){
         $articleManager = new ArticleManager();
         $categorie = $articleManager-> getCategories();
-        require('view/frontend/affichageMdpOublie.php');
+          require('view/frontend/affichageMdpOublie.php');
       }
 
       function pageAjoutArticle(){
         $articleManager = new ArticleManager();
         $categorie = $articleManager-> getCategories();
-        require('view/backend/affichageAjoutArticle.php');
+          require('view/backend/affichageAjoutArticle.php');
       }
 
       function pageAjoutCategorie(){
-          $articleManager = new ArticleManager();   
-
-          $categories =  $articleManager-> getCategories();        
-
-        require('view/backend/affichageAjoutCategorie.php');
-      }
-
-      function pageProfil(){
-        $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();        
-            $memberManager = new MemberManager();
-            
-            $infoMember = $memberManager->getMember();                
-
-            if ($infoMember === false){
-                    throw new \Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
-            } else{
-                    require('view/frontend/affichageProfil.php');
-            }       
+        $articleManager = new ArticleManager();   
+        $categories =  $articleManager-> getCategories();        
+          require('view/backend/affichageAjoutCategorie.php');
       }
 
       //Affichage  page Accueil
       function pageAccueil(){
         $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();
-          $articleManager = new ArticleManager();
+        $articleManager = new ArticleManager();
 
           $articles = $articleManager->getArticlesAccueil();
           $categories =  $articleManager-> getCategories();
@@ -113,8 +96,7 @@ class Frontend {
 
       //Affichage page Actualités
       function pageActualites(){
-
-          $articleManager = new ArticleManager();
+        $articleManager = new ArticleManager();
 
           $articles = $articleManager->getArticles();
           $categories =  $articleManager-> getCategories();
@@ -126,12 +108,12 @@ class Frontend {
             }
       }
 
-        //Bouton page connexion
-        function pageConnexionSubmit($pseudo, $mdp){
-            $memberManager = new MemberManager();
+      //Bouton page connexion
+      function pageConnexionSubmit($pseudo, $mdp){
+        $memberManager = new MemberManager();
 
-            $member = $memberManager->loginMember($pseudo);
-            $mdpCorrect = password_verify($_POST['mdpConnect'], $member['motdepasse']);
+          $member = $memberManager->loginMember($pseudo);
+          $mdpCorrect = password_verify($_POST['mdpConnect'], $member['motdepasse']);
 
             if (!isset($member['id'])){
                   throw new \Exception("Mauvais identifiant !");
@@ -151,12 +133,12 @@ class Frontend {
                       }
                     }
                     return $pageConnexionSubmit;
-        }
+      }
 
-        //Affichage de la page Article et Commentaire
-        function article(){
-          $articleManager = new ArticleManager();         
-          $commentManager = new CommentManager();
+      //Affichage de la page Article et Commentaire
+      function article(){
+        $articleManager = new ArticleManager();         
+        $commentManager = new CommentManager();
 
           $categorie = $articleManager-> getCategories();           
           $article = $articleManager->getArticle($_GET['id']);
@@ -169,41 +151,58 @@ class Frontend {
                     require('view/frontend/affichageArticle.php');
             }
             return $article;
-        }
+      }
 
-        //Affichage de la page profil
-        function infoProfil(){
+      //Affichage de la page Article et Commentaire
+      function articleCategorie(){
+        $articleManager = new ArticleManager();         
           
+          $categories = $articleManager-> getCategories();
+          $categorie = $articleManager-> getCategorie($_GET['id']);           
+          $articles = $articleManager->getArticlesAccueil($_GET['id']);
+            
+            if ($articles && $categorie === false){
+                    throw new \Exception('Impossible d\'afficher la liste des articles, veuillez recommencer !');
+            } else{
+                    require('view/frontend/affichageArticleCategorie.php');
+            }
+      }
+
+      //Affichage de la page profil
+      function pageProfil(){
+        $articleManager = new ArticleManager();        
         $memberManager = new MemberManager();
             
-          $infoMember = $memberManager->getMember();                
+            $categorie = $articleManager-> getCategories();
+            $infoMember = $memberManager->getMember();                
 
-            if ($infoMember === false){
-                    throw new \Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
-            } else{
-                    require('view/frontend/affichageProfil.php');
-            }     
-        }
+              if ($infoMember === false){
+                      throw new \Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
+              } else{
+                      require('view/frontend/affichageProfil.php');
+              }       
+      }
 
+      //Affichage de la catégorie dans le menu
       function categorieMenu(){
           $articleManager = new ArticleManager();
           $categories = $articleManager-> getCategories(); 
 
-          if($categories === false){
-                  throw new \Exception('erreurs avec les categories pour le menu, veuillez recommencer !');
-          } else{
-                  require('view/frontend/affichageMenu.php');
-          }
+            if($categories === false){
+                    throw new \Exception('erreurs avec les categories pour le menu, veuillez recommencer !');
+            } else{
+                    require('view/frontend/affichageMenu.php');
+            }
       }
 
                         ////////////////// FONCTION AJOUT /////////////////////////
 
-    		//Ajout d'un membre
-       	function addMember($pseudo, $mdp, $mail){
-         	$memberManager = new MemberManager();
+    	//Ajout d'un membre
+      function addMember($pseudo, $mdp, $mail){
+         $memberManager = new MemberManager();
             
-            $pseudoExist = $memberManager->checkPseudo($pseudo);
-            $mailExist = $memberManager->checkMail($mail);  
+          $pseudoExist = $memberManager->checkPseudo($pseudo);
+          $mailExist = $memberManager->checkMail($mail);  
               if ($pseudoExist){
                   throw new \Exception('Pseudo déja utilisé, veuillez en trouver un autre !');
               }
@@ -221,11 +220,11 @@ class Frontend {
                         throw new \Exception('Erreurs lors de l\'inscription veuillez recommencer !');
        	        }
                 return $addMember;
-        }
+      }
 
-        //Ajout commentaire
-        function addComment($article, $commentaire, $pseudo){
-          $commentManager = new CommentManager();
+      //Ajout commentaire
+      function addComment($article, $commentaire, $pseudo){
+        $commentManager = new CommentManager();
               
           $addComment = $commentManager->addComment($article, $commentaire, $pseudo);
 
@@ -234,15 +233,15 @@ class Frontend {
               
               } else {
                 header('Location: index.php?action=article&id=' . $article);
-            }
-            return $addComment;
-        }
+              }
+              return $addComment;
+      }
 
                         ////////////////// FONCTION MODIFICATION /////////////////////////
 
-        //Modif mail
-        function mailModif($mailId){
-          $memberManager = new MemberManager();
+      //Modif mail
+      function mailModif($mailId){
+        $memberManager = new MemberManager();
           
           $mailModif = $memberManager->mailModif($mailId);               
          /* $mailExist = $memberManager->checkMail($mail); 
@@ -256,11 +255,11 @@ class Frontend {
             } else{
                     Header('Location: index.php?action=pageProfil');
             }  
-        }
+      }
 
-        //Modif mdp
-        function mdpModif($mdpId){
-          $memberManager = new MemberManager();
+      //Modif mdp
+      function mdpModif($mdpId){
+        $memberManager = new MemberManager();
           
           $mdpModif = $memberManager->mdpModif($mdpId);               
 
@@ -269,11 +268,11 @@ class Frontend {
             } else{
                     Header('Location: index.php?action=pageProfil');
             }  
-        }
+      }
 
-        //Report d'un commentaire
-        function reportComment($idArticle, $idComment){
-            $commentManager = new CommentManager();
+      //Report d'un commentaire
+      function reportComment($idArticle, $idComment){
+        $commentManager = new CommentManager();
 
             $repComments = $commentManager->reportComment($idComment);
 
@@ -284,11 +283,11 @@ class Frontend {
                 header('Location: index.php?action=article&id=' . $idArticle);
             }
             return $reportComment;
-        }
+      }
 
-        //Retirer le signalement d'un commentaire
-        function notReportComment($reportId){
-          $commentManager = new CommentManager();
+      //Retirer le signalement d'un commentaire
+      function notReportComment($reportId){
+        $commentManager = new CommentManager();
 
           $reportComments = $commentManager-> notReportComment($reportId);
 
@@ -298,13 +297,12 @@ class Frontend {
               Header('Location: index.php?action=pageCommentaireSignale');
           }
           return $notReportComment;
-
       }
 }
 
 	//Affichage des erreurs
    	function error($e){
-        $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();
-     	require('view/frontend/affichageMessageErreur.php');
+      $articleManager = new ArticleManager(); 
+      $categorie = $articleManager-> getCategories();
+     	  require('view/frontend/affichageMessageErreur.php');
   	}

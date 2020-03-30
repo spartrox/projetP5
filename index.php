@@ -71,18 +71,6 @@
 						$pageAccueil->pageAccueil();						
 					}
 
-				} else if ($_GET['action'] == "infoProfil") {
-					if (isset($_SESSION['id']) || ($_SESSION['admin'])){
-						$infoProfil = new Frontend();
-
-						$infoProfil->infoProfil();					
-
-					} else {
-						$pageAccueil = new Frontend();
-
-						$pageAccueil->pageAccueil();
-					}
-
 				} else if ($_GET['action'] == "pageAvatar") {
 					$pageAvatar = new Frontend();
 
@@ -113,7 +101,16 @@
 	 				} else {
 	                		throw new Exception('Aucun identifiant de billet envoyé');
 	            	} 
-			
+
+				} else if ($_GET['action'] == "articleCategorie"){		 	
+					if(isset($_GET['id']) && $_GET['id'] > 0){
+						$articleCategorie = new Frontend();
+
+						$articleCategorie->articleCategorie();
+	 				} else {
+	                		throw new Exception('Aucun identifiant de billet envoyé');
+	            	}
+
 				} elseif ($_GET['action'] == 'pageAllArticles'){
 					if (isset($_SESSION['id']) && ($_SESSION['admin'])){
 						$pageAllArticles = new Backend();
@@ -167,7 +164,6 @@
 
 						$pageAccueil->pageAccueil();
 					}				
-				}
 
 												////////////////// AFFICHAGE DES ACTIONS D'AJOUT /////////////////////////
 
@@ -401,6 +397,7 @@
 
 						$pageAccueil->pageAccueil();
 					}
+				}
 
 			} else{
 					$pageAccueil = new Frontend();

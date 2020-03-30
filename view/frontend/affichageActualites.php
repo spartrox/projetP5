@@ -46,14 +46,14 @@
 			<nav aria-label="Page navigation example" id="navActualite"><br>
 			  	<ul class="pagination justify-content-center">
 				    <li class="page-item disabled">
-				      	<a class="page-link" href="#" tabindex="-1">Articles précédents</a>
-				    </li>
-				    <li class="page-item"><a class="page-link" href="#">1</a></li>
-				    <li class="page-item"><a class="page-link" href="#">2</a></li>
-				    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			      		<a class="page-link" href="#">Articles suivants</a>
+					      	<a class="page-link" href="#" tabindex="-1">Articles précédents</a>
+					    </li>
+					    <li class="page-item"><a class="page-link" href="#">1</a></li>
+					    <li class="page-item"><a class="page-link" href="#">2</a></li>
+					    <li class="page-item"><a class="page-link" href="#">3</a></li>
+				      		<a class="page-link" href="#">Articles suivants</a>
 			    	</li>
-			  </ul>
+			  	</ul>
 			</nav>		
 			</div>
 			<div class="col-md-12 col-sm-12 col-xs-12" id="categories">
@@ -65,7 +65,7 @@
                 ?>
                         <div>
                             <div class="categories">
-                                <a href="index.php?action=article&amp;id=<?= $c['id']; ?>">
+                                <a href="index.php?action=articleCategorie&amp;id=<?= $c['id']; ?>">
                                     <p><?php echo ($c['titre_categorie']); ?></p>  
                                 </a>
                             </div>      

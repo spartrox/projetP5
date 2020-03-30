@@ -1,35 +1,19 @@
-<?php $title = "Bienvenue sur LeagueOfAuto"; ?>
+<?php $title = "catégorieArticle de LeagueOfAuto"; ?>
 <?php $script=""; ?>
-    <?php ob_start(); ?>
+    <?php ob_start(); ?>	
 
-      <!-- Accueil -->
-    <section class="container">
-    	<h1 class="container">Bienvenue sur LeagueOfAuto</h1><br>
-								
-		<!-- SLIDER -->					
-			<div id="block-slider" class="container col-md-12 col-sm-12">
-				<div id="slider">
-					<img id="imagediapo" src="public/image/image4.jpg" alt="article numéros 1">
-					<p id="texte"></p>
-					<div id="flechegauche">
-						<i class="fas fa-chevron-circle-left fa-3x" aria-hidden="true"></i>
-					</div>
-					<div id="flechedroite">
-						<i class="fas fa-chevron-circle-right fa-3x" aria-hidden="true"></i>
-					</div>
-				</div>
-			</div>
-	</section>
-	<section class="container">
-		<div class="row">
-			<div class="col-md-8 col-sm-12" id="article">
-				<h3>Derniers articles publiés</h3>
+    	<h2><?php echo ($categorie['titre_categorie']); ?></h2>
+      	
+	<section class="container"> 
+		<div class="row" id="pageActualite">
+			<div class="col-md-8">
+				<h3>Liste des articles : <?php echo ($categorie['titre_categorie']); ?> </h3>
 				<div class="trait"></div>
-				
-			<?php 
+
+				<?php 
 					$result = $articles->rowCount();					
 						if ($result === 0):
-							echo "<p class='messageErreur'>Il n'y a actuellement pas d'articles publié</p>";
+							echo "<p class='messageErreur'>Il n'y a actuellement pas d'articles publié dans cette catégorie</p>";
 
 						else:
 							while ($article = $articles->fetch()):
@@ -57,10 +41,21 @@
 						endif; // Fin de la boucle des articles 
 						$articles->closeCursor();
 				?>
-			
+					<nav aria-label="Page navigation example" id="navActualite"><br>
+			  			<ul class="pagination justify-content-center">
+						    <li class="page-item disabled">
+							      	<a class="page-link" href="#" tabindex="-1">Articles précédents</a>
+							    </li>
+							    <li class="page-item"><a class="page-link" href="#">1</a></li>
+							    <li class="page-item"><a class="page-link" href="#">2</a></li>
+							    <li class="page-item"><a class="page-link" href="#">3</a></li>
+						      		<a class="page-link" href="#">Articles suivants</a>
+					    	</li>
+			  			</ul>
+					</nav>
 			</div>
 			<div class="col-md-12" id="cate">
-				<h3>Catégories</h3>
+				<h3>Autres catégories</h3>
 				<div class="trait"></div>
 					<div class="categorieSlide mt-2">
                 <?php 
@@ -106,33 +101,26 @@
 						</div>
 					</form>
 
-					<div class="card d-none">
-						<div class="text-center">
-							<img class="image-weather" src="" alt="">
-						</div>
-						<div class="card-body" id="card">
-							<strong>Ville : </strong><span class="card-title"></span>
-							<div class="card-text mt-2">
-								<strong>Temps : </strong><span class="description-weather"></span>
-								<p class="mt-2">
-									<strong>Humidité :</strong> <span class="humidity"></span><br>
-									<strong>Température</strong> <span class="temp-weather"></span><br>
-									<strong>Max :</strong> <span class="temp-max-weather"></span>
-									<strong>Min :</strong> <span class="temp-min-weather"></span>
-								</p>
-							</div>
+				<div class="card d-none">
+					<div class="text-center">
+						<img class="image-weather" src="" alt="">
+					</div>
+					<div class="card-body" id="card">
+						<strong>Ville : </strong><span class="card-title"></span>
+						<div class="card-text mt-2">
+							<strong>Temps : </strong><span class="description-weather"></span>
+							<p class="mt-2">
+								<strong>Humidité :</strong> <span class="humidity"></span><br>
+								<strong>Température</strong> <span class="temp-weather"></span><br>
+								<strong>Max :</strong> <span class="temp-max-weather"></span>
+								<strong>Min :</strong> <span class="temp-min-weather"></span>
+							</p>
 						</div>
 					</div>
 				</div>
-			
 			</div>
-		</div>	
-				<!-- Fichier javascript pour le SLIDER et l'API -->
-			      <script src="public/javascript/slider.js"></script>
-			      <script src="public/javascript/main.js"></script>
-	      		  <script src="public/javascript/apiMeteo.js"></script>
-	</section>   
-      
-<?php $content = ob_get_clean(); ?>
+		</div>		
+	</section>			
 
+    <?php $content = ob_get_clean(); ?>
 <?php require('template.php') ?>
