@@ -30,28 +30,31 @@
 		        <div class="container  col-md-9">
 		            <div class="md-form mb-3">
 		                <label id="imageArticle">Image de l'article : </label>
-		                <input type="file" name="image_article" class="form-control">		                            
+		                <input type="file" accept=".png, .jpeg, .jpg" name="image_article" class="form-control">		                            
 		            </div>
 		        </div>
 		        <div class="container  col-md-9 mb-5">
-		        	<label for="name" id="titreArticle">Catégorie de l'article : </label>
-		            <li class="nav-item dropdown" id="categoriesArticle" name="categoriesArticle">
-		                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLinkk" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catégories</a>
-		                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkk">
-		                    <a class="dropdown-item" href="index.php?action=pageVoitureAllemande">Voiture Allemande</a>
-		                    <a class="dropdown-item" href="index.php?action=pageVoitureAmericaine">Voiture Americaine</a>
-		                    <a class="dropdown-item" href="index.php?action=pageVoitureFrancaise">Voiture francaise</a>
-		                    <a class="dropdown-item" href="index.php?action=pageVoitureItalienne">Voiture Italienne</a>
-		                </div>
-		            </li> 			        		        		        
+		        	<label for="name_categorie" id="titreArticle">Catégorie de l'article : </label>
+		                
+		                <select name="categorie" id="name_categorie">
+               
+	                <?php 
+	                            while ($c = $categories->fetch()):
+	                ?>
+	                        <div id="tailleCategorie">
+	                            <option><?php echo ($c['titre_categorie']); ?></option>         
+	                        </div> 
+	                <?php       
+	                             endwhile;   
+	                            $categories->closeCursor(); 
+	                ?>
+	                	</select>
+		                			        		        		        
 			    </div>    
 		        <textarea name="contenu" id="myTextarea" placeholder="Écriver votre article"></textarea>
 		        <input class="chapitreSubmit btn btn-primary mt-3" type="submit" name="publication" value="Publier l'article" id="publier" />    	
 			</form>    
-		</div>
-        <div>
-            <p class="phraseRetourAdmin"><a href="index.php?action=pageAdmin">Retour au panneau administrateur</a></p>
-        </div> 		
+		</div> 		
 
 	<?php $content = ob_get_clean(); ?>
 	

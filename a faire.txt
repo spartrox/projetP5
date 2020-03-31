@@ -5,13 +5,13 @@ modification du mail et du mdp
 
 problème pour afficher des éléments dans le profil (JAVASCRIPT)
 problème dans la page contact
-problème catégorie afficher le menu
 problème avec le profil cela fait une boucle
 ERREUR LORS D'UNE ERREUR DE PAGE
 
 api.météo enlever le cadre lorsque la ville n'existe pas
 
 
+git hub ajouter des fichiers
 
 ///////////////////
 pas besoin de compte pro pour une micro entreprise mais compte bancaires séparé 

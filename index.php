@@ -235,6 +235,17 @@
 							  throw new Exception('Veuillez remplir tout les champs !');
 						}
 
+				} elseif ($_GET['action'] == 'newAvatar'){
+						if (!empty($_POST['image_avatar'])) {
+							$newAvatar = new Backend();
+
+							$newAvatar->newAvatar($_POST['image_avatar']);
+							Header('Location: index.php?action=pageProfil');
+						} 
+						else {
+							  throw new Exception('Veuillez ajouter un avatar au format : PNG, JPG ou JPEG !');
+						}
+
 				} elseif ($_GET['action'] == 'newCategorie'){
 						if (!empty($_POST['titreCategorie'])){
 							$newCategorie = new Backend();

@@ -1,5 +1,5 @@
 <div id="menu">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light" id="fondMenu">
         <a class="navbar-brand titreMenu" href="index.php" id="titre">LeagueOfAuto</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -17,14 +17,24 @@
               </li>
 
               <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catégories</a>
+                  <a class="nav-link dropdown-toggle" href="index.php?action=categorieMenu" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catégories</a>
 
                   <!-- bloc menu déroulant -->
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="index.php?action=pageVoitureAllemande">Voiture Allemande</a>
-                      <a class="dropdown-item" href="index.php?action=pageVoitureAmericaine">Voiture Americaine</a>
-                      <a class="dropdown-item" href="index.php?action=pageVoitureFrancaise">Voiture francaise</a>
-                      <a class="dropdown-item" href="index.php?action=pageVoitureItalienne">Voiture Italienne</a>
+                  <div class="dropdown-menu" id="tailleMenu" aria-labelledby="navbarDropdownMenuLink">
+                
+                <?php 
+                            while ($c = $categories->fetch()){
+                ?>
+                        <div>
+                            <div class="categories" id="categoriesMenu">
+                                <a href="index.php?action=articleCategorie&amp;id=<?= $c['id']; ?>">
+                                  <p><?php echo ($c['titre_categorie']); ?></p>     
+                              </a>
+                            </div>      
+                        </div> 
+                <?php                       
+                            } $categories->closeCursor(); 
+                ?>
                   </div>
               </li>
 

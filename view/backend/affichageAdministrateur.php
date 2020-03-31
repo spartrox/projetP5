@@ -27,7 +27,7 @@
     		<h4>Gestion des articles par catégories :</h4><br>
                 
                 <?php 
-                            while ($c = $categories->fetch()):
+                            while ($c = $categoriess->fetch()):
                 ?>
                         <div>
                             <div class="categorie container col-md-4">
@@ -41,7 +41,7 @@
                         </div> 
                 <?php                       
                             endwhile;
-                            $categories->closeCursor();
+                            $categoriess->closeCursor();
                 ?>          
     	</div>
     	   	<br><div class="trait2"></div>  	

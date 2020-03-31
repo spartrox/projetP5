@@ -11,13 +11,16 @@
 body{
 	background-color: #f8f8f8;
 }
-
+li{
+	list-style-type: none;
+}
 		/*////////////////////////  MENU    ///////////////////////////////  */
 nav{
 	width: 100%;
 }
 #menu{
 	width: 100%;
+	background-color: white;
 }
 #titre{
 	color: blue;
@@ -28,10 +31,21 @@ nav{
 	margin-left: 25px;
 }
 .nav-link{
-	border-bottom: 2px solid #f8f8f8;
+	border-bottom: 2px solid white;
 }
 .nav-link:hover{
 	border-bottom: 2px solid blue;
+}
+#categoriesMenu{
+	text-align: center;
+	margin-bottom: 0px;
+}
+#categoriesMenu p{
+	color: black;
+	font-weight: bold;
+}
+#tailleMenu{
+	width: 250px;
 }
 
 		/*////////////////////////  TITRES    ///////////////////////////////  */
@@ -354,6 +368,13 @@ textarea{
 #mdp,#mail{
 	display: ;
 }
+#inputAvatar{
+	padding: 10px;
+	background-color: grey;
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+}
 		/*////////////////////////  GESTION ADMINISTRATEUR    ///////////////////////////////  */
 .gestionAdmin{
 	margin-top: 30px; 
@@ -408,17 +429,6 @@ textarea{
 }
 .phraseRetourAdmin{
 	text-align: center;
-}
-#navbarDropdownMenuLinkk{
-	border-radius: 5px;
-	border: 1px solid #ced4da;
-	background-color: white;
-}
-li{
-	list-style-type: none;
-}
-#categoriesArticle{
-	margin-left: 0px;
 }
 .ajoutCommentaire{
 	border: 1px solid grey;

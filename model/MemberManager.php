@@ -101,14 +101,16 @@ use model\Manager;
 		return $mdpModif;
 	}
 
-	public function updateAvatar(){
+	public function createAvatar($image_avatar){
 
 		// Connexion à la base de données
 		$bdd = $this->bddConnect();
 
 		//Ajout d'un avatar
 		$req = $bdd->prepare('UPDATE visiteurs SET avatar = avatar WHERE id = id');
-		$updateavatar->execute(array($_POST['avatar'], $_POST['id']));		
+		$newAvatar = $req->execute(array($_POST['avatar'], $image_avatar));
+
+		return $newAvatar;
 	}
 
 }

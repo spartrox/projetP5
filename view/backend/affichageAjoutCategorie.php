@@ -19,8 +19,9 @@
 
 		    <div class="container fond col-md-12 mt-5">
 		    	<h4>Catégories déja existante :</h4>
-		    	                <?php 
-                            while ($c = $categories->fetch()):
+		    	
+		    	<?php 
+                            while ($c = $categoriess->fetch()):
                 ?>
                         <div>
                             <div class="categoriee container col-md-4">
@@ -29,7 +30,7 @@
                         </div> 
                 <?php                       
                            	endwhile;
-                           	$categories->closeCursor();
+                           	$categoriess->closeCursor();
                 ?> 
 		    </div>        
 	</section>

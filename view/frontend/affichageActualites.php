@@ -61,7 +61,7 @@
 				<div class="trait"></div>
 					<div class="categorieSlide mt-2">
                 <?php 
-                            while ($c = $categories->fetch()){
+                            while ($c = $categoriess->fetch()):
                 ?>
                         <div>
                             <div class="categories">
@@ -70,8 +70,9 @@
                                 </a>
                             </div>      
                         </div> 
-                <?php                       
-                            } $categories->closeCursor();
+
+                <?php       endwhile;                
+                            $categoriess->closeCursor();
                 ?>
 					</div>
 				<h3>Réseaux sociaux</h3>

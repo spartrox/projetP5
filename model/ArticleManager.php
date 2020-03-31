@@ -59,11 +59,22 @@ class ArticleManager extends Manager{
         // Connexion à la base de données
         $bdd = $this->bddConnect();
 
-        // Récupération des categories
+        // Récupération des categories pour le menu
         $req = $bdd->query('SELECT id, titre_categorie FROM categorie ');
 
         return $req;
     }
+
+    public function getCategoriess(){
+    
+        // Connexion à la base de données
+        $bdd = $this->bddConnect();
+
+        // Récupération des categories pour les pages principale
+        $req = $bdd->query('SELECT id, titre_categorie FROM categorie ');
+
+        return $req;
+    }    
 
     public function getCategorie($categorieId){
 
@@ -130,7 +141,7 @@ class ArticleManager extends Manager{
         return $articleModif;
     }
 
-                        ////////////////// DELETE /////////////////////////
+                        ////////////////// DELETE FROM /////////////////////////
 
     public function deleteArticle($articleId){
 

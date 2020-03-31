@@ -67,6 +67,9 @@ class main{
             document.getElementById("mdp").style.display = "block";            
         });
 
+
+    //---------------------------- Ajout d'un avatar -----------------------
+
     }
 }
  let monMain = new main();       

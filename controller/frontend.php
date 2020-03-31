@@ -15,67 +15,68 @@ class Frontend {
 
     	function pageContact(){
         $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();
+        $categories = $articleManager-> getCategories();
     		  require('view/frontend/affichageContact.php');
     	}
     	
     	function pageInscription(){
         $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();
+        $categories = $articleManager-> getCategories();
     		  require('view/frontend/affichageInscription.php');
     	}
     	
     	function pageConnexion(){
         $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();
+        $categories = $articleManager-> getCategories();
     		  require('view/frontend/affichageConnexion.php');
     	}
     	
     	function pageDeconnexion(){
         $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();
+        $categories = $articleManager-> getCategories();
     		  require('view/frontend/affichageDeconnexion.php');
     	}
     	
     	function pageMentionLegales(){
         $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();
+        $categories = $articleManager-> getCategories();
     		  require('view/frontend/affichageMentionLegales.php');
     	}
 
     	function pageApropos(){
         $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();
+        $categories = $articleManager-> getCategories();
     		  require('view/frontend/affichageApropos.php');
     	}
 
     	function pageVoitureCategorie(){
         $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();
+        $categories = $articleManager-> getCategories();
     		  require('view/frontend/affichageVoitureAllemande.php');
     	}
 
     	function pageAvatar(){
         $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();
+        $categories = $articleManager-> getCategories();
     		  require('view/frontend/affichageAvatar.php');
     	}
 
       function pageMdpOublie(){
         $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();
+        $categories = $articleManager-> getCategories();
           require('view/frontend/affichageMdpOublie.php');
       }
 
       function pageAjoutArticle(){
         $articleManager = new ArticleManager();
-        $categorie = $articleManager-> getCategories();
+        $categories = $articleManager-> getCategories();
           require('view/backend/affichageAjoutArticle.php');
       }
 
       function pageAjoutCategorie(){
         $articleManager = new ArticleManager();   
-        $categories =  $articleManager-> getCategories();        
+        $categories  =  $articleManager-> getCategories();
+        $categoriess  =  $articleManager-> getCategoriess();                
           require('view/backend/affichageAjoutCategorie.php');
       }
 
@@ -85,7 +86,8 @@ class Frontend {
         $articleManager = new ArticleManager();
 
           $articles = $articleManager->getArticlesAccueil();
-          $categories =  $articleManager-> getCategories();
+          $categories  =  $articleManager-> getCategories();
+          $categoriess = $articleManager-> getCategoriess();
 
             if ($articles === false){
                     throw new \Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
@@ -99,7 +101,8 @@ class Frontend {
         $articleManager = new ArticleManager();
 
           $articles = $articleManager->getArticles();
-          $categories =  $articleManager-> getCategories();
+          $categories  =  $articleManager-> getCategories();
+          $categoriess = $articleManager-> getCategoriess();
                     
             if ($articles === false){
                     throw new \Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
@@ -140,7 +143,7 @@ class Frontend {
         $articleManager = new ArticleManager();         
         $commentManager = new CommentManager();
 
-          $categorie = $articleManager-> getCategories();           
+          $categories = $articleManager-> getCategories();           
           $article = $articleManager->getArticle($_GET['id']);
           $comments = $commentManager->articleComments($_GET['id']);
           $reportComments = $commentManager->reportComment($_GET['id']);
@@ -158,6 +161,7 @@ class Frontend {
         $articleManager = new ArticleManager();         
           
           $categories = $articleManager-> getCategories();
+          $categoriess = $articleManager-> getCategoriess();
           $categorie = $articleManager-> getCategorie($_GET['id']);           
           $articles = $articleManager->getArticlesAccueil($_GET['id']);
             
@@ -173,7 +177,7 @@ class Frontend {
         $articleManager = new ArticleManager();        
         $memberManager = new MemberManager();
             
-            $categorie = $articleManager-> getCategories();
+            $categories = $articleManager-> getCategories();
             $infoMember = $memberManager->getMember();                
 
               if ($infoMember === false){
@@ -303,6 +307,6 @@ class Frontend {
 	//Affichage des erreurs
    	function error($e){
       $articleManager = new ArticleManager(); 
-      $categorie = $articleManager-> getCategories();
+      $categories = $articleManager-> getCategories();
      	  require('view/frontend/affichageMessageErreur.php');
   	}

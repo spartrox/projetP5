@@ -9,19 +9,19 @@
 		        <p class="phraseRetourAdmin"><a href="index.php?action=pageProfil">Retour à la page du profil</a></p>
 		    </div>
 
-		<div class="container-fluid col-md-5" id="infoProfil">
-			<div class="container">
-				<div>
-					<span>Ajouter votre nouvelle avatar : </span><input type="file" name="avatar"><br>
-				</div>
-
+		<form action="index.php?action=newAvatar"  method="post" enctype="multipart/form-data"><br>
+			<div class="container-fluid col-md-5" id="infoProfil">
 				<div class="container">
-					<a href="index.php?action=newAvatar" class="btn btn-primary" id="publierAvatar">Publier l'avatar</a>
-					<a href="index.php?action=deleteAvatar" class="btn btn-danger" >Supprimer l'avatar</a>
-				</div>
+					<div>
+						<span>Ajouter votre nouvelle avatar : </span><input id="inputAvatar" type="file" accept=".png, .jpeg, .jpg" name="image_avatar"><br>
+					</div>
 
-			</div>	
-		</div>
+					<div class="container">
+						<input class="chapitreSubmit btn btn-primary mt-3" type="submit" name="publication" value="Publier l'avatar" id="publier" />
+					</div>
+				</div>	
+			</div>
+		</form>	
 		<?php $content = ob_get_clean(); ?>
 
 <?php require('template.php') ?>
