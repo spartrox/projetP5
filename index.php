@@ -1,6 +1,6 @@
- <?php
- ob_start();
- session_start();
+<?php
+ob_start();
+session_start();
 
  	//Récupértion des fichiers nécessaire 	
  	require "vendor/autoload.php";
@@ -225,10 +225,10 @@
 	 					}
 	 									
 				} elseif ($_GET['action'] == 'newArticle'){
-						if (!empty($_POST['titreArticle']) && !empty($_POST['contenu']) && !empty($_POST['image_article'])){
+						if (!empty($_POST['titreArticle']) && !empty($_POST['categorie_article']) && !empty($_POST['contenu']) && !empty($_POST['image_article'])){
 							$newArticle = new Backend();
 
-							$newArticle->newArticle($_POST['titreArticle'], $_POST['contenu'], $_POST['image_article']);
+							$newArticle->newArticle($_POST['titreArticle'], $_POST['categorie_article'], $_POST['contenu'], $_POST['image_article']);
 							Header('Location: index.php?action=pageAdmin');
 						} 
 						else {
@@ -236,14 +236,14 @@
 						}
 
 				} elseif ($_GET['action'] == 'newAvatar'){
-						if (!empty($_POST['image_avatar'])) {
+						if (!empty($_FILES['inputAvatar']['name'])) {
 							$newAvatar = new Backend();
 
-							$newAvatar->newAvatar($_POST['image_avatar']);
+							$newAvatar->newAvatar($_FILES['inputAvatar']['name']);
 							Header('Location: index.php?action=pageProfil');
 						} 
 						else {
-							  throw new Exception('Veuillez ajouter un avatar au format : PNG, JPG ou JPEG !');
+							  throw new Exception('Veuillez ajouter un avatar au format : PNG, JPG ou JPEG ! index.php');
 						}
 
 				} elseif ($_GET['action'] == 'newCategorie'){
@@ -358,7 +358,7 @@
 					if (isset($_SESSION['id']) || ($_SESSION['admin'])){						
 						$mailModif = new Frontend();
 
-						$mailModif->mailModif($_GET['id']);							
+						$mailModif->mailModif($_SESSION['id']);							
 					} else {
 						$pageAccueil = new Frontend();
 
@@ -422,5 +422,7 @@
   	//Gestion des erreurs	
 	catch(Exception $e)
 	{
-	    error($e);
+		$errorController = new Frontend();
+
+	    $errorController->error($e);
 	}

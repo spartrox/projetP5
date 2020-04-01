@@ -36,13 +36,13 @@
 		        <div class="container  col-md-9 mb-5">
 		        	<label for="name_categorie" id="titreArticle">Catégorie de l'article : </label>
 		                
-		                <select name="categorie" id="name_categorie">
+		                <select name="categorie_article" id="name_categorie">
                
 	                <?php 
 	                            while ($c = $categories->fetch()):
 	                ?>
 	                        <div id="tailleCategorie">
-	                            <option><?php echo ($c['titre_categorie']); ?></option>         
+	                            <option value="id"><?php echo ($c['titre_categorie']); ?></option>         
 	                        </div> 
 	                <?php       
 	                             endwhile;   

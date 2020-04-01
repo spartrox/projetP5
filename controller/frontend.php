@@ -89,11 +89,11 @@ class Frontend {
           $categories  =  $articleManager-> getCategories();
           $categoriess = $articleManager-> getCategoriess();
 
-            if ($articles === false){
+            if ($articles === false):
                     throw new \Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
-            } else{
+            else:
                     require('view/frontend/affichageAccueil.php');
-            }
+            endif;
       }
 
       //Affichage page Actualités
@@ -104,11 +104,11 @@ class Frontend {
           $categories  =  $articleManager-> getCategories();
           $categoriess = $articleManager-> getCategoriess();
                     
-            if ($articles === false){
+            if ($articles === false):
                     throw new \Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
-            } else{
+            else:
                     require('view/frontend/affichageActualites.php');
-            }
+            endif;
       }
 
       //Bouton page connexion
@@ -302,7 +302,6 @@ class Frontend {
           }
           return $notReportComment;
       }
-}
 
 	//Affichage des erreurs
    	function error($e){
@@ -310,3 +309,4 @@ class Frontend {
       $categories = $articleManager-> getCategories();
      	  require('view/frontend/affichageMessageErreur.php');
   	}
+}

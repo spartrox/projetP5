@@ -52,22 +52,6 @@ class main{
         }
         });
 
-    //---------------------------- Bouton pour la modification du profil -----------------------
-        let modifMail = document.getElementById("modif_mail");
-
-        modifmail.addEventListener('click',()=>{
-
-            document.getElementById("mail").style.display = "block";             
-        });
-
-        let modifmdp = document.getElementById("modif_mdp");
-
-        modifmdp.addEventListener('click',()=>{
-
-            document.getElementById("mdp").style.display = "block";            
-        });
-
-
     //---------------------------- Ajout d'un avatar -----------------------
 
     }

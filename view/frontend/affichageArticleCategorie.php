@@ -120,7 +120,8 @@
 				</div>
 			</div>
 		</div>		
-	</section>			
-
+	</section>		
+		
+	      		  <script src="public/javascript/apiMeteo.js"></script>
     <?php $content = ob_get_clean(); ?>
 <?php require('template.php') ?>

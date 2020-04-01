@@ -354,6 +354,9 @@ textarea{
 	text-decoration: underline;
 	cursor: pointer;
 }
+#image_avatar{
+	text-align: center;
+}
 		/*////////////////////////  GESTION PROFIL    ///////////////////////////////  */
 .gestionProfil{
 	padding: 30px;
@@ -366,7 +369,7 @@ textarea{
 	margin: 20px;
 }
 #mdp,#mail{
-	display: ;
+	display: none;
 }
 #inputAvatar{
 	padding: 10px;

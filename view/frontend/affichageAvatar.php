@@ -13,7 +13,7 @@
 			<div class="container-fluid col-md-5" id="infoProfil">
 				<div class="container">
 					<div>
-						<span>Ajouter votre nouvelle avatar : </span><input id="inputAvatar" type="file" accept=".png, .jpeg, .jpg" name="image_avatar"><br>
+						<span>Ajouter votre nouvelle avatar : </span><input id="inputAvatar" type="file" accept=".png, .jpeg, .jpg" name="inputAvatar"><br>
 					</div>
 
 					<div class="container">

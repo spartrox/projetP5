@@ -91,14 +91,14 @@ class ArticleManager extends Manager{
 
                         ////////////////// INSERT INTO /////////////////////////
 
-	public function createArticle($titre, $contenu, $image_article){
+	public function createArticle($titre, $contenu, $categorie_article, $image_article){
     	
     	// Connexion à la base de données
         $bdd = $this->bddConnect();
 
         // Création d'un nouvelle article
         $req = $bdd->prepare('INSERT INTO article(titre, contenu, id_categorie, date_article, image_article) VALUES (?, ?, 1, NOW(), ?)');
-        $newArticle = $req->execute(array($titre, $contenu, $image_article));
+        $newArticle = $req->execute(array($titre, $contenu, $categorie_article, $image_article));
 
         return $newArticle;
     }

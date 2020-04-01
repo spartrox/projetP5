@@ -1,18 +1,26 @@
-Afficher une photo de profil/avatar ... que mettre dans PHPMyAdmin
 Pagination enlever le # mais que mettre à la place ? 
 lorsque je crée un article, que faire pour le mettre dans une catégorie
 modification du mail et du mdp
 
-problème pour afficher des éléments dans le profil (JAVASCRIPT)
 problème dans la page contact
 problème avec le profil cela fait une boucle
-ERREUR LORS D'UNE ERREUR DE PAGE
 
 api.météo enlever le cadre lorsque la ville n'existe pas
 
 
 git hub ajouter des fichiers
 
+
+$_SESSION pour le profil
+pour modifier le mail créer un formulaire
+//appeller le javascript dans la vue page profil
+
+
+
+
+
+Augmentez votre trafic grâce au référencement naturel
+SAS UML
 ///////////////////
 pas besoin de compte pro pour une micro entreprise mais compte bancaires séparé 
 workplace freelance

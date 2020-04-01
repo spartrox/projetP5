@@ -54,7 +54,7 @@ use model\Manager;
 		// Connexion à la base de données
 		$bdd = $this->bddConnect();
 
-		$req = $bdd->query('SELECT id, pseudo, mail, motdepasse, DATE_FORMAT(date_creation, \'%d/%m/%Y \') AS date_creation FROM visiteurs ');
+		$req = $bdd->query('SELECT id, pseudo, mail, motdepasse, avatar, DATE_FORMAT(date_creation, \'%d/%m/%Y \') AS date_creation FROM visiteurs ');
 
 		return $req;
 	}
@@ -101,14 +101,14 @@ use model\Manager;
 		return $mdpModif;
 	}
 
-	public function createAvatar($image_avatar){
+	public function createAvatar($extensionsUpload, $memberId){
 
 		// Connexion à la base de données
 		$bdd = $this->bddConnect();
 
 		//Ajout d'un avatar
-		$req = $bdd->prepare('UPDATE visiteurs SET avatar = avatar WHERE id = id');
-		$newAvatar = $req->execute(array($_POST['avatar'], $image_avatar));
+		$newAvatar = $bdd->prepare('UPDATE visiteurs SET avatar = ? WHERE id = ?');
+		$newAvatar->execute(array($extensionsUpload, $memberId));
 
 		return $newAvatar;
 	}

@@ -6,7 +6,8 @@
 
 use model\CommentManager;
 use model\ArticleManager;
-use model\MessageManager;	
+use model\MessageManager;
+use model\MemberManager;	
 
 class Backend {
                         ////////////////// FONCTION AFFICHAGE /////////////////////////
@@ -132,10 +133,10 @@ class Backend {
                         ////////////////// FONCTION AJOUT /////////////////////////
 
 	//Ajout d'un article
-	function newArticle($titre, $contenu, $image_article){
+	function newArticle($titre, $categorie_article, $contenu, $image_article){
 		$articleManager = new ArticleManager();
 
-			$newArticle = $articleManager-> createArticle($titre, $contenu, $image_article);
+			$newArticle = $articleManager-> createArticle($titre, $categorie_article, $contenu, $image_article);
 			
 			if ($newArticle === false){
 					throw new \Exception('Impossible d\'ajouter un article, veuillez recommencer');
@@ -145,45 +146,89 @@ class Backend {
 	}
 
 	//Ajout d'un avatar
-	function newAvatar($image_avatar){
-		$memberManager = new MemberManager();
+	function newAvatar(){
 			
-			if (!empty($_POST['image_avatar']) AND !empty($_FILES['avatar']['name'])){
+			if (!empty($_FILES['inputAvatar']['name']) AND !empty($_FILES['inputAvatar']['name'])){
 
 				$tailleMax = 2097152;
 				$extensionsValides = array('jpg', 'jpeg', 'png');
 					
-					if ($_FILES['avatar']['size'] <=$tailleMax) {
+					if ($_FILES['inputAvatar']['size'] <=$tailleMax) {
 								
-						$extensionsUpload = strtolower(substr(strrchr($_FILES['avatar']['name'], '.'), 1));
-							
+						$extensionsUpload = strtolower(substr(strrchr($_FILES['inputAvatar']['name'], '.'), 1));
+
 							if (in_array($extensionsUpload, $extensionsValides)) {
-										
-								$chemin = "public/membres/avatar" . $_SESSION['id']. "." .$extensionsUpload;
-								$resultat = move_uploaded_file($_FILES['avatar']['tmp_name'], $chemin);
+
+								$memberId = $_SESSION['id'];		
+								$chemin = "public/membres/avatars/" . $_SESSION['id']. "." .$extensionsUpload;
+								$resultat = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], $chemin);
 
 									if ($resultat) {
+										$memberManager = new MemberManager();
 										
-										$newAvatar = $memberManager-> createAvatar($image_avatar);
+										$newAvatar = $memberManager-> createAvatar($extensionsUpload, $memberId);
+
 										header('Location: index.php?action=pageProfil');
 
 									} else{
-										throw new Exception("Erreur durant l'importation de votre avatar");
+										throw new \Exception("Erreur durant l'importation de votre avatar");
 										
 									}
 
 							} else{
-									throw new Exception('Veuillez ajouter un avatar au format : PNG, JPG ou JPEG !');
+									throw new \Exception('Veuillez ajouter un avatar au format : PNG, JPG ou JPEG !');
 							}
 					} else{
-							throw new Exception("Votre photo de profil ne doit pas dépasser 2mo");			
+							throw new \Exception("Votre photo de profil ne doit pas dépasser 2mo");			
 					}	
 
 			} else {
-					throw new Exception("Impossible d'ajouter un avatar, veuillez recommencer");
+					throw new \Exception("Impossible d'ajouter un avatar, veuillez recommencer");
 				
 			}
 	}
+
+	//Ajout d'un avatar
+	function newImageArticle($image_avatar){
+			
+			if (!empty($_FILES['inputAvatar']['name']) AND !empty($_FILES['inputAvatar']['name'])){
+
+				$tailleMax = 2097152;
+				$extensionsValides = array('jpg', 'jpeg', 'png');
+					
+					if ($_FILES['inputAvatar']['size'] <=$tailleMax) {
+								
+						$extensionsUpload = strtolower(substr(strrchr($_FILES['inputAvatar']['name'], '.'), 1));
+
+							if (in_array($extensionsUpload, $extensionsValides)) {
+										
+								$chemin = "public/image_article/" . $_SESSION['id']. "." .$extensionsUpload;
+								$resultat = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], $chemin);
+
+									if ($resultat) {
+										$memberManager = new MemberManager();
+										
+										$newAvatar = $memberManager-> createImageArticle($image_avatar);
+
+										header('Location: index.php?action=pageProfil');
+
+									} else{
+										throw new \Exception("Erreur durant l'importation de votre image");
+										
+									}
+
+							} else{
+									throw new \Exception('Veuillez ajouter une image au format : PNG, JPG ou JPEG !');
+							}
+					} else{
+							throw new \Exception("Votre image ne doit pas dépasser 2mo");			
+					}	
+
+			} else {
+					throw new \Exception("Impossible d'ajouter l'image, veuillez recommencer");
+				
+			}
+	}	
 
 
 	//Ajout d'une nouvelle categorie
