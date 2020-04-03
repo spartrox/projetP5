@@ -31,10 +31,10 @@
                 ?>
                         <div>
                             <div class="categorie container col-md-4">
-                                <a href="index.php?action=articleCategorie&amp;id=<?= $c['id']; ?>">
-                                    <p><?php echo ($c['titre_categorie']); ?></p> 
-                                    <a class="modif" href="index.php?action=pageModifCategorie&amp;&id=<?= $c['id'] ?>"><i class="fas fa-user-edit"> modifier</i></a>                                     
-                                    <a class="modif" href="index.php?action=deleteCategorie&amp;&id=<?= $c['id'] ?>" onclick="return(confirm('Voulez-vous supprimer la catégorie ? cela va aussi supprimer tout les articles de la catégorie ! '))"><i class="fas fa-trash-alt"> supprimer</i></a>                                  
+                                <a href="index.php?action=articleCategorie&amp;id=<?= htmlspecialchars($c['id']); ?>">
+                                    <p><?= htmlspecialchars($c['titre_categorie']); ?></p> 
+                                    <a class="modif" href="index.php?action=pageModifCategorie&amp;&id=<?= htmlspecialchars($c['id']); ?>"><i class="fas fa-user-edit"> modifier</i></a>                                     
+                                    <a class="modif" href="index.php?action=deleteCategorie&amp;&id=<?= htmlspecialchars($c['id']); ?>" onclick="return(confirm('Voulez-vous supprimer la catégorie ? cela va aussi supprimer tout les articles de la catégorie ! '))"><i class="fas fa-trash-alt"> supprimer</i></a>                                  
                                 </a>
                                 <div class="trait2 mt-2"></div> 
                             </div>      

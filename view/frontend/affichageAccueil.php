@@ -7,7 +7,7 @@
     	<h1 class="container">Bienvenue sur LeagueOfAuto</h1><br>
 								
 		<!-- SLIDER -->					
-			<div id="block-slider" class="container col-md-12 col-sm-12">
+	<!--    <div id="block-slider" class="container col-md-12 col-sm-12">
 				<div id="slider">
 					<img id="imagediapo" src="public/image/image4.jpg" alt="article numéros 1">
 					<p id="texte"></p>
@@ -18,7 +18,7 @@
 						<i class="fas fa-chevron-circle-right fa-3x" aria-hidden="true"></i>
 					</div>
 				</div>
-			</div>
+			</div> -->
 	</section>
 	<section class="container">
 		<div class="row">
@@ -35,18 +35,18 @@
 							while ($article = $articles->fetch()):
 				?>
 						<div class="row">
-							<div class="col-md-4 col-sm-12 mt-3 mb-2 block_image">
-								<a href="index.php?action=article&amp;id=<?= $article['id']; ?>"><img id='imageBlock' src="public/image_article/<?php echo ($article['image_article']); ?>"><a>
+							<div class="col-md-4 mt-3 mb-3 block_image">
+								<a href="index.php?action=article&amp;id=<?= htmlspecialchars($article['id']); ?>"><img id='imageBlock' src="public/image_article/<?php echo ($article['image_article']); ?>"><a>
 							</div>
-						    <div class="col-md-8 col-sm-12 mt-3 contenu">
-						    	<a href="index.php?action=article&amp;id=<?= $article['id']; ?>">
+						    <div class="col-md-8 mt-3 contenu">
+						    	<a href="index.php?action=article&amp;id=<?= htmlspecialchars($article['id']); ?>">
 						    	<h4>
-						        	<?php echo ($article['titre']); ?>
+						        	<?= htmlspecialchars($article['titre']); ?>
 						    	</h4>
 						    </a>
 
 						    <!-- // On affiche le contenu des articles -->						    	
-						    <?php echo nl2br(($article['contenu'])); ?><br/><br/> </span>
+						    <?= nl2br($article['contenu']); ?><br/><br/> </span>
 							</div>   	
 						</div> 
 						<div class="trait2"></div>
@@ -59,7 +59,7 @@
 				?>
 			
 			</div>
-			<div class="col-md-12" id="cate">
+			<div class="col-md-4" id="cate">
 				<h3>Catégories</h3>
 				<div class="trait"></div>
 					<div class="categorieSlide mt-2">
@@ -68,8 +68,8 @@
                 ?>
                         <div>
                             <div class="categories">
-                                <a href="index.php?action=articleCategorie&amp;id=<?= $c['id']; ?>">
-                                	<p><?php echo ($c['titre_categorie']); ?></p>     
+                                <a href="index.php?action=articleCategorie&amp;id=<?= htmlspecialchars($c['id']); ?>">
+                                	<p><?= htmlspecialchars($c['titre_categorie']); ?></p>     
                             	</a>
                             </div>      
                         </div> 

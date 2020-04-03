@@ -1,8 +1,8 @@
 <?php
 
-  //chargement des différents classes
-  namespace controller;
-  require "vendor/autoload.php";
+    namespace controller;
+    require "vendor/autoload.php";
+    //require "recaptcha/autoload.php";
 
 
 use model\CommentManager;
@@ -70,6 +70,8 @@ class Frontend {
       function pageAjoutArticle(){
         $articleManager = new ArticleManager();
         $categories = $articleManager-> getCategories();
+        $categoriess = $articleManager-> getCategoriess();
+        
           require('view/backend/affichageAjoutArticle.php');
       }
 
@@ -115,26 +117,42 @@ class Frontend {
       function pageConnexionSubmit($pseudo, $mdp){
         $memberManager = new MemberManager();
 
+
+        /*  $recaptcha = new \ReCaptcha\ReCaptcha('6Lcv7d4UAAAAAB6SVpcC7Zqw7GRw3rRAx4vo8aho');
+          $resp = $recaptcha->setExpectedHostname('recaptcha-demo.appspot.com')
+                            ->verify($_POST['g-recaptcha-response']);
+          if ($resp->isSuccess()):
+              var_dump('Captcha Valide');
+          else:
+              $errors = $resp->getErrorCodes();
+              var_dump('Captcha Invalide');
+              var_dump($errors);
+          endif; */
+
           $member = $memberManager->loginMember($pseudo);
           $mdpCorrect = password_verify($_POST['mdpConnect'], $member['motdepasse']);
 
-            if (!isset($member['id'])){
+            if (!isset($member['id'])):
                   throw new \Exception("Mauvais identifiant !");
-              }
-                else {
-                    if ($mdpCorrect){
-                      if (isset($_POST['rememberme'])){
-                          setcookie('pseudo&mdp',$pseudo,time()+365*24*3600,null,null,false,true);
-                      }
-                      $_SESSION['id'] = $member['id'];
-                      $_SESSION['pseudo'] = $member['pseudo'];
-                      $_SESSION['admin'] = $member['admin'];
-                      header('Location: index.php');
-                    }
-                      else {
+              
+                else:
+                    if ($mdpCorrect):
+                        if (isset($_POST['rememberme'])):
+                            setcookie('pseudo&mdp',$pseudo,time()+365*24*3600,null,null,false,true);
+                        else:
+                            echo "";
+                        endif;
+
+                        $_SESSION['id'] = $member['id'];
+                        $_SESSION['pseudo'] = $member['pseudo'];
+                        $_SESSION['admin'] = $member['admin'];
+                        header('Location: index.php');
+                      
+                    else:
                         throw new \Exception("Mauvais mot de passe !");
-                      }
-                    }
+                    endif;
+
+                endif;
                     return $pageConnexionSubmit;
       }
 
@@ -148,11 +166,11 @@ class Frontend {
           $comments = $commentManager->articleComments($_GET['id']);
           $reportComments = $commentManager->reportComment($_GET['id']);
             
-            if ($article && $comments === false){
+            if ($article && $comments === false):
                     throw new \Exception('Impossible d\'afficher la page de l\'article, veuillez recommencer !');
-            } else{
+            else:
                     require('view/frontend/affichageArticle.php');
-            }
+            endif;
             return $article;
       }
 
@@ -165,11 +183,11 @@ class Frontend {
           $categorie = $articleManager-> getCategorie($_GET['id']);           
           $articles = $articleManager->getArticlesAccueil($_GET['id']);
             
-            if ($articles && $categorie === false){
+            if ($articles && $categorie === false):
                     throw new \Exception('Impossible d\'afficher la liste des articles, veuillez recommencer !');
-            } else{
+            else:
                     require('view/frontend/affichageArticleCategorie.php');
-            }
+            endif;
       }
 
       //Affichage de la page profil
@@ -178,13 +196,13 @@ class Frontend {
         $memberManager = new MemberManager();
             
             $categories = $articleManager-> getCategories();
-            $infoMember = $memberManager->getMember();                
+            $infoMember = $memberManager->getMember($_SESSION['id']);                
 
-              if ($infoMember === false){
+              if ($infoMember === false):
                       throw new \Exception('Erreurs lors de la récupération de vos informations, veuillez recommencer !');
-              } else{
+              else:
                       require('view/frontend/affichageProfil.php');
-              }       
+              endif;       
       }
 
       //Affichage de la catégorie dans le menu
@@ -192,38 +210,41 @@ class Frontend {
           $articleManager = new ArticleManager();
           $categories = $articleManager-> getCategories(); 
 
-            if($categories === false){
+            if($categories === false):
                     throw new \Exception('erreurs avec les categories pour le menu, veuillez recommencer !');
-            } else{
+            else:
                     require('view/frontend/affichageMenu.php');
-            }
+            endif;
       }
 
                         ////////////////// FONCTION AJOUT /////////////////////////
 
     	//Ajout d'un membre
-      function addMember($pseudo, $mdp, $mail){
+      function addMember($pseudo, $mail, $mdp){
          $memberManager = new MemberManager();
             
           $pseudoExist = $memberManager->checkPseudo($pseudo);
           $mailExist = $memberManager->checkMail($mail);  
-              if ($pseudoExist){
-                  throw new \Exception('Pseudo déja utilisé, veuillez en trouver un autre !');
-              }
 
-              if ($mailExist){
+              if ($pseudoExist):
+                  throw new \Exception('Pseudo déja utilisé, veuillez en trouver un autre !');     
+              endif;
+
+              if ($mailExist):
                   throw new \Exception('Adresse mail déja utilisé, veuillez en trouver une autre !');
-              }
+              endif;
+                  
+                  if (!($pseudoExist) && !($mailExist)):
 
-                if (!($pseudoExist) && !($mailExist)){
+                      $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
+                      $newMember = $memberManager->createMember($pseudo, $mail, $mdp);
 
-                    $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
-                    $newMember = $memberManager->createMember($pseudo, $mail, $mdp,);
-                	header('Location: index.php?action=pageConnexion');
-                } else {
-                        throw new \Exception('Erreurs lors de l\'inscription veuillez recommencer !');
-       	        }
-                return $addMember;
+                  	header('Location: index.php?action=pageConnexion');
+                  else:
+                          throw new \Exception('Erreurs lors de l\'inscription veuillez recommencer !');
+         	        endif;
+
+            return $addMember;
       }
 
       //Ajout commentaire
@@ -232,14 +253,30 @@ class Frontend {
               
           $addComment = $commentManager->addComment($article, $commentaire, $pseudo);
 
-              if ($addComment === false) {
+              if ($addComment === false):
                   throw new \Exception('Impossible d\'ajouter le commentaire !');
               
-              } else {
+              else:
                 header('Location: index.php?action=article&id=' . $article);
-              }
+              endif;
+
               return $addComment;
       }
+
+    //Ajout d'un message
+    function newMessage($nom, $email, $sujet, $contenu){
+      $messageManager = new MessageManager();
+
+        $newMessage = $messageManager-> createMessage($nom, $email, $sujet, $contenu);
+        die(var_dump($newMessage));
+        if ($newMessage === false):
+            throw new \Exception("Impossible d'envoyer le message, veuillez réessayer");
+        else:
+            header('Location index.php?action=pageContact');
+        endif;
+
+        return $newMessage;
+    }      
 
                         ////////////////// FONCTION MODIFICATION /////////////////////////
 
@@ -248,17 +285,18 @@ class Frontend {
         $memberManager = new MemberManager();
           
           $mailModif = $memberManager->mailModif($mailId);               
-         /* $mailExist = $memberManager->checkMail($mail); 
+          $mailExist = $memberManager->checkMail($mail); 
 
-            if ($mailExist){
+            if ($mailModif === $mailExist){
                   throw new \Exception('Adresse mail déja utilisé, veuillez en trouver une autre !');
-            }*/
+                  die(var_dump($mailExist));
+            }
 
-            if ($mailModif === false){
+            if ($mailModif === false):
                     throw new \Exception('Erreurs lors de la modification de votre mail, veuillez recommencer !');
-            } else{
+            else:
                     Header('Location: index.php?action=pageProfil');
-            }  
+            endif;  
       }
 
       //Modif mdp
@@ -267,11 +305,11 @@ class Frontend {
           
           $mdpModif = $memberManager->mdpModif($mdpId);               
 
-            if ($mdpModif === false){
+            if ($mdpModif === false):
                     throw new \Exception('Erreurs lors de la modification de votre mot de passe, veuillez recommencer !');
-            } else{
+            else:
                     Header('Location: index.php?action=pageProfil');
-            }  
+            endif;  
       }
 
       //Report d'un commentaire
@@ -280,12 +318,13 @@ class Frontend {
 
             $repComments = $commentManager->reportComment($idComment);
 
-              if ($repComments === false) {
+              if ($repComments === false):
                   throw new \Exception('Impossible de signaler ce commentaire !');
               
-              } else {
+              else:
                 header('Location: index.php?action=article&id=' . $idArticle);
-            }
+            endif;
+
             return $reportComment;
       }
 
@@ -295,11 +334,12 @@ class Frontend {
 
           $reportComments = $commentManager-> notReportComment($reportId);
 
-          if ($reportComments === false){
+          if ($reportComments === false):
               throw new \Exception('Impossible de retirer le signalement, veuillez recommencer !');
-          } else{
+          else:
               Header('Location: index.php?action=pageCommentaireSignale');
-          }
+          endif;
+
           return $notReportComment;
       }
 

@@ -49,14 +49,16 @@ use model\Manager;
 	}
 
 	//Récupération des informations du membre
-	public function getMember(){
+	public function getMember($memberId){
 
 		// Connexion à la base de données
 		$bdd = $this->bddConnect();
 
-		$req = $bdd->query('SELECT id, pseudo, mail, motdepasse, avatar, DATE_FORMAT(date_creation, \'%d/%m/%Y \') AS date_creation FROM visiteurs ');
+		$req = $bdd->prepare('SELECT id, pseudo, mail, motdepasse, avatar, DATE_FORMAT(date_creation, \'%d/%m/%Y \') AS date_creation FROM visiteurs WHERE id = ? ');
+		$req->execute(array($memberId));
+		$member = $req->fetch();
 
-		return $req;
+		return $member;
 	}
 
                         ////////////////// INSERT INTO /////////////////////////
@@ -67,7 +69,7 @@ use model\Manager;
 		// Connexion à la base de données
 		$bdd = $this->bddConnect();
 
-        $newMember = $bdd->prepare("INSERT INTO visiteurs(pseudo, mail, motdepasse, date_creation ) VALUES(?, ?, ?, NOW())");
+        $newMember = $bdd->prepare("INSERT INTO visiteurs(pseudo, mail, motdepasse, avatar, date_creation ) VALUES(?, ?, ?,'', NOW())");
         $newMember->execute(array($pseudo, $mail, $mdp));		
 
         return $newMember;
@@ -101,14 +103,14 @@ use model\Manager;
 		return $mdpModif;
 	}
 
-	public function createAvatar($extensionsUpload, $memberId){
+	public function createAvatar($nomBdd){
 
 		// Connexion à la base de données
 		$bdd = $this->bddConnect();
 
 		//Ajout d'un avatar
 		$newAvatar = $bdd->prepare('UPDATE visiteurs SET avatar = ? WHERE id = ?');
-		$newAvatar->execute(array($extensionsUpload, $memberId));
+		$newAvatar->execute(array($nomBdd, $_SESSION['id']));
 
 		return $newAvatar;
 	}

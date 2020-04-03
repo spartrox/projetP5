@@ -10,7 +10,7 @@
             </div>
             <!-- Affichage des commentaires du chapitre -->
         <div class="gestionAdmin">
-            <p>Listes des commentaires de l'article : <em><?= $article['titre'] ?></em></p>
+            <p>Listes des commentaires de l'article : <em><?= htmlspecialchars($article['titre']) ?></em></p>
         </div>            
         <div class="container fond">
         <?php 
@@ -23,11 +23,11 @@
                     while($c = $comments->fetch()): 
         ?>
                     <article class="ajoutCommentaire container">    
-                        <p><b><?= htmlspecialchars($c['pseudo']) ?></b><i> Ajouté le <?=$c['comment_article_fr'] ?></i></p><hr>
+                        <p><b><?= htmlspecialchars($c['pseudo']) ?></b><i> Ajouté le <?= htmlspecialchars($c['comment_article_fr']) ?></i></p><hr>
                         <p><?= nl2br(htmlspecialchars($c['contenu'])) ?><br></p>
 
                         <!-- Suppression du commentaire -->
-                        <p><a class="signaler" href="index.php?action=deleteComment&amp;id=<?= $c['id'] ?>" onclick="return(confirm('Voulez-vous supprimer ce commentaire ? '))">
+                        <p><a class="signaler" href="index.php?action=deleteComment&amp;id=<?= htmlspecialchars($c['id']); ?>" onclick="return(confirm('Voulez-vous supprimer ce commentaire ? '))">
                         <i class="fas fa-exclamation-triangle"></i>Supprimer</a>
                         
                     </article>      

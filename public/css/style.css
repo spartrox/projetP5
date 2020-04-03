@@ -150,6 +150,7 @@ h5{
 	width: auto;
 	height: 140px;
 	display: block;
+	border-radius: 5px;
 }
 .fond{
 	background-color: white;
@@ -243,6 +244,11 @@ textarea{
 .block_imageArticle{
 	text-align: center;
 }
+.block_imageArticle img{
+	text-align: center;
+	width: auto;
+	height: 350px;
+}
 
 		/*////////////////////////  A PROPOS   ///////////////////////////////  */
 .aPropos{
@@ -318,8 +324,8 @@ textarea{
   height: 15px;
   border: solid white;
   border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
@@ -354,9 +360,10 @@ textarea{
 	text-decoration: underline;
 	cursor: pointer;
 }
-#image_avatar{
-	text-align: center;
+#modifier{
+	font-size: 1em;
 }
+
 		/*////////////////////////  GESTION PROFIL    ///////////////////////////////  */
 .gestionProfil{
 	padding: 30px;
@@ -371,12 +378,25 @@ textarea{
 #mdp,#mail{
 	display: none;
 }
+#image_avatar{
+	text-align: center;
+}
 #inputAvatar{
 	padding: 10px;
 	background-color: grey;
 	color: white;
 	font-weight: bold;
 	border-radius: 5px;
+}
+#block_avatar img{
+	border-radius: 10px;
+	max-width: 100%;
+	height: 150px;
+}
+#block_avatar{
+	text-align: center;
+	width: auto;
+	height: 150px;
 }
 		/*////////////////////////  GESTION ADMINISTRATEUR    ///////////////////////////////  */
 .gestionAdmin{
@@ -477,146 +497,162 @@ footer{
 	text-align: center;
 	color: red;
 }
-@media screen (min-width: 950px) and (max-width: 1200px){
-#categories{
-	margin-left: 40%;
-}
-}
-@media screen  and (max-width: 1200px){
 
-h2{
-	font-size: 1.5em;
+@media screen and (min-width: 950px) and (max-width: 1200px){
+	#categories{
+		margin-left: 40%;
+	}
 }
-h3{
-	font-size: 1.1em;
-}
+@media screen and (max-width: 1200px){
 
-.categorieSlide p{
-	font-size: 0.8em;
-}
-#modifierProfil{
-	margin: 20px;
-	margin-left: 0px;
-}
-.aPropos{
-	padding: 30px;
-	margin-left: 0%;
-	margin-right: 0%;
-	border-radius: 15px;
-}
-.icone i{
-	font-size: 1.2em;
-	padding: 10px;
-}
-.btn{
-	font-size: 0.9em;
-}
-#slider{
-	width: auto;
-	height: 255px;
-}
-#slider img{
-	max-width: 100%;
-	height: 250px;
-}
-#block-slider{
-	height: 250px;
-}
-#flechegauche, #flechedroite{
-	font-size: 0.7em;
+	h2{
+		font-size: 1.5em;
+	}
+	h3{
+		font-size: 1.1em;
+	}
+	.categorieSlide p{
+		font-size: 0.8em;
+	}
+	#modifierProfil{
+		margin: 20px;
+		margin-left: 0px;
+	}
+	.aPropos{
+		padding: 30px;
+		margin-left: 0%;
+		margin-right: 0%;
+		border-radius: 15px;
+	}
+	.icone i{
+		font-size: 1.2em;
+		padding: 10px;
+	}
+	.btn{
+		font-size: 0.9em;
+	}
+
+	#slider{
+		width: auto;
+		height: 255px;
+	}
+	#slider img{
+		max-width: 100%;
+		height: 250px;
+	}
+	#block-slider{
+		height: 250px;
+	}
+	#flechegauche, #flechedroite{
+		font-size: 0.7em;
+	}
 }
 @media screen and (max-width: 1000px){
 
-#categories{
-	margin-left: 15%;
+	.messageErreur{
+		margin-top: 0px;
+		font-size: 0.8em;
+	}
+}
+@media screen and (max-width: 765px){
+
+	.block_image img{
+		margin-left:;
+		width: auto;
+		border-radius: 10px;
+	}
+	#imageBlock{
+		height: 350px;
+	}
+	.block_image{
+		height: 350px;
+	}
+	.icone{
+		margin-left: 40%;
+	}
 }
 
-.block_image{
-	margin-left: 10%;
-}
-.block_imageArticle img{
-	width: 100%;
-}
-
-.icone{
-	margin-left: 100px;
-}
-}
 @media screen and (max-width: 650px){
 
-#contenu{
-	margin-left: 25%;
-}
-
+	#contenu{
+		margin-left: 25%;
+	}
 }
 
 @media screen and (max-width: 500px){
 
-#navActualite{
-	font-size: 0.6em;
-}
-#contenu{
-	margin-left: 10%;
-}
+	#navActualite{
+		font-size: 0.6em;
+	}
+	#contenu{
+		margin-left: 10%;
+	}
+	.icone{
+		margin-left: 30%;
+	}
+	#imageBlock{
+		height: 250px;
+	}
+	.block_image{
+		height: 250px;
+	}	
 }
 
 @media screen and (max-width: 400px){
 
-#contenu{
-	margin-left: 0%;
-}
-#pageActualite{
-	margin-left: 0px;
-}
-#article{
-	margin-left: 10px;
-}
-#cate, #article{
-	margin-left: 10px;
-}
-#slider{
-	position: relative;
-	width: auto;
-	height: 255px;
-	border: 3px solid blue;
-	border-radius: 5px;
-	margin-bottom: 100px;
-}
-#slider img{
-	max-width: 100%;
-	height: 250px;
-	display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-#block-slider{
-	height: 300px;
-}
-#flechegauche, #flechedroite{
-	font-size: 0.5em;
-}
-h1{
-	font-size: 1.7em;
-}
-h3{
-	font-size: 1.5em;
-}
-#titre{
-	font-size: 1.5em;
-}
-#modifierProfil{
-	margin: 20px;
-}
-#infoProfil li{
-	font-size: 1em;
-	margin-bottom: 0px;
-}
-#infoProfil p{
-	font-size: 1.5em;
-}
-.btn{
-	font-size: 0.8em;
-}
-
-
+	#contenu{
+		margin-left: 0%;
+	}
+	#pageActualite{
+		margin-left: 0px;
+	}
+	#article{
+		margin-left: 10px;
+	}
+	#cate, #article{
+		margin-left: 10px;
+	}
+	#slider{
+		position: relative;
+		width: auto;
+		height: 255px;
+		border: 3px solid blue;
+		border-radius: 5px;
+		margin-bottom: 100px;
+	}
+	#slider img{
+		max-width: 100%;
+		height: 250px;
+		display: block;
+	    margin-left: auto;
+	    margin-right: auto;
+	}
+	#block-slider{
+		height: 300px;
+	}
+	#flechegauche, #flechedroite{
+		font-size: 0.5em;
+	}
+	h1{
+		font-size: 1.7em;
+	}
+	h3{
+		font-size: 1.5em;
+	}
+	#titre{
+		font-size: 1.5em;
+	}
+	#modifierProfil{
+		margin: 20px;
+	}
+	#infoProfil li{
+		font-size: 1em;
+		margin-bottom: 0px;
+	}
+	#infoProfil p{
+		font-size: 1.5em;
+	}
+	.btn{
+		font-size: 0.8em;
+	}
 }

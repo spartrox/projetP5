@@ -17,19 +17,19 @@
 				?>
 						<div class="row fond">
 							<div class="col-md-4 mt-3 mb-2 block_image">
-								<a href="index.php?action=article&amp;id=<?= $article['id']; ?>"><img src="public/image_article/<?php echo ($article['image_article']); ?>"><a>
+								<a href="index.php?action=article&amp;id=<?= htmlspecialchars($article['id']); ?>"><img id='imageBlock' src="public/image_article/<?= htmlspecialchars($article['image_article']); ?>"><a>
 							</div>
 						    <div class="col-md-8 mt-3">
-						    	<a href="index.php?action=article&amp;id=<?= $article['id']; ?>">
+						    	<a href="index.php?action=article&amp;id=<?= htmlspecialchars($article['id']); ?>">
 						    	<h4>
-						        	<?php echo ($article['titre']); ?>
+						        	<?= htmlspecialchars($article['titre']); ?>
 						    	</h4>
 						    </a>
 								<p class="mt-3">
-									<a class="modif" href="index.php?action=article&amp;id=<?= $article['id']; ?>"><i class="fas fa-eye"> voir</i></a>									
-									<a class="modif" href="index.php?action=pageModifArticle&amp;id=<?= $article['id']?>"><i class="fas fa-user-edit"> modifier</i></a>										
-									<a class="modif" href="index.php?action=deleteArticle&amp;id=<?= $article['id']?>" onclick="return(confirm('Voulez-vous supprimer l\'article ainsi que tout ses commentaires ? '))"><i class="fas fa-trash-alt"> supprimer</i></a>	
-									<a class="modif" href="index.php?action=pageCommentArticle&amp;id=<?= $article['id']?>"><i class="fas fa-comments"> Commentaires</i></a>		
+									<a class="modif" href="index.php?action=article&amp;id=<?= htmlspecialchars($article['id']); ?>"><i class="fas fa-eye"> voir</i></a>									
+									<a class="modif" href="index.php?action=pageModifArticle&amp;id=<?= htmlspecialchars($article['id']); ?>"><i class="fas fa-user-edit"> modifier</i></a>										
+									<a class="modif" href="index.php?action=deleteArticle&amp;id=<?= htmlspecialchars($article['id']); ?>" onclick="return(confirm('Voulez-vous supprimer l\'article ainsi que tout ses commentaires ? '))"><i class="fas fa-trash-alt"> supprimer</i></a>	
+									<a class="modif" href="index.php?action=pageCommentArticle&amp;id=<?= htmlspecialchars($article['id']); ?>"><i class="fas fa-comments"> Commentaires</i></a>		
 								</p>					
 							</div>   	
 						</div> 	

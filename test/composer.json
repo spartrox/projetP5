@@ -1,8 +1,0 @@
-{
-    "name": "test/ons",
-    "require": {},
-	"autoload": {
-		"psr-4" : {
-		"te\\" : "te"}
-	}
-}

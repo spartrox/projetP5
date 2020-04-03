@@ -16,13 +16,13 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fa fa-envelope" ></i> </span>
                         </div>
-                        <input class="form-control" name="mail" placeholder="Votre email" id="mail" type="email" value="<?php if(isset($mail)) { echo $mail; } ?>">
+                        <input class="form-control" name="mail" placeholder="Votre email" id="mailI" type="email" value="<?php if(isset($mail)) { echo $mail; } ?>">
                     </div>
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
-                        <input class="form-control" placeholder="Votre mot de passe" id="mdp" name="mdp" type="password">
+                        <input class="form-control" placeholder="Votre mot de passe" id="mdpI" name="mdp" type="password">
                     </div>
                     <div class="form-group input-group">
                         <div class="input-group-prepend">

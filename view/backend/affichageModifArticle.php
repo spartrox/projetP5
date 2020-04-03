@@ -19,14 +19,14 @@
     	    <div>
             	<p class="phraseRetourAdmin"><a href="index.php?action=pageAllArticles">Retour à la liste des articles</a></p>
         	</div>
-		<h4 class="phraseRetourAdmin">Vous allez modifier l'article : <em><?= $article['titre'] ?></em></h4>		
+		<h4 class="phraseRetourAdmin">Vous allez modifier l'article : <em><?= htmlspecialchars($article['titre']); ?></em></h4>		
 	    
 	    <div class="container-fluid" id="ajoutChapitre">
-	    	<form action="index.php?action=articleModif&amp;id=<?=$article['id'] ?>" method="post"><br>
+	    	<form action="index.php?action=articleModif&amp;id=<?= htmlspecialchars($article['id']); ?>" method="post"><br>
 		        <div class="container  col-md-9">
 		            <div class="md-form mb-3">
 		                <label id="titreArticle">Titre de l'article : </label>
-		                <input type="text" name="titre_Article" placeholder="Titre de l'article" value="<?= $article['titre'] ?>" class="form-control">		                            
+		                <input type="text" name="titre_Article" placeholder="Titre de l'article" value="<?= htmlspecialchars($article['titre']); ?>" class="form-control">		                            
 		            </div>
 		        </div>
 		        <div class="container col-md-9">
@@ -40,10 +40,7 @@
 		            <li class="nav-item dropdown" id="categoriesArticle" name="categoriesArticle">
 		                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLinkk" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catégories</a>
 		                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkk">
-		                    <a class="dropdown-item" href="index.php?action=pageVoitureAllemande">Voiture Allemande</a>
-		                    <a class="dropdown-item" href="index.php?action=pageVoitureAmericaine">Voiture Americaine</a>
-		                    <a class="dropdown-item" href="index.php?action=pageVoitureFrancaise">Voiture francaise</a>
-		                    <a class="dropdown-item" href="index.php?action=pageVoitureItalienne">Voiture Italienne</a>
+
 		                </div>
 		            </li> 			        		        		        
 			    </div>    

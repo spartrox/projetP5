@@ -1,5 +1,5 @@
 {
-    "name": "test/ons",
+    "name": "Projet P5",
     "require": {},
 	"autoload": {
 		"psr-4" : {

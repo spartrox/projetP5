@@ -5,7 +5,8 @@
 
     	<section class="mt-5">
     		<h4>Liste de tout les messages reçus depuis le formulaire de contact :</h4><br>
-    		<div class="container messageRecus">
+    		
+    		<div class="container messageRecus mt-2">
     				
     				<?php 
 						$result = $messages->rowCount();
@@ -15,10 +16,10 @@
 							else:			
 								while ($msg = $messages->fetch()):
 					?>
-			    			<p><b>Message de :</b> <?php echo ($msg['nom']); ?></p>
-			    			<p><b>Sujet du message :</b> <?php echo ($msg['sujet']); ?></p>
-			    			<p><b>Reçus le :</b> <?php echo ($msg['date_message']); ?></p>
-			    			<a href="index.php?action=pageMessageEntier" class="btn btn-primary">Accéder au message</a>
+			    			<p><b>Message de :</b> <?= htmlspecialchars($msg['nom']); ?></p>
+			    			<p><b>Sujet du message :</b> <?= htmlspecialchars($msg['sujet']); ?></p>
+			    			<p><b>Reçus le :</b> <?= htmlspecialchars($msg['date_message']); ?></p>
+			    			<a href="index.php?action=pageMessageEntier&amp;id=<?= htmlspecialchars($msg['id']); ?>" class="btn btn-primary mb-5">Accéder au message</a>
 					<?php	
 								endwhile;
 

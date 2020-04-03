@@ -9,7 +9,7 @@
 	                <?php 
 	                    if (!empty($_SESSION['admin'])):     
 	                ?>
-	                    <em><p class="phraseRetourAdmin"><a href="index.php?action=pageModifArticle&amp;id=<?= $article['id']?>">Modifier l'article</a></p></em>
+	                    <em><p class="phraseRetourAdmin"><a href="index.php?action=pageModifArticle&amp;id=<?= htmlspecialchars($article['id'])?>">Modifier l'article</a></p></em>
 	                
 	                <?php
 	                     else: 
@@ -21,13 +21,13 @@
 	                <?= htmlspecialchars($article['titre']); ?>
 	            </h4><br>
                             <div class="mt-3 mb-3  block_imageArticle">
-                                <img src="public/image_article/<?php echo ($article['image_article']); ?>">
+                                <img id='imageBlock' src="public/image_article/<?= htmlspecialchars($article['image_article']); ?>">
                             </div>
 
 	               	<div class="contenu">
 	                	<?= nl2br($article['contenu']); ?><br><br>
 	                </div>
-	                <em class="publication">Article publié le <?= $article['date_article_fr'] ; ?></em>
+	                <em class="publication">Article publié le <?= htmlspecialchars($article['date_article_fr']) ; ?></em>
 	        </div><br><br>
 	            
 	        <div>
@@ -41,7 +41,7 @@
                 if (!empty($_SESSION)):
             ?>
 
-            <form action="index.php?action=addComment&amp;id=<?= $article['id'] ?>" method="post">
+            <form action="index.php?action=addComment&amp;id=<?= htmlspecialchars($article['id']) ?>" method="post">
                 <label class="commentaire mt-2 mb-2 ml-2" for="commentaire">Commentaire :</label></br>
                 <textarea name="commentaire" placeholder="Ajouter votre commentaire"></textarea><br>
                     <input class="btn btn-primary mt-2 ml-2" type="submit" value="Poster mon commentaire" name="submit_commentaire">

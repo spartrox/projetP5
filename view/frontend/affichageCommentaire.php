@@ -8,7 +8,7 @@
                 <?php 
                     if (!empty($_SESSION['admin'])):   
                 ?>
-                    <em><p class="phraseRetourArticle"><a href="index.php?action=pageModifChapitre&amp;id=<?= $article['id']?>">Modifier ce chapitre</a></p></em>
+                    <em><p class="phraseRetourArticle"><a href="index.php?action=pageModifChapitre&amp;id=<?= htmlspecialchars($article['id'])?>">Modifier ce chapitre</a></p></em>
                 
                 <?php
                     else:
@@ -22,7 +22,7 @@
 
                 <?= nl2br($article['contenu']); ?>
            
-                <em>publié le <?= $article['date_creation_fr']; ?></em>
+                <em>publié le <?= htmlspecialchars($article['date_creation_fr']); ?></em>
         </div><br><br>
             
         <div>

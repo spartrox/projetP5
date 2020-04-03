@@ -20,33 +20,32 @@
 	        <p class="phraseRetourAdmin"><a href="index.php?action=pageAdmin">Retour au panneau administrateur</a></p>
 	    </div>
 	    <div class="container-fluid" id="ajoutChapitre">
-	    	<form action="index.php?action=newArticle"  method="post"><br>
+	    	<form action="index.php?action=newArticle" method="post" enctype="multipart/form-data"><br>
 		        <div class="container col-md-9">
 		            <div class="md-form mb-3">
 		                <label id="titreArticle">Titre de l'article : </label>
 		                <input type="text" name="titreArticle" placeholder="Titre de l'article" class="form-control">		                            
 		            </div>
 		        </div>
-		        <div class="container  col-md-9">
+		        <div class="container col-md-9">
 		            <div class="md-form mb-3">
 		                <label id="imageArticle">Image de l'article : </label>
-		                <input type="file" accept=".png, .jpeg, .jpg" name="image_article" class="form-control">		                            
+		                <input type="file" accept=".png, .jpeg, .jpg" name="image_article" id="image_article" class="form-control">		                            
 		            </div>
 		        </div>
 		        <div class="container  col-md-9 mb-5">
 		        	<label for="name_categorie" id="titreArticle">Catégorie de l'article : </label>
 		                
 		                <select name="categorie_article" id="name_categorie">
-               
 	                <?php 
-	                            while ($c = $categories->fetch()):
+	                            while ($c = $categoriess->fetch()):
 	                ?>
 	                        <div id="tailleCategorie">
-	                            <option value="id"><?php echo ($c['titre_categorie']); ?></option>         
+	                            <option value="<?= htmlspecialchars($c['id']); ?>"><?= htmlspecialchars($c['titre_categorie']); ?></option>         
 	                        </div> 
 	                <?php       
 	                             endwhile;   
-	                            $categories->closeCursor(); 
+	                            $categoriess->closeCursor(); 
 	                ?>
 	                	</select>
 		                			        		        		        

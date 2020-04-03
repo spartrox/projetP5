@@ -22,15 +22,15 @@
 						while($r = $reportComments->fetch()):
 			?>
 						<article class="ajoutCommentaire container">    
-			                <p><b><?= htmlspecialchars($r['pseudo']) ?></b><i> Ajouté le <?=$r['comment_article_fr'] ?></i></p><hr>
+			                <p><b><?= htmlspecialchars($r['pseudo']) ?></b><i> Ajouté le <?= htmlspecialchars($r['comment_article_fr']) ?></i></p><hr>
 			                <p><?= nl2br(htmlspecialchars($r['contenu'])) ?><br></p> 
 
 			                <!-- Suppression du commentaire signalé -->
-			           		<p><a class="signaler" href="index.php?action=deleteCommentSignale&amp;id=<?= $r['id'] ?>" onclick="return(confirm('Voulez-vous supprimer ce commentaire ? '))">
+			           		<p><a class="signaler" href="index.php?action=deleteCommentSignale&amp;id=<?= htmlspecialchars($r['id']); ?>" onclick="return(confirm('Voulez-vous supprimer ce commentaire ? '))">
 			                	<i class="fas fa-exclamation-triangle"></i>Supprimer</a>
 			            	
 			                <!-- Suppression du commentaire signalé -->
-			            	<a class="signaler" href="index.php?action=notReportComment&amp;id=<?= $r['id'] ?>" onclick="return(confirm('Voulez-vous annuler le signalement ? '))">
+			            	<a class="signaler" href="index.php?action=notReportComment&amp;id=<?= htmlspecialchars($r['id']); ?>" onclick="return(confirm('Voulez-vous annuler le signalement ? '))">
 			                	<i class="fas fa-exclamation-triangle"></i>Retirer le signalement</a>
 			            	</p>
 			            </article> 

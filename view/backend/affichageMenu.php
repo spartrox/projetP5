@@ -27,8 +27,8 @@
                 ?>
                         <div>
                             <div class="categories" id="categoriesMenu">
-                                <a href="index.php?action=articleCategorie&amp;id=<?= $c['id']; ?>">
-                                  <p><?php echo ($c['titre_categorie']); ?></p>     
+                                <a href="index.php?action=articleCategorie&amp;id=<?= htmlspecialchars($c['id']); ?>">
+                                  <p><?= htmlspecialchars($c['titre_categorie']); ?></p>     
                               </a>
                             </div>      
                         </div> 

@@ -1,6 +1,5 @@
 <?php
 
-	//chargement des différentes classes
  	namespace controller;
  	require "vendor/autoload.php";
 
@@ -19,11 +18,11 @@ class Backend {
 			$categories =  $articleManager-> getCategories();
 			$categoriess =  $articleManager-> getCategoriess();
 
-			if ($categories === false){
+			if ($categories === false):
 				throw new \Exception('Impossible d\'accéder à cette page');
-			} else{
+			else:
 	      			require('view/backend/affichageAdministrateur.php');
-	      	}
+	      	endif;
     }
 
     //Page gestion des commentaires signalé
@@ -34,11 +33,11 @@ class Backend {
 			$reportComments = $commentManager-> addReportComments();
 			$categories =  $articleManager-> getCategories();
 
-			if ($reportComments === false){
+			if ($reportComments === false):
 					throw new \Exception('Impossible d\'accéder à la page des commentaires signalé, veuillez recommencer !');
-			} else{
+			else:
 					require('view/backend/affichageCommentaireSignale.php');
-			}
+			endif;
 	}
 
 	//Page gestion article
@@ -48,11 +47,11 @@ class Backend {
 			$article =  $articleManager-> getArticle($articleId);
 			$categories =  $articleManager-> getCategories();
 
-			if ($article  === false){
+			if ($article  === false):
 					throw new \Exception('Impossible d\'accéder à la page de modification de l\'article, veuillez recommencer !');
-			} else{
+			else:
 					require('view/backend/affichageModifArticle.php');
-			}
+			endif;
 	}
 
 	//Page gestion categorie
@@ -62,11 +61,11 @@ class Backend {
 			$categorie =  $articleManager-> getCategorie($categorieId);
 			$categories =  $articleManager-> getCategories();
 
-			if ($categorie  === false){
+			if ($categorie  === false):
 					throw new \Exception('Impossible d\'accéder à la page de modification de categorie, veuillez recommencer !');
-			} else{
+			else:
 					require('view/backend/affichageModifCategorie.php');
-			}
+			endif;
 	}
 
 	//Affichage de tout les articles
@@ -77,11 +76,11 @@ class Backend {
       		$articles = $articleManager->getArticles();
           	$categories = $articleManager-> getCategories();
 
-	        if ($articles === false){
+	        if ($articles === false):
 	                throw new \Exception('Impossible d\'afficher la page des articles, veuillez recommencer !');
-	        } else{
+	        else:
 	                require('view/backend/affichageAllArticles.php');
-	        }		
+	        endif;		
 	}
 
 	//page gestion des commentaires pour chaque chapitre
@@ -93,11 +92,11 @@ class Backend {
 			$comments = $commentManager->articleComments($articleId);
 			$categories  =  $articleManager-> getCategories();
 			
-			if ($article  === false){
+			if ($article  === false):
 					throw new \Exception('Impossible d\'accéder à la page des commentaires, veuillez recommencer !');
-			} else{
+			else:
 					require('view/backend/affichageCommentaireArticle.php');
-			}
+			endif;
 	}
 
 	//Affichage de tout les messages
@@ -108,11 +107,11 @@ class Backend {
 			$messages = $messageManager-> getMessages();
           	$categories = $articleManager-> getCategories();
 
-	        if ($messages === false){
+	        if ($messages === false):
 	                throw new \Exception('Impossible d\'afficher la page des messages !');
-	        } else{
+	        else:
 	      			require('view/backend/affichageMessageRecus.php');
-	      	}
+	      	endif;
     }
 
 	//Affichage de la page Message
@@ -120,114 +119,143 @@ class Backend {
 		$messageManager = new MessageManager();
 		$articleManager = new ArticleManager();
 
-			$messages = $messageManager-> getMessages();
+          	$message = $messageManager-> getMessage($_GET['id']);
           	$categories = $articleManager-> getCategories();
 
-	        if ($messages === false){
+	        if ($message === false):
 	                throw new \Exception('Impossible d\'afficher la page des messages !');
-	        } else{
+	        else:
 	      			require('view/backend/affichageMessageEntier.php');
-	      	}
+	      	endif;
     }
 
                         ////////////////// FONCTION AJOUT /////////////////////////
 
 	//Ajout d'un article
-	function newArticle($titre, $categorie_article, $contenu, $image_article){
-		$articleManager = new ArticleManager();
+	function newArticle($titre, $contenu, $categorie_article, $image_article){
 
-			$newArticle = $articleManager-> createArticle($titre, $categorie_article, $contenu, $image_article);
-			
-			if ($newArticle === false){
-					throw new \Exception('Impossible d\'ajouter un article, veuillez recommencer');
-			} else{
-					Header('Location: index.php?action=addArticle');
-			}
+		if (!empty($_FILES['image_article']['name']) AND !empty($_FILES['image_article']['name'])):
+
+				$tailleMax = 4194304;
+				$extensionsValides = array('jpg', 'jpeg', 'png');
+					
+					if ($_FILES['image_article']['size'] <=$tailleMax):
+								
+						$extensionsUpload = strtolower(substr(strrchr($_FILES['image_article']['name'], '.'), 1));
+
+							if (in_array($extensionsUpload, $extensionsValides)):
+								
+								$categorieId = $categorie_article;
+								$chemin = "public/image_article/" . $categorieId . "." . $extensionsUpload;
+								$resultat = move_uploaded_file($_FILES['image_article']['tmp_name'], $chemin);
+								$nomBdd = $categorieId . "." . $extensionsUpload;
+
+									if ($resultat):
+										$articleManager = new ArticleManager();
+										
+										$newArticle = $articleManager-> createArticle($titre, $contenu, $categorie_article, $nomBdd);
+
+										Header('Location: index.php?action=addArticle');
+
+									else:
+											throw new \Exception("Impossible d\'ajouter un article, veuillez recommencer");								
+									endif;
+
+							else:
+									throw new \Exception('Veuillez ajouter un avatar au format : PNG, JPG ou JPEG !');
+							endif;
+
+					else:
+							throw new \Exception("Votre photo de profil ne doit pas dépasser 4mo");			
+					endif;	
+
+			else:
+					throw new \Exception("Impossible d'ajouter un avatar, veuillez recommencer");
+			endif;
 	}
 
 	//Ajout d'un avatar
 	function newAvatar(){
 			
-			if (!empty($_FILES['inputAvatar']['name']) AND !empty($_FILES['inputAvatar']['name'])){
+			if (!empty($_FILES['inputAvatar']['name']) AND !empty($_FILES['inputAvatar']['name'])):
 
-				$tailleMax = 2097152;
+				$tailleMax = 4194304;
 				$extensionsValides = array('jpg', 'jpeg', 'png');
 					
-					if ($_FILES['inputAvatar']['size'] <=$tailleMax) {
+					if ($_FILES['inputAvatar']['size'] <=$tailleMax):
 								
 						$extensionsUpload = strtolower(substr(strrchr($_FILES['inputAvatar']['name'], '.'), 1));
 
-							if (in_array($extensionsUpload, $extensionsValides)) {
+							if (in_array($extensionsUpload, $extensionsValides)):
 
 								$memberId = $_SESSION['id'];		
-								$chemin = "public/membres/avatars/" . $_SESSION['id']. "." .$extensionsUpload;
+								$chemin = "public/membres/avatars/" . $memberId . "." . $extensionsUpload;
 								$resultat = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], $chemin);
+								$nomBdd = $memberId . "." . $extensionsUpload;
 
-									if ($resultat) {
+									if ($resultat):
 										$memberManager = new MemberManager();
 										
-										$newAvatar = $memberManager-> createAvatar($extensionsUpload, $memberId);
+										$newAvatar = $memberManager-> createAvatar($nomBdd);
 
 										header('Location: index.php?action=pageProfil');
 
-									} else{
-										throw new \Exception("Erreur durant l'importation de votre avatar");
-										
-									}
+									else:
+											throw new \Exception("Erreur durant l'importation de votre avatar");								
+									endif;
 
-							} else{
+							else:
 									throw new \Exception('Veuillez ajouter un avatar au format : PNG, JPG ou JPEG !');
-							}
-					} else{
-							throw new \Exception("Votre photo de profil ne doit pas dépasser 2mo");			
-					}	
+							endif;
 
-			} else {
+					else:
+							throw new \Exception("Votre photo de profil ne doit pas dépasser 4mo");			
+					endif;	
+
+			else:
 					throw new \Exception("Impossible d'ajouter un avatar, veuillez recommencer");
-				
-			}
+			endif;			
 	}
 
 	//Ajout d'un avatar
 	function newImageArticle($image_avatar){
 			
-			if (!empty($_FILES['inputAvatar']['name']) AND !empty($_FILES['inputAvatar']['name'])){
+			if (!empty($_FILES['inputAvatar']['name']) AND !empty($_FILES['inputAvatar']['name'])):
 
 				$tailleMax = 2097152;
 				$extensionsValides = array('jpg', 'jpeg', 'png');
 					
-					if ($_FILES['inputAvatar']['size'] <=$tailleMax) {
+					if ($_FILES['inputAvatar']['size'] <=$tailleMax):
 								
 						$extensionsUpload = strtolower(substr(strrchr($_FILES['inputAvatar']['name'], '.'), 1));
 
-							if (in_array($extensionsUpload, $extensionsValides)) {
+							if (in_array($extensionsUpload, $extensionsValides)):
 										
 								$chemin = "public/image_article/" . $_SESSION['id']. "." .$extensionsUpload;
 								$resultat = move_uploaded_file($_FILES['inputAvatar']['tmp_name'], $chemin);
 
-									if ($resultat) {
+									if ($resultat):
 										$memberManager = new MemberManager();
 										
 										$newAvatar = $memberManager-> createImageArticle($image_avatar);
 
 										header('Location: index.php?action=pageProfil');
 
-									} else{
+									else:
 										throw new \Exception("Erreur durant l'importation de votre image");
-										
-									}
-
-							} else{
+									endif;	
+									
+							else:
 									throw new \Exception('Veuillez ajouter une image au format : PNG, JPG ou JPEG !');
-							}
-					} else{
-							throw new \Exception("Votre image ne doit pas dépasser 2mo");			
-					}	
+							endif;
 
-			} else {
-					throw new \Exception("Impossible d'ajouter l'image, veuillez recommencer");
-				
-			}
+					else:
+							throw new \Exception("Votre image ne doit pas dépasser 2mo");			
+					endif;	
+
+			else:
+					throw new \Exception("Impossible d'ajouter l'image, veuillez recommencer");	
+			endif;
 	}	
 
 
@@ -237,25 +265,12 @@ class Backend {
 
 			$newCategorie = $articleManager-> createCategorie($titre);
 			
-			if ($newCategorie === false){
+			if ($newCategorie === false):
 					throw new \Exception('Impossible d\'ajouter une nouvelle categorie, veuillez recommencer');
-			} else{
+			else:
 					Header('Location: index.php?action=pageAjoutCategorie');
-			}
+			endif;
 	}
-
-  	//Ajout d'un message
-    function newMessage($nom, $email, $sujet, $contenu){
-    	$messageManager = new MessageManager();
-
-	    	$newMessage = $messageManager-> createMessage($nom, $email, $sujet, $contenu);
-				//die(var_dump($newMessage));
-	    	if ($newMessage === false){
-	    			throw new \Exception("Impossible d'envoyer le message, veuillez réessayer");
-	    	} else{
-	    			header('Location index.php?action=pageContact');
-	    	}
-    }
 
                         ////////////////// FONCTION MODIFICATION /////////////////////////
 
@@ -265,11 +280,11 @@ class Backend {
 
 			$categorieModif = $categorieManager-> categorieModif($categorieId);
 
-			if ($categorieModif === false){
+			if ($categorieModif === false):
 					throw new \Exception('Impossible de modifier cet categorie, veuillez recommencer !');
-			} else{
+			else:
 					Header('Location: index.php?action=pageAdmin');
-			}
+			endif;
 	}
 
 	//Article modifié
@@ -278,11 +293,11 @@ class Backend {
 
 			$articleModif = $articleManager-> articleModif($articleId);
 
-			if ($articleModif === false){
+			if ($articleModif === false):
 					throw new \Exception('Impossible de modifier cet article, veuillez recommencer !');
-			} else{
+			else:
 					Header('Location: index.php?action=pageAllArticles');
-			}
+			endif;
 	}
 
                         ////////////////// FONCTION SUPPRESSION /////////////////////////
@@ -293,11 +308,11 @@ class Backend {
 
 			$deleteComment = $commentManager-> deleteComment($commentId);
 
-			if ($deleteComment === false){
+			if ($deleteComment === false):
 					throw new \Exception('Impossible de supprimer ce commentaire, veuillez recommencer !');
-			} else{
+			else:
 					Header('Location: index.php?action=pageAllArticles');
-			}
+			endif;
 	}
 
 	//Supression d'un commentaire signalé
@@ -306,11 +321,11 @@ class Backend {
 
 			$deleteComment = $commentManager-> deleteComment($commentId);
 
-			if ($deleteComment === false){
+			if ($deleteComment === false):
 					throw new \Exception('Impossible de supprimer ce commentaire, veuillez recommencer !');
-			} else{
+			else:
 					Header('Location: index.php?action=pageCommentaireSignale');
-			}
+			endif;
 	}
 
 	//Supression d'un article		
@@ -319,11 +334,11 @@ class Backend {
 
       		$deleteArticle = $articleManager->deleteArticle($articleId);
 
-	        if ($deleteArticle === false){
+	        if ($deleteArticle === false):
 	                throw new \Exception('Impossible de supprimer cet article, veuillez recommencer !');
-	        } else{
+	        else:
 	                Header('Location: index.php?action=pageAllArticles');
-	        }      		
+	        endif;      		
 	}
 
 	//Supression d'une catégorie		
@@ -332,10 +347,10 @@ class Backend {
 
 	      	$deleteCategorie = $articleManager->deleteCategorie($categorieId);
 	      	//die(var_dump($articleId));
-	        if ($deleteCategorie === false){
+	        if ($deleteCategorie === false):
 	                throw new \Exception('Impossible de supprimer la catégorie, veuillez recommencer !');
-	        } else{
+	        else:
 	                Header('Location: index.php?action=pageAdmin');
-	        }      		
+	        endif;      		
 	}
 }

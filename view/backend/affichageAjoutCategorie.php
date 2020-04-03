@@ -25,7 +25,7 @@
                 ?>
                         <div>
                             <div class="categoriee container col-md-4">
-                                    <p><?php echo ($c['titre_categorie']); ?></p> 
+                                    <p><?= htmlspecialchars($c['titre_categorie']); ?></p> 
                             </div>      
                         </div> 
                 <?php                       

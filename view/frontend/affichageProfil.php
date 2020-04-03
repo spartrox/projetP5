@@ -4,42 +4,42 @@
 
 			<h2>Votre profil</h2>
             
-            <?php 
-                   while($p = $infoMember->fetch()){
-            ?> 
         <section>            
 
                 <div class="container fond col-md-6" id="infoProfil">
                    
                     <p>Information sur le profil : </p>
 
-                    <div class="container" id="image_avatar">
-                        <img src="public/membres/avatars/<?= $p['avatar'] ?>">
+                    <div class="container" id="block_avatar">
+                        <img id="image_avatar" src="public/membres/avatars/<?= htmlspecialchars($infoMember['avatar']); ?>" alt=' '>
                     </div><br>
                     
                     <ul>
-                        <li>Votre pseudo :<b> <?= $p['pseudo'] ?> </b></li>
-                        <li>Votre mail :<b> <?= $p['mail'] ?> <a id="modif_mail" class="texte_droite" > modifier</a></li>
-                            
-                                <div class="form-group input-group row col-md-5" id="mail">
-                                    <input class="form-control" name="newMail" placeholder="Nouvelle adresse email" id="newMail" type="email"><a class="valider mt-2 ml-2" href="index.php?action=mailModif"> Valider</a>
+                        <li>Votre pseudo :<b> <?= htmlspecialchars($infoMember['pseudo']) ?> </b></li>
+                        <li>Votre mail :<b> <?= htmlspecialchars($infoMember['mail']) ?> <a id="modif_mail" class="texte_droite" > modifier</a></li>
+         
+                            <form action="index.php?action=mailModif" method="post">                     
+                                <div class="form-group input-group mt-2 row col-md-5" id="mail">
+                                    <input type="mail" name="newMail" placeholder="Nouvelle adresse email">
+                                    <input class="btn-primary" type="submit" value="Valider" id="modifier">
                                 </div></b>
+                            </form> 
 
-                        <li>Votre compte a été créé le :<b> <?= $p['date_creation'] ?> </b></li>
-                        <li>Votre mot de passe : •••••••• <b><a id="modif_mdp" class="texte_droite" > modifier</a>                     
-                                <div class="form-group input-group mt-2 row col-md-5 " id="mdp">
-                                        <input class="form-control" placeholder="Nouveau mot de passe" id="newMdp" name="newMdp" type="password"><a class="valider mt-2 ml-2" href="index.php?action=modifMdp"> Valider</a>
-                                </div></b>              
+                        <li>Votre mot de passe : •••••••• <b><a id="modif_mdp" class="texte_droite" > modifier</a>
+                            
+                            <form action="index.php?action=mdpModif" method="post">                     
+                                <div class="form-group input-group mt-2 row col-md-5" id="mdp">
+                                    <input type="password" name="newMdp" placeholder="Nouveau mot de passe">
+                                    <input class="btn-primary" type="submit" value="Valider" id="modifier">
+                                </div></b>
+                            </form>
+
+                        <li>Votre compte a été créé le :<b> <?= htmlspecialchars($infoMember['date_creation']) ?> </b></li>                      
                     </ul>
                     <a href="index.php?action=pageAvatar" class="btn btn-primary">Ajouter un avatar</a>
                 </div>
-                
-                <?php
-                        }
-                         $infoMember->closeCursor();      
-                ?>
 
-                <div class="container-fluid col-md-1 col-sm-5">
+                <div class="container-fluid col-md-1 col-sm-12">
                     <a href="index.php?action=pageDeconnexion" class="btn btn-danger" id="deconnexion">DECONNEXION</a>
                 </div>
 

@@ -18,10 +18,9 @@
 						</div>
 							<input class="form-control" type="password" name="mdpConnect" placeholder="Mot de passe">
 					</div>
-					<!--<div class="g-recaptcha" data-sitekey="6Lcv7d4UAAAAAFEvQxHzGycnQ8wwSlZfi3N8esvx"></div>
-					<button class="g-recaptcha" data-sitekey="6Lcv7d4UAAAAAFEvQxHzGycnQ8wwSlZfi3N8esvx" data-callback='onReCaptchaValid'>Valider</button> -->
+					<div class="g-recaptcha" data-sitekey="6Lcv7d4UAAAAAFEvQxHzGycnQ8wwSlZfi3N8esvx"></div>
 					<div class="form-group">
-						<input type="submit" value="Se connecter" class="btn btn-primary">
+						<input type="submit" data-sitekey="6Lcv7d4UAAAAAFEvQxHzGycnQ8wwSlZfi3N8esvx" value="Se connecter" class="btn btn-primary mt-2">
 					</div><br>
 					<div>
 						<label class="checkbox">
@@ -34,9 +33,6 @@
 
 				<div class="container" >
 					<p>Vous n'avez pas de compte ?<a href="index.php?action=pageInscription"> Cliquez ici pour vous inscrire !</a></p>
-				</div>
-				<div class="d-flex justify-content-center">
-					<a href="index.php?action=pageMdpOublie"><p>Mot de passe oublié ?</p></a>
 				</div>
 
 		<?php $content = ob_get_clean(); ?>
